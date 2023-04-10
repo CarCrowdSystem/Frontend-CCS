@@ -1,0 +1,78 @@
+.contato{
+    height: 100vh;
+    width: 100%;
+    padding: 2% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f8f8f8;
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+/* formulario */
+.formulario{
+    display: flex;
+    justify-content: center;
+}
+
+.formulario form{
+    max-width: 80%;
+    background-color: #F2F2F2;
+    border-radius: 20px;
+    padding: 36px 64px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* botao */
+.botao{
+    width: 10vw;
+    background-color: #FF8000;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 25px;
+    border: none;
+    cursor: pointer;
+    color: #FFF;
+    margin: 32px 0;
+}
+
+.botao:hover{
+    color: #FFF;
+    background-color: #1b1b1b;
+}
+
+.divBotao{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+/* campos */
+.campo-texto {
+    margin: 24px 0;
+}
+
+.campo-texto label{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.campo-texto input{
+    background-color: #FFF;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0,0.08);
+    width: 100%;
+    font-size: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px solid #FF8000;
+    outline-style: none;
+}
