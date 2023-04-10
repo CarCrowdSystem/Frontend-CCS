@@ -3,6 +3,7 @@ import Header from './Componentes/Header';
 import Mvv from './Componentes/Mvv';
 import SobreNos from './Componentes/SobreNos';
 import './Homepage.css'
+import './Footer.css'
 
 const Homepage = () => {
     return (
@@ -12,6 +13,7 @@ const Homepage = () => {
             <SobreNos />
             <Fotos />
             <Mvv />
+            <Footer />
         </>
     );
 }
