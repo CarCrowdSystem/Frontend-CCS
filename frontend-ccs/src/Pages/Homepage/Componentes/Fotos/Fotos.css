@@ -1,0 +1,45 @@
+.fotos {
+    height: 80vh;
+    width: 100%;
+}
+
+.fotos .imgLeft{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.fotos .imgRight{
+    width: 50%;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.imgLeft img{
+    width: 100%;
+    height: 100%;
+}
+
+.imgRight .cima {
+    width: 100%;
+    height: 50%;
+    float: left;
+}
+
+.imgRight .cima img {
+    width: 50%;
+    height: 100%;
+}
+
+.imgRight .baixo {
+    width: 100%;
+    height: 50%;
+    float: left;
+}
+
+.imgRight .baixo img {
+    width: 50%;
+    height: 100%;
+}
