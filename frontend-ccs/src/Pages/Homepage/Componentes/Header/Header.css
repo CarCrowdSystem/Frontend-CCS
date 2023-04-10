@@ -39,6 +39,13 @@ nav li{
     border-radius: 8px;
 }
 
+nav ul:hover {
+    background-color: #FF8000;
+    border-radius: 8px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
 header p{
     width: 80%;
     color: #FFF;
@@ -69,4 +76,11 @@ header button{
     border-radius: 20px;
     border: 0;
     box-shadow: 4px 4px 10px #000;
+}
+
+header button:hover{
+    background-color: #F8F8F8;
+    color: #FF8000;
+    transition: 0.25s;
+    cursor: pointer;
 }
