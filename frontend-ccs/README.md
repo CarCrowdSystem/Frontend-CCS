@@ -68,3 +68,120 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+No projeto React é muito comum termos páginas HTML que serão apresentadas para o usuário. Todas as páginas serão agrupadas em um diretório chamado pages.
+
+Teremos outro diretório chamado ui. Aqui iremos agrupar tudo que será relacionado ao design da aplicação como, por exemplo, componentes, estilos CSS, temas e partes de uma tela.
+
+E, por fim, teremos o diretório data, onde vamos agrupar tudo relacionado a regra de negócio, lógica, dados etc.
+
+src
+├───data
+│   ├───@types
+│   ├───contexts
+│   ├───hooks
+│   ├───reduces
+│   └───services
+├───pages
+│   └───home
+└───ui
+    ├───components
+    ├───partials
+    ├───styles
+    └───theme
+
+Diretório data
+Aqui não teremos muito o que discutir, é apenas um diretório onde você irá abstrair tudo relacionado aos seus dados e lógica. Então teremos os diretórios @types, onde ficam as interfaces e tipos, caso esteja utilizando TypeScript, hooks, context, reducers e services que é o local onde você pode colocar funções que vão ser reutilizadas em toda aplicação.
+
+Vamos detalhar um pouco mais o que deve ter cada um desses diretórios.
+
+data
+├───@types
+├───contexts
+├───hooks
+├───reduces
+└───services
+
+Diretório services
+No diretório service, você pode criar funções que vão ser utilizadas em toda a aplicação como, por exemplo, funções para converter dados, objetos, funções contendo configuração de APIs, para fazer requisições HTTP, validação de formulários, etc.
+
+Diretório hooks
+Neste diretório você pode colocar a lógica das telas e componentes. É importante notar que aqui você vai criar diretórios dentro de diretórios para poder identificar de onde é aquele hook, se é referente a uma página ou componente.
+
+hooks
+├───components
+│   └───inputs
+│       └───UserForm
+│           └───forms
+└───pages
+    ├───cadastro
+    └───diarias
+
+Note que separamos bem a origem de cada hook, se ele está em pages ou faz parte de um componente.
+
+Diretório @types
+O diretório @types, de uma aplicação React, só é utilizado quando estamos trabalhando com TypeScript, visto que lá iremos criar os tipos de cada objeto e, também, interfaces
+
+@types
+├───3rd
+└───forms
+└───user
+
+Note que aqui, também, podemos organizar cada tipo em outros diretórios.
+
+No diretório 3rd iremos colocar arquivos com a extensão, *.d.ts, caso haja a necessidade, que são arquivos de declaração de tipos.
+
+Diretório ui
+Aqui vamos agrupar tudo relacionado a nossa interface do usuário.
+
+Também temos uma proposta de como você deve agrupar esses elementos internamente. Uma das maiores vantagens do React é o modo de como é fácil componentizar sua UI, portanto neste diretório você deve criar um diretório para cada página ou pages. Podemos adicionar outro diretório de partes de uma página, dessa forma sua página principal pode ser lida facilmente, pois é montada com vários pedaços de uma página.
+
+E, se você já adivinhou, pode fazer isso, também, no nível da UI, criando um diretório components que vão ser utilizados em mais de uma página da aplicação.
+
+Então dentro de UI teremos o diretório components, partials que são partes de uma página, styles e até themes que é algo relacionado a configuração de temas.
+
+ui
+├───components
+├───partials
+├───styles
+└───themes
+
+Diretório components
+Neste diretório nós, também, teremos outros diretórios para melhor organizar os componentes, aqui iremos organizar por categorias, por exemplo, um componente de botão e texto faz parte da categoria de inputs, outro componente de avatar ou status faz parte da categoria de data-display.
+
+components
+├───data-display
+│   ├───DataList
+│   ├───JobInformation
+│   ├───Status
+├───feedback
+│   ├───Dialog
+├───inputs
+│   ├───RoundedButton
+│   ├───TextField
+│   └───UserForm
+│       └───forms
+├───navigation
+│   ├───Link
+└───surfaces
+    ├───Footer
+    └───Header
+
+Eu costumo utilizar essas categorias seguindo o padrão do Material UI, mas você pode seguir qualquer outro modelo de categorias que mais lhe agrada.
+
+Partials
+Diferente dos componentes, aqui nós teremos partes de uma tela, por exemplo, uma tela com uma estrutura muito grande, com algumas dezenas de sessões, podemos dividir essas partes em componentes que, na verdade, são partes de uma tela.
+
+partials
+├───diarias
+├───encontrar-diarista
+└───index
+    ├───advantages
+    ├───frequent-question
+    └───presentation
+
+Conclusão
+A estrutura de pastas e arquivos com React apresentada é uma estrutura que pode ser utilizada por qualquer um. Vai te ajudar a entender a importância de se ter uma arquitetura e, também, ajudar a começar a entender como funcionam outras arquiteturas mais complexas.
+
+Repositorio com aplicação de referência - https://github.com/arielsardinha/next-js-adote-um-pet

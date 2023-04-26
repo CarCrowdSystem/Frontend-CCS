@@ -1,4 +1,4 @@
-import './/Fotos.css'
+import './Fotos.css'
 
 const Fotos = () =>{
     return(

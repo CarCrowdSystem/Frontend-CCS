@@ -1,4 +1,4 @@
-import './/Mvv.css'
+import './Mvv.css'
 
 const Mvv = () => {
     return(
