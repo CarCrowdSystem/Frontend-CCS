@@ -29,6 +29,7 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     border-radius: 50%;
     box-shadow: 2px 2px 10px #5c5c5c;
+    z-index: 1000;
 }
 
 .suportButton:hover {
