@@ -1,6 +1,6 @@
-header{
+header {
     height: 95vh;
-    background-image: linear-gradient(rgba(0,0,0,0.527),rgba(0,0,0,0.5)), url(/public/imgs/fundobanner.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(/public/imgs/fundobanner.jpeg);
     background-position: center;
     background-size: cover;
     padding: 0 10%;
@@ -18,17 +18,18 @@ nav {
     align-items: center;
 }
 
-nav img{
+nav img {
     height: 100%;
 }
 
-nav a{
+nav a {
     text-decoration: none;
+    list-style: none;
     color: #FFF;
     font-size: 24px;
 }
 
-nav li{
+nav li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,16 +38,46 @@ nav li{
     border: 3px solid #FF8000;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-nav ul:hover {
+nav li:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+nav li:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
     background-color: #FF8000;
-    border-radius: 8px;
-    transition: 0.25s;
-    cursor: pointer;
+    transition: all 0.3s;
+    z-index: -1;
 }
 
-header p{
+nav li:hover {
+    color: #FF8000;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+}
+
+nav li:hover:before {
+    width: 100%;
+}
+
+header p {
     width: 80%;
     color: #FFF;
     font-weight: 400;
@@ -57,14 +88,14 @@ header p{
     text-align: center;
     background: rgba(0, 0, 0, 0.35);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 13.5px );
-    -webkit-backdrop-filter: blur( 13.5px );
+    backdrop-filter: blur(13.5px);
+    -webkit-backdrop-filter: blur(13.5px);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.023);
     padding: 5px;
 }
 
-header button{
+header button {
     width: 200px;
     height: 90px;
     font-weight: bold;
@@ -76,11 +107,47 @@ header button{
     border-radius: 20px;
     border: 0;
     box-shadow: 4px 4px 10px #000;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-header button:hover{
+header button:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FF8000;
+    z-index: -2;
+}
+
+header button:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #FFFFFF;
+    transition: all 0.3s;
+    z-index: -1;
+}
+
+header button:hover {
+    color: #FF8000;
+    cursor: pointer;
+}
+
+header button:hover:before {
+    width: 100%;
+}
+
+/* header button:hover{
     background-color: #F8F8F8;
     color: #FF8000;
     transition: 0.25s;
     cursor: pointer;
-}
+} */

@@ -11,7 +11,7 @@ const Homepage = () => {
 
     const [colaboradores, setColaboradores] = useState([])
 
-    const aoNovoColaboradorAdicionado = (colaborador) => {
+    const aoNovoCadastro = (colaborador) => {
       setColaboradores([...colaboradores, colaborador])
     }
 
@@ -19,11 +19,11 @@ const Homepage = () => {
     return (
         <>
             <Header />
-            <div className='suportButton'><img src='/imgs/icons/apoio-suporte.png' /></div>
+            <a href='https://app.pipefy.com/public/form/xt4fI2ub'><div className='suportButton'><img src='/imgs/icons/apoio-suporte.png' /></div></a>
             <SobreNos />
             <Fotos />
             <Mvv />
-            <Formulario  aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
+            <Formulario  aoCadastrar={colaborador => aoNovoCadastro(colaborador)}/>
             <Footer />
         </>
     );

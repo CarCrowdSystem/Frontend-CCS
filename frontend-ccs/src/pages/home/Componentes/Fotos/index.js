@@ -1,20 +1,27 @@
 import './Fotos.css'
 
-const Fotos = () =>{
-    return(
+const Fotos = () => {
+    return (
         <div className='fotos'>
-        <div className='imgLeft'><img src='/imgs/fotoIndex1.png' /></div>
-        <div className='imgRight'>
-            <div className='cima'>
-                <img src='/imgs/fotoIndex2.png' />
-                <img src='/imgs/fotoIndex3.png' />
+            <div className='imgLeft'>
+
+                <img src='/imgs/fotoIndex1.png' />
+                <div class="overlay">
+                    <div class="text">Hello World</div>
+                </div>
+                
             </div>
-            <div className='baixo'>
-                <img src='/imgs/fotoIndex4.png' />
-                <img src='/imgs/fotoIndex5.png' />
+            <div className='imgRight'>
+                <div className='cima'>
+                    <img src='/imgs/lancer.jpg' />
+                    <img src='/imgs/fotoIndex3.png' />
+                </div>
+                <div className='baixo'>
+                    <img src='/imgs/fotoIndex5.png' />
+                    <img src='/imgs/fotoIndex6.jpg' />
+                </div>
             </div>
         </div>
-    </div>
     );
 }
 

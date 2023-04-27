@@ -12,10 +12,7 @@
 .MVV .card{
     height: 80%;
     width: 17vw;
-    display: flex;
     text-align: center;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .MVV .icon {
@@ -33,6 +30,11 @@
     height: 15vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.MVV h1{
+    font-size: 32px;
 }
 
 .MVV p{

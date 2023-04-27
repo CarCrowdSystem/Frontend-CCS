@@ -12,7 +12,7 @@ const Formulario = (props) => {
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        props.aoColaboradorCadastrado({
+        props.aoCadastrar({
             nome,
             empresa,
             email,
