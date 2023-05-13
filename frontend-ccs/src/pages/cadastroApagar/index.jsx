@@ -1,11 +1,10 @@
 import React from 'react';
-
-// import { Container } from './styles';
+import Formulario from '../cadastro';
 
 function Cadastro() {
   return (
     <>
-    <div>Cadastro</div>
+    <Formulario />
     </>
   );
 }
