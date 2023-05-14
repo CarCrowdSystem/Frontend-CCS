@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Formulario.css'
 import CampoTexto from '../CampoTexto';
-import Botao from '../Botao';
+import BotaoEnviar from '../../../../components/Botoes/BotaoEnviar';
 
 const Formulario = (props) => {
 
@@ -59,9 +59,10 @@ const Formulario = (props) => {
                             placeholder=""
                             valor={mensagem}
                             aoAlterado={valor => setMensagem(valor)}
+                            style={{backgroundColor: 'blue'}}
                         />
                         <div className='divBotao'>
-                            <Botao>Enviar</Botao>
+                            <BotaoEnviar>Enviar</BotaoEnviar>
                         </div>
                     </form>
                 </section>

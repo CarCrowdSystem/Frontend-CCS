@@ -3,7 +3,7 @@ import "./Formulario.css";
 import CampoTexto from "./Componentes/CampoTexto";
 import Botao from "./Componentes/Botao";
 
-const Formulario = (props) => {
+function Formulario(props) {
   const [nome, setNome] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [email, setEmail] = useState("");

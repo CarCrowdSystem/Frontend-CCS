@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Componentes/Formulario';
 import './Estacionamento.css';
-import Botao from '../home/Componentes/Botao';
+import Botao from '../../components/Botoes/BotaoContratar/index';
 
 // import { Container } from './styles';
 
