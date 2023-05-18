@@ -1,0 +1,55 @@
+
+.divArrowBack{
+    margin-top: 2%;
+    width: 95%;
+}
+
+.arrowBack{
+    width: 5%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.divLogo{
+    display: flex;
+    justify-content: center;
+}
+
+.cadastro{
+    height: 100vh;
+    width: 100%;
+    display: flex; 
+    background-color: #f8f8f8;
+}
+
+.sideImageCadastro{
+    width: 60%;
+    padding: 1vh;
+}
+
+/* formulario */
+.formulario{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center
+}
+
+.formulario form{
+    width: 32vw;
+    background-color: #f8f8f8;
+    padding: 36px 64px;
+}
+
+.logo{
+    width: 20%;
+}
+
+.componentesLogin{
+    height: 100%;
+    width: 100%;
+}

@@ -27,10 +27,13 @@ function Formulario(props) {
     <>
       <div className="cadastro">
         <section className="formulario">
-          <img className="arrowBack" src="/imgs/icons/Vector.png"/>
-          <div>
+        <div className="divArrowBack">
+            <img className="arrowBack" src="/imgs/icons/Vector.png"/>
+          </div>
+          <div className="divLogo">
             <img className="logo" src="/imgs/Group 39.png" />
           </div>
+          <div className="componentesCadastro">
           <div className="cadastroBarProgress">
             <h1></h1>
           </div>
@@ -67,6 +70,7 @@ function Formulario(props) {
               <Botao>Enviar</Botao>
             </div>
           </form>
+          </div>
         </section>
 
         <img

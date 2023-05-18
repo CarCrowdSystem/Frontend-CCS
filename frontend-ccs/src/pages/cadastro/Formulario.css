@@ -1,3 +1,17 @@
+.divArrowBack{
+    margin-top: 2%;
+    width: 95%;
+}
+
+.arrowBack{
+    width: 5%;
+}
+
+.divLogo{
+    display: flex;
+    justify-content: center;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -34,6 +48,11 @@
 }
 
 .cadastroBarProgress{
-    height: 16vh;
+    /* height: 16vh; */
+    width: 100%;
+}
+
+.componentesCadastro{
+    height: 100%;
     width: 100%;
 }
