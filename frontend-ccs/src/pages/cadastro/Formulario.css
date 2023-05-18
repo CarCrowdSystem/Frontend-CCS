@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .divArrowBack{
     margin-top: 2%;
     width: 95%;
@@ -10,11 +15,6 @@
 .divLogo{
     display: flex;
     justify-content: center;
-}
-
-*{
-    margin: 0;
-    padding: 0;
 }
 
 .cadastro{
@@ -40,7 +40,6 @@
 .formulario form{
     width: 32vw;
     background-color: #f8f8f8;
-    padding: 36px 64px;
 }
 
 .logo{
