@@ -1,7 +1,8 @@
 import React from 'react';
 import Form from './Componentes/Formulario';
 import './Estacionamento.css';
-import Botao from '../../components/Botoes/BotaoContratar/index';
+import Botao from '../../components/Botoes/BotaoEnviar/index';
+import BotaoCheckout from '../../components/Botoes/BotaoCheckout/index';
 
 // import { Container } from './styles';
 
@@ -9,7 +10,7 @@ function Estacionamento() {
   return (
     <>  
         <div className='espaco-icone'>
-            <div className='icone-checkout'></div>
+            <BotaoCheckout/>
         </div>
         <div className='div-formulario'>
             <div className='titulo-estacionamento'>
@@ -21,7 +22,7 @@ function Estacionamento() {
               <Form/>
             </div>
             <div className='div-botao-alterar'>
-            <Botao>Alterar</Botao>
+              <Botao>Alterar</Botao>
             </div>
         </div>
     </>

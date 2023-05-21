@@ -36,3 +36,8 @@ body{
     background-color: #FF8000;
 }
 
+.valor-monetario-painel{
+    display: flex;
+    justify-content: center;
+}
+

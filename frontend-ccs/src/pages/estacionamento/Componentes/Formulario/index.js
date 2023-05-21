@@ -15,14 +15,14 @@ function Form(){
                         label="Nome:"
                         placeholder="Aqui vai puxar o nome do estacionamento da API"
                         exibirBotao={true}
-                        inputHabilitada={true}
+                        inputHabilitada={false}
                         />
                         <CampoTexto 
                         obrigatorio={true}
                         label="CEP:"
                         placeholder="Aqui vai puxar o cep do estacionamento da API"
                         exibirBotao={true}
-                        inputHabilitada={true}
+                        inputHabilitada={false}
                         />
                         <CampoTexto 
                         obrigatorio={true}
@@ -36,14 +36,14 @@ function Form(){
                         label="Número:"
                         placeholder="Aqui vai puxar o numero do estacionamento da API"
                         exibirBotao={true}
-                        inputHabilitada={true}
+                        inputHabilitada={false}
                         />
                         <CampoTexto 
                         obrigatorio={true}
                         label="Telefone:"
                         placeholder="Aqui vai puxar o telefone do estacionamento da API"
                         exibirBotao={true}
-                        inputHabilitada={true}
+                        inputHabilitada={false}
                         />
                 </form>
             </section>

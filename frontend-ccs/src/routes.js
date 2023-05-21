@@ -4,6 +4,8 @@ import NotFound from "./pages/notFound/NotFound";
 import Login from "./pages/login/Login";
 import Cadastro from "./pages/cadastro/Cadastro";
 import Estacionamento from "./pages/estacionamento/Estacionamento";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Checkin from "./pages/checkin/Checkin";
 import {
     BrowserRouter,
     Routes,
@@ -20,6 +22,8 @@ function Rotas(){
                 <Route path="/login" element={<Login />}/>
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/estacionamento" element={<Estacionamento />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/checkin" element={<Checkin />} />
             </Routes>
         </BrowserRouter>
     )
