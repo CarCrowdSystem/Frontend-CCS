@@ -1,67 +1,95 @@
 // import { useState } from "react";
 import "./Login.css";
+import "../../components/Inputs/input.css";
+import Button from "./Componentes/Botao/index";
 // import CampoTexto from "./home/Componentes/CampoTexto/inde";
 // import Botao from "./Componentes/Botao";
 
+function Login(props) {
+  var display = "flex";
 
-function Login(props){
+  function loginEmpresa(e) {
+    e.preventDefault();
 
+    const getEmpresa = {
+      emailEmpresa: e.target.emailEmpresa.value,
+      cnpjEmpresa: e.target.senhaEmpresa.value,
+    };
 
-  // const[email, setEmail] = useState(props.email);
-  // const[senha, setSenha] = useState(props.senha);
+    var nome = /^[À-úA-z ]{3,35}$/;
+    // var cargoReg = /^[À-úA-z ]{3,35}$/;
+    // var email = /^([À-úA-z0-9._-]+@[a-z0-9._-]+\.[A-z0-9_-]+)$/;
 
+    if (getEmpresa.emailEmpresa.match(nome) && getEmpresa.senhaEmpresa !== "") {
+      console.log("Hello there!");
+      display = "none";
+    } else {
+      console.log("Bye then");
+      display = "flex";
+    }
 
-  // const aoSalvar = (e) => {
-  //   e.preventDefault();
+    // api
+    //   .get(`/nomedorequest`, postEmpresa)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((erro) => {
+    //     console.log(erro);
+    //   });
 
-  //   const novaMusica = {
-  //     email: e.target.email.value,
-  //     senha: e.target.senha.value,
+    console.log(getEmpresa);
+  }
 
-  //   };
-  // }
-
-
-    return (
+  return (
     <>
-      <div className="cadastro">
-        <section className="formulario">
-          <div className="divArrowBack">
-            <img className="arrowBack" src="/imgs/icons/Vector.png"/>
+      <section className="view-cadastro">
+        <div className="div-all-fields">
+          <div className="div-arrow-back">
+            <a href='/'>
+              <img className="arrowBack" src="/imgs/icons/Vector.png" />
+            </a>
           </div>
-          <div className="divLogo">
+          <div className="div-logo-login">
             <img className="logo" src="/imgs/Group 39.png" />
-          </div>
-          <div className="componentesLogin">
-          {/* <form onSubmit={aoSalvar}>
-            <CampoTexto
-                obrigatorio={true}
-                label="Email"
-                placeholder="seuemail@email.com"
-                valor={email}
-                aoAlterado={(valor) => setEmail(valor)}
-            />
-            <CampoTexto
-              obrigatorio={true}
-              label="Senha"
-              placeholder="***********"
-              valor={senha}
-              aoAlterado={(valor) => setSenha(valor)}
-            />
-            <div className="divBotao">
-              <Botao>Enviar</Botao>
-            </div>
-    </form> */}
-        </div>
-        </section>
 
-        <img
-          className="sideImageCadastro"
-          src="./imgs/estacionamento_static.png"
-        />
-      </div>
+            <h1 className="login-title">Login</h1>
+          </div>
+          <div className="campo-cadastro">
+            <form onSubmit={loginEmpresa}>
+              <label>E-mail</label>
+              <input
+                id="name-field"
+                className="campo-texto"
+                type="text"
+                name="emailEmpresa"
+                placeholder="Digite seu email"
+              />
+
+              <label>Senha</label>
+              <input
+                className="campo-texto"
+                type="password"
+                name="senhaEmpresa"
+                placeholder="Digite sua senha"
+              />
+
+              <a href="colocar link modal">Esqueci minha senha</a>
+
+              <Button type="submit">Entrar</Button>
+            </form>
+
+            <div className="footer-login">
+              <h2>Não possui cadastro?</h2>
+              <button className="button-cadastra">Cadastre-se</button>
+            </div>
+          </div>
+        </div>
+        <div className="image-cadastro">
+          <img className="sideImageCadastro" src="./imgs/parking.png" />
+        </div>
+      </section>
     </>
   );
-};
+}
 
 export default Login;
