@@ -1,85 +1,62 @@
-import { useState } from "react";
-import "./Formulario.css";
-import CampoTexto from "./Componentes/CampoTexto";
-import Botao from "./Componentes/Botao";
+import "../../components/Inputs/input.css";
+import FirstStep from "./firstStep";
+import SecondStep from "./secondStep";
+import LastStep from "./lastStep";
+import "./Cadastro.css"
 
-function Formulario(props) {
-  const [nome, setNome] = useState("");
-  const [empresa, setEmpresa] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
+//Hooks
+import { useForm } from "../../hooks/useForm";
 
-  const aoSalvar = (evento) => {
-    evento.preventDefault();
-    props.aoCadastrar({
-      nome,
-      empresa,
-      email,
-      mensagem,
-    });
-    setNome("");
-    setEmpresa("");
-    setEmail("");
-    setMensagem("");
-  };
+function Cadastro(props) {
+  const formCadastro = [<FirstStep />, <SecondStep />, <LastStep />];
+
+  const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
+    useForm(formCadastro);
 
   return (
     <>
-      <div className="cadastro">
-        <section className="formulario">
-        <div className="divArrowBack">
-            <img className="arrowBack" src="/imgs/icons/Vector.png"/>
+      <section className="view-cadastro">
+        <div className="div-all-fields">
+          <div className="div-arrow-back">
+            <img className="arrowBack" src="/imgs/icons/Vector.png" />
           </div>
-          <div className="divLogo">
+          <div className="div-logo">
             <img className="logo" src="/imgs/Group 39.png" />
           </div>
-          <div className="componentesCadastro">
-          <div className="cadastroBarProgress">
-            <h1></h1>
-          </div>
-          <form onSubmit={aoSalvar}>
-            <CampoTexto
-              obrigatorio={true}
-              label="Nome"
-              placeholder="Digite seu nome"
-              valor={nome}
-              aoAlterado={(valor) => setNome(valor)}
-            />
-            <CampoTexto
-              obrigatorio={true}
-              label="Nome da empresa"
-              placeholder="Digite o nome de sua empresa"
-              valor={empresa}
-              aoAlterado={(valor) => setEmpresa(valor)}
-            />
-            <CampoTexto
-              obrigatorio={true}
-              label="Email"
-              placeholder="seuemail@email.com"
-              valor={email}
-              aoAlterado={(valor) => setEmail(valor)}
-            />
-            <CampoTexto
-              obrigatorio={true}
-              label="Mensagem"
-              placeholder=""
-              valor={mensagem}
-              aoAlterado={(valor) => setMensagem(valor)}
-            />
-            <div className="divBotao">
-              <Botao>Enviar</Botao>
-            </div>
-          </form>
-          </div>
-        </section>
+          <div className="progress-bar"></div>
+          <div className="campo-cadastro">
+            <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
+                {currentComponent}
+                <div className={!isFirstStep ? "div-buttons-cadastro" : "div-button-cadastro"}>
+                {!isFirstStep ? (
+                  <button
+                    type="button"
+                    onClick={() => changeStep(currentStep - 1)}
+                  >
+                    Voltar
+                  </button>
+                ) : (
+                  <span></span>
+                )}
 
-        <img
-          className="sideImageCadastro"
-          src="./imgs/estacionamento_static.png"
-        />
-      </div>
+                {!isLastStep ? (
+                  <button type="submit">Avançar</button>
+                ) : (
+                  <button type="submit">Enviar</button>
+                )}
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="image-cadastro">
+          <img
+            className="sideImageCadastro"
+            src="./imgs/estacionamento_static.png"
+          />
+        </div>
+      </section>
     </>
   );
-};
+}
 
-export default Formulario;
+export default Cadastro;
