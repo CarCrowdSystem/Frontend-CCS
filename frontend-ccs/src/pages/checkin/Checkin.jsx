@@ -20,7 +20,7 @@ function Checkin() {
                   <div className='container-painel-pequeno-checkin'>
                     <div  className='painel-pequeno-checkin'>
                     <div className='titulo-card-painel-checkin'>
-                        <h3 className='title-card-checkin'>Vagas disponíveis</h3>
+                        <h3 className='title-card-checkin'>Andares disponíveis</h3>
                       </div>
                       <div className='valor-painel-checkin'>
                         <p className='valor-checkin'>0</p>

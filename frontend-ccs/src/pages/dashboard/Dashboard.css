@@ -121,9 +121,11 @@ body{
     border-radius: 16px;
 }
 
+
 .container-painel-grande-pai{
     display: flex;
     justify-content: center;
     margin-top: 20px;
     height: 34vh;
 }
+

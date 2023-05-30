@@ -1,12 +1,18 @@
 import React from 'react';
 import './Dashboard.css';
 import BotaoCheckout from '../../components/Botoes/BotaoCheckout';
+import Modal from '../../components/Modal/Modal';
+import DadosClienteCheckin from '../../components/Modal/DadosClienteCheckin/DadosClienteCheckin';
+import CadastroVagaConcluido from '../../components/Modal/CadastroVagaConcluido/CadastroVagaConcluido';
+
 
 // import { Container } from './styles';
 
 function Dashboard() {
   return (
     <>
+        <Modal><DadosClienteCheckin/></Modal>
+        <Modal><CadastroVagaConcluido/></Modal>
         <div className='container-dashboard-pai'>
           <div className='espaco-icone'>
                 <BotaoCheckout/>
@@ -32,7 +38,7 @@ function Dashboard() {
                     </div>
                     <div className='painel-pequeno'>
                       <div className='titulo-card-painel'>
-                        <h3 className='title-card'>Setores disponíveis</h3>
+                        <h3 className='title-card'>Andares disponíveis</h3>
                       </div>
                       <div className='valor-painel'>
                         <p className='valor-dashboard'>0/0</p>
@@ -53,7 +59,7 @@ function Dashboard() {
                     </div>
                     <div className='painel-pequeno'>
                     <div className='titulo-card-painel'>
-                        <h3 className='title-card'>Total de checkout hoje</h3>
+                        <h3 className='title-card'>Total de checkout's diário</h3>
                       </div>
                       <div className='valor-painel'>
                         <p className='valor-dashboard'>0</p>
