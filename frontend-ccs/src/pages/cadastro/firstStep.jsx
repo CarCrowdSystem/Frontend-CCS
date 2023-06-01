@@ -3,41 +3,7 @@ import Button from "./Componentes/Botao/index";
 
 // import { Container } from './styles';
 
-function firstStep() {
-  function cadastrarEmpresa(e) {
-    e.preventDefault();
-
-    const postEmpresa = {
-      nomeEmpresa: e.target.nomeEmpresa.value,
-      cnpjEmpresa: e.target.cnpjEmpresa.value,
-      cepEmpresa: e.target.cepEmpresa.value,
-      enderecoEmpresa: e.target.enderecoEmpresa.value,
-      emailEmpresa: e.target.emailEmpresa.value,
-    };
-
-    var nome = /^[À-úA-z ]{3,35}$/;
-    // var cargoReg = /^[À-úA-z ]{3,35}$/;
-    // var email = /^([À-úA-z0-9._-]+@[a-z0-9._-]+\.[A-z0-9_-]+)$/;
-
-    // <form onSubmit={cadastrarEmpresa}>
-
-    if (postEmpresa.nomeEmpresa.match(nome) && postEmpresa.cnpjEmpresa != "") {
-      console.log("Hello there!");
-    } else {
-      console.log("Bye then");
-    }
-
-    // api
-    //   .post(`/nomedorequest`, postEmpresa)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((erro) => {
-    //     console.log(erro);
-    //   });
-
-    console.log(postEmpresa);
-  }
+const firstStep = ({data, updateFieldHandler}) => {
 
   return (
     <>
@@ -49,6 +15,8 @@ function firstStep() {
         name="nomeEmpresa"
         placeholder="Digite o nome da empresa"
         required
+        value={data.nomeEmpresa || ""}
+        onChange={(e) => updateFieldHandler("nomeEmpresa", e.target.value)}
       />
 
       <label>CNPJ</label>
@@ -58,6 +26,8 @@ function firstStep() {
         name="cnpjEmpresa"
         placeholder="Digite o cnpj da empresa"
         required
+        value={data.cnpjEmpresa || ""}
+        onChange={(e) => updateFieldHandler("cnpjEmpresa", e.target.value)}
       />
 
       <label>CEP</label>
@@ -67,6 +37,8 @@ function firstStep() {
         name="cepEmpresa"
         placeholder="Digite o cep da empresa"
         required
+        value={data.cepEmpresa || ""}
+        onChange={(e) => updateFieldHandler("cepEmpresa", e.target.value)}
       />
 
       <label>Número</label>
@@ -76,6 +48,8 @@ function firstStep() {
         name="enderecoEmpresa"
         placeholder="Digite o endereco da empresa"
         required
+        value={data.enderecoEmpresa || ""}
+        onChange={(e) => updateFieldHandler("enderecoEmpresa", e.target.value)}
       />
 
       <label>Email da empresa</label>
@@ -85,6 +59,8 @@ function firstStep() {
         name="emailEmpresa"
         placeholder="Digite o email da empresa"
         required
+        value={data.emailEmpresa || ""}
+        onChange={(e) => updateFieldHandler("emailEmpresa", e.target.value)}
       />
     </>
   );
