@@ -4,38 +4,35 @@ import "../../components/Inputs/input.css";
 import Button from "./Componentes/Botao/index";
 // import CampoTexto from "./home/Componentes/CampoTexto/inde";
 // import Botao from "./Componentes/Botao";
+import api from "../../api.js";
+import { useNavigate } from "react-router-dom";
 
-function Login(props) {
-  var display = "flex";
+function Login() {
+  const navigate = useNavigate();
 
   function loginEmpresa(e) {
     e.preventDefault();
 
     const getEmpresa = {
-      emailEmpresa: e.target.emailEmpresa.value,
-      cnpjEmpresa: e.target.senhaEmpresa.value,
+      email: e.target.emailEmpresa.value,
+      senha: e.target.senhaEmpresa.value,
     };
 
-    var nome = /^[À-úA-z ]{3,35}$/;
-    // var cargoReg = /^[À-úA-z ]{3,35}$/;
     // var email = /^([À-úA-z0-9._-]+@[a-z0-9._-]+\.[A-z0-9_-]+)$/;
 
-    if (getEmpresa.emailEmpresa.match(nome) && getEmpresa.senhaEmpresa !== "") {
-      console.log("Hello there!");
-      display = "none";
-    } else {
-      console.log("Bye then");
-      display = "flex";
-    }
+    api
+      //Teste MockAPI
+      // .post(`/login`, getEmpresa)
 
-    // api
-    //   .get(`/nomedorequest`, postEmpresa)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((erro) => {
-    //     console.log(erro);
-    //   });
+      //"Funcional" backEnd ccs
+      .post(`/funcionarios/login`, getEmpresa)
+      .then((response) => {
+        navigate("/dashboard");
+        console.log(response);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
 
     console.log(getEmpresa);
   }
@@ -80,7 +77,7 @@ function Login(props) {
 
             <div className="footer-login">
               <h2>Não possui cadastro?</h2>
-              <button className="button-cadastra">Cadastre-se</button>
+              <button className="button-cadastra" >Cadastre-se</button>
             </div>
           </div>
         </div>

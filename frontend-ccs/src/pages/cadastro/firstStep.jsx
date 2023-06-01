@@ -52,15 +52,15 @@ const firstStep = ({data, updateFieldHandler}) => {
         onChange={(e) => updateFieldHandler("enderecoEmpresa", e.target.value)}
       />
 
-      <label>Email da empresa</label>
+      <label>Telefone</label>
       <input
         className="campo-texto"
         type="text"
-        name="emailEmpresa"
+        name="telefoneEmpresa"
         placeholder="Digite o email da empresa"
         required
-        value={data.emailEmpresa || ""}
-        onChange={(e) => updateFieldHandler("emailEmpresa", e.target.value)}
+        value={data.telefoneEmpresa || ""}
+        onChange={(e) => updateFieldHandler("telefoneEmpresa", e.target.value)}
       />
     </>
   );
