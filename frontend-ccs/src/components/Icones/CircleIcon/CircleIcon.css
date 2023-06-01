@@ -1,0 +1,13 @@
+.icon{
+    width: 125px;
+    height: 125px;
+    background-color: #000;
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.icon img{
+    height: 70%;
+}
