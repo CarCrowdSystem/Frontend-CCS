@@ -1,0 +1,12 @@
+.div-cadastro-vaga-concluido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+}
+
+.texto-cadastro-vaga-concluido{
+    font-size: 24px;
+    margin-left: 16px;
+}
