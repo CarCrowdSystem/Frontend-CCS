@@ -6,6 +6,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import Estacionamento from "./pages/estacionamento/Estacionamento";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Checkin from "./pages/checkin/Checkin";
+import NavSideBar from "./components/NavSideBar";
 import {
     BrowserRouter,
     Routes,
