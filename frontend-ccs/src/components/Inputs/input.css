@@ -27,7 +27,7 @@
 }
 
 .campo-cadastro form{
-    padding: 32px;
+    padding: 0 32px 0 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
