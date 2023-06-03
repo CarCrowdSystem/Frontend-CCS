@@ -10,7 +10,7 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
 
   const [listaVagas, setListaVagas] = useState(vagas);
   const [qtdVagas, setQtdVagas] = useState(0);
-  const [andarVaga, setAndarVaga] = useState(0);
+  const [andarVaga, setAndarVaga] = useState(-5);
 
   var floorName = ""
 
@@ -57,18 +57,19 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
         name="andar" 
         className="select-field"
         value={andarVaga || ""}
-        onChange={(e) => setAndarVaga(e.target.value)}>
-        <option value="0">SubSolo -5</option>
-        <option value="1">SubSolo -4</option>
-        <option value="2">SubSolo -3</option>
-        <option value="3">SubSolo -2</option>
-        <option value="4">SubSolo -1</option>
-        <option value="5">Terreo</option>
-        <option value="6">1 Andar</option>
-        <option value="7">2 Andar</option>
-        <option value="8">3 Andar</option>
-        <option value="9">4 Andar</option>
-        <option value="10">5 Andar</option>
+        onChange={(e) => setAndarVaga(e.target.value)}
+        >
+        <option value="-5">SubSolo -5</option>
+        <option value="-4">SubSolo -4</option>
+        <option value="-3">SubSolo -3</option>
+        <option value="-2">SubSolo -2</option>
+        <option value="-1">SubSolo -1</option>
+        <option value="0">Terreo</option>
+        <option value="1">1 Andar</option>
+        <option value="2">2 Andar</option>
+        <option value="3">3 Andar</option>
+        <option value="4">4 Andar</option>
+        <option value="5">5 Andar</option>
       </select>
 
       <label>Quantidade de vagas</label>
