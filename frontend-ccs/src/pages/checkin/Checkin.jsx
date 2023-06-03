@@ -1,6 +1,7 @@
 import React from 'react';
 import './Checkin.css';
 import BotaoCheckout from '../../components/Botoes/BotaoCheckout';
+import Vaga from '../dashboard/Componentes/Vaga/Vaga';
 // import { Container } from './styles';
 
 function Checkin() {
@@ -42,6 +43,20 @@ function Checkin() {
                 <div className='container-painel-filho-checkin'>
                   <div className='container-painel-grande-checkin'>
                     <div className='painel-grande-checkin'>
+                    <div className='container-combobox-andares-dash'>
+                          <select className='combobox-andares-dash' name="selecaoAndares" id="teste">
+                              <option value="">Térreo</option>
+                              <option value="">1° Subsolo</option> 
+                          </select>
+                      </div>
+                    <div className='container-vagas-checkin-dash'>
+                      <Vaga>1</Vaga>
+                      <Vaga>1</Vaga>
+                      <Vaga>1</Vaga>
+                      <Vaga>1</Vaga>
+                      <Vaga>1</Vaga>
+                      <Vaga>1</Vaga>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -7,6 +7,8 @@ import Estacionamento from "./pages/estacionamento/Estacionamento";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Checkin from "./pages/checkin/Checkin";
 import Valores from "./pages/valores/Valores";
+import Historico from "./pages/historico/Historico";
+import Funcionarios from "./pages/funcionarios/Funcionarios";
 import {
     BrowserRouter,
     Routes,
@@ -26,6 +28,8 @@ function Rotas(){
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/checkin" element={<Checkin />} />
                 <Route path="/valores" element={<Valores />} />
+                <Route path="/historico" element={<Historico />} />
+                <Route path="/funcionarios" element={<Funcionarios />} />
             </Routes>
         </BrowserRouter>
     )

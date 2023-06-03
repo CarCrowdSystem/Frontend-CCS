@@ -74,7 +74,7 @@ function Cadastro() {
   const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
     useForm(formCadastro);
 
-  function cadastrarEmpresa() { 
+  function cadastrarEmpresa() {
     const postEmpresa = {
       nomeEmpresa: data.nomeEmpresa,
       cnpjEmpresa: data.cnpjEmpresa,
@@ -87,11 +87,11 @@ function Cadastro() {
       emailUsuario: data.emailUsuario,
       senha: data.senha,
     };
-    
+
     api
       // Teste MockAPI
       // .post(`/teste`, postEmpresa)
-      
+
       // "Funcional" backEnd ccs
       .post(`/distrubuicao`, postEmpresa)
       .then((response) => {

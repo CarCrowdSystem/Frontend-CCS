@@ -1,6 +1,6 @@
 .div-pai-modal{
     position: absolute;
-    z-index: 1000;
+    z-index: 500;
     width: 25%;
     height: 50vh;
     background-color: #F6F6F6;
@@ -20,7 +20,7 @@
 
 .div-botao-fechar-modal{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     height: 10%;
     margin-top: 10px;
 }

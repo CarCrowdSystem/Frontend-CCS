@@ -28,7 +28,7 @@ body{
 .espaco-icone{
     display: flex;
     height: 12vh;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .icone-checkout{

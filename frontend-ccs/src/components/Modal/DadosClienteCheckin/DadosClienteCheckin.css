@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .label-checkin{

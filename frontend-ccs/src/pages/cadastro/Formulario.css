@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 
 .divArrowBack{
     margin-top: 2%;
@@ -6,11 +10,6 @@
 
 .arrowBack{
     width: 5%;
-}
-
-*{
-    margin: 0;
-    padding: 0;
 }
 
 .divLogo{
@@ -32,7 +31,6 @@
 
 /* formulario */
 .formulario{
-    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -48,7 +46,12 @@
     width: 20%;
 }
 
-.componentesLogin{
+.cadastroBarProgress{
+    /* height: 16vh; */
+    width: 100%;
+}
+
+.componentesCadastro{
     height: 100%;
     width: 100%;
 }
