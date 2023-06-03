@@ -31,6 +31,7 @@ function Login() {
         console.log(response);
       })
       .catch((erro) => {
+        console.log("Error")
         console.log(erro);
       });
 

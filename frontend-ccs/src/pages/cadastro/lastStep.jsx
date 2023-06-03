@@ -11,7 +11,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="text"
         name="nomeUsuario"
-        placeholder="Digite o nome da empresa"
+        placeholder="Digite seu nome completo"
         required
         value={data.nomeUsuario || ""}
         onChange={(e) => updateFieldHandler("nomeUsuario", e.target.value)}
@@ -22,7 +22,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="text"
         name="cpfUsuario"
-        placeholder="Digite o cnpj da empresa"
+        placeholder="000.000.000-00"
         required
         value={data.cpfUsuario || ""}
         onChange={(e) => updateFieldHandler("cpfUsuario", e.target.value)}
@@ -33,7 +33,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="text"
         name="emailUsuario"
-        placeholder="Digite o cep da empresa"
+        placeholder="empresa@gmail.com"
         required
         value={data.emailUsuario || ""}
         onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
@@ -44,7 +44,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="password"
         name="senha"
-        placeholder="Digite o endereco da empresa"
+        placeholder="Mínimo de 8 caracteres"
         required
         value={data.senha || ""}
         onChange={(e) => updateFieldHandler("senha", e.target.value)}
@@ -55,7 +55,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="password"
         name="confirmaSenha"
-        placeholder="Digite o email da empresa"
+        placeholder="Repita a senha"
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}
