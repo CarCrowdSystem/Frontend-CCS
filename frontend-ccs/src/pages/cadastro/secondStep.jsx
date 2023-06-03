@@ -16,38 +16,38 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
 
   function adicionarVaga() {
     const vaga = {
-      qtdVagas: qtdVagas,
-      andarVaga: andarVaga
+      qtdVagas: parseInt(qtdVagas),
+      andarVaga: parseInt(andarVaga)
     }
 
     setListaVagas([...listaVagas, vaga])
 
     funcaoRetornoVagas(vaga);
 
-    if(andarVaga == '0'){
-      console.log("teste 1")
-      floorName = "5 Subsolo"
-    } else if (andarVaga == '1'){
-      console.log("teste 2")
-    } else if (andarVaga == '2'){
-      console.log("teste 3")
-    }else if (andarVaga == '3'){
-      console.log("teste 4")
-    }else if (andarVaga == '4'){
-      console.log("teste 5")
-    }else if (andarVaga == '5'){
-      console.log("teste 6")
-    }else if (andarVaga == '6'){
-      console.log("teste 7")
-    }else if (andarVaga == '7'){
-      console.log("teste 8")
-    }else if (andarVaga == '8'){
-      console.log("teste 9")
-    }else if (andarVaga == '9'){
-      console.log("teste 10")
-    }else if (andarVaga == '10'){
-      console.log("teste 11")
-    }
+    // if(andarVaga == '0'){
+    //   console.log("teste 1")
+    //   floorName = "5 Subsolo"
+    // } else if (andarVaga == '1'){
+    //   console.log("teste 2")
+    // } else if (andarVaga == '2'){
+    //   console.log("teste 3")
+    // }else if (andarVaga == '3'){
+    //   console.log("teste 4")
+    // }else if (andarVaga == '4'){
+    //   console.log("teste 5")
+    // }else if (andarVaga == '5'){
+    //   console.log("teste 6")
+    // }else if (andarVaga == '6'){
+    //   console.log("teste 7")
+    // }else if (andarVaga == '7'){
+    //   console.log("teste 8")
+    // }else if (andarVaga == '8'){
+    //   console.log("teste 9")
+    // }else if (andarVaga == '9'){
+    //   console.log("teste 10")
+    // }else if (andarVaga == '10'){
+    //   console.log("teste 11")
+    // }
   }
 
   return (
@@ -57,8 +57,7 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
         name="andar" 
         className="select-field"
         value={andarVaga || ""}
-        onChange={(e) => setAndarVaga(e.target.value)}
-        >
+        onChange={(e) => setAndarVaga(e.target.value)}>
         <option value="-5">SubSolo -5</option>
         <option value="-4">SubSolo -4</option>
         <option value="-3">SubSolo -3</option>
