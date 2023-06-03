@@ -91,7 +91,7 @@ function Cadastro() {
       // .post(`/teste`, postEmpresa)
 
       //"Funcional" backEnd ccs
-      // .post(`/estacionamentos`, postEmpresa)
+      .post(`/distrubuicao`, postEmpresa)
       .then((response) => {
         console.log(response);
       })
