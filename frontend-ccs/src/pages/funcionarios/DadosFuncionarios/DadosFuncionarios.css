@@ -1,0 +1,45 @@
+.card-info-funcionario{
+    width: 80%;
+    height: 16vh;
+    background-color: white;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-radius: 15px;
+    box-shadow: -1px 1px 16px black;
+    display: flex;
+    justify-content: center;
+}
+
+.container-info-funcionarios{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.info-funcionarios{
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-label-inf-funcionarios{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label-inf-funcionarios{
+    padding: 10px;
+    font-weight: bold;
+}
+
+.div-dados-info-funcionario{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dados-func{
+    padding: 10px;
+}
