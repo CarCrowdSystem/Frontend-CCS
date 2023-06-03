@@ -28,6 +28,8 @@ const formTemplate = {
 };
 
 function Cadastro() {
+  const navigate = useNavigate();
+
   const [data, setData] = useState(formTemplate);
 
   const [postEmpresa, setPostEmpresa] = useState({});
@@ -87,15 +89,17 @@ function Cadastro() {
     };
     
     api
-      //Teste MockAPI
+      // Teste MockAPI
       // .post(`/teste`, postEmpresa)
-
-      //"Funcional" backEnd ccs
+      
+      // "Funcional" backEnd ccs
       .post(`/distrubuicao`, postEmpresa)
       .then((response) => {
+        navigate("/");
         console.log(response);
       })
       .catch((erro) => {
+        console.log("Error")
         console.log(erro);
       });
 
