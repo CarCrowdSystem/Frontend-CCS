@@ -1,9 +1,7 @@
 // import { useState } from "react";
 import "./Login.css";
 import "../../components/Inputs/input.css";
-import Button from "./Componentes/Botao/index";
-// import CampoTexto from "./home/Componentes/CampoTexto/inde";
-// import Botao from "./Componentes/Botao";
+import Button from "./Componentes/Botao/index"
 import api from "../../api.js";
 import { useNavigate } from "react-router-dom";
 
@@ -22,10 +20,10 @@ function Login() {
 
     api
       //Teste MockAPI
-      // .post(`/login`, getEmpresa)
+      .post(`/login`, getEmpresa)
 
       //"Funcional" backEnd ccs
-      .post(`/funcionarios/login`, getEmpresa)
+      // .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
         navigate("/dashboard");
         console.log(response);
@@ -71,14 +69,14 @@ function Login() {
                 placeholder="Digite sua senha"
               />
 
-              <a href="colocar link modal">Esqueci minha senha</a>
-
               <Button type="submit">Entrar</Button>
             </form>
 
             <div className="footer-login">
               <h2>Não possui cadastro?</h2>
-              <button className="button-cadastra" >Cadastre-se</button>
+              <button className="button-cadastra" >
+                <a href="/cadastro">Cadastre-se</a>                
+              </button>
             </div>
           </div>
         </div>

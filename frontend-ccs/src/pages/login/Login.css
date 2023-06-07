@@ -1,4 +1,3 @@
-
 .divArrowBack{
     margin-top: 2%;
     width: 95%;
@@ -15,7 +14,14 @@
 
 .divLogo{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-logo-login{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .cadastro{
@@ -39,16 +45,35 @@
     align-items: center
 }
 
-.formulario form{
-    width: 32vw;
-    background-color: #f8f8f8;
+.login-title{
+    font-size: 64px;
 }
 
 .logo{
     width: 20%;
 }
 
+.button-cadastra { 
+    border-radius: 8px;
+    background-color: #454E4D;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px;
+}
+
+.button-cadastra a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 .componentesLogin{
     height: 100%;
     width: 100%;
+}
+
+.footer-login{
+    display: flex;
+    justify-content: space-evenly;
+    height: 20vh;
+    align-items: center;
 }

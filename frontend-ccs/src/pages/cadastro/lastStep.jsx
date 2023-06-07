@@ -50,12 +50,12 @@ const LastStep = ({data, updateFieldHandler}) => {
         onChange={(e) => updateFieldHandler("senha", e.target.value)}
       />
 
-      <label>Comfirmar senha</label>
+      <label>Confirmar senha</label>
       <input
         className="campo-texto"
         type="password"
         name="confirmaSenha"
-        placeholder="Repita a senha"
+        placeholder="Confirmar senha"
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}
