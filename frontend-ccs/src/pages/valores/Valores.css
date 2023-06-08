@@ -1,0 +1,35 @@
+.fundoValores {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 0;
+
+}
+
+.contValores {
+
+    width: 80%;
+    height: 72vh;
+    margin: 0 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    float: left;
+}
+
+.titleValores {
+    color: #ff8000;
+    font-size: 40px;
+    margin-bottom: 5vh;
+}
+
+.botaoAqui {
+    width: 70px;
+    height: 70px;
+    border: 2px solid #ff8000;
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+}
