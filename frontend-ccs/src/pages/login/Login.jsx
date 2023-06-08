@@ -20,7 +20,7 @@ function Login() {
     function userHasAccount(userDataList){
       for(var i = 0; i < userDataList.length; i++){
         if(userDataList[i].emailEmpresa === getEmpresa.email && userDataList[i].senhaEmpresa === getEmpresa.senha){
-          return true 
+          return true
         } 
         return false
       }
@@ -39,7 +39,7 @@ function Login() {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Your work has been saved',
+            title: 'Login efetuado com sucesso!',
             showConfirmButton: false,
             timer: 1500
           })
