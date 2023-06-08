@@ -4,6 +4,7 @@ import "../../components/Inputs/input.css";
 import Button from "./Componentes/Botao/index"
 import api from "../../api.js";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 function Login() {
   const navigate = useNavigate();
@@ -16,17 +17,43 @@ function Login() {
       senha: e.target.senhaEmpresa.value,
     };
 
+    function userHasAccount(userDataList){
+      for(var i = 0; i < userDataList.length; i++){
+        if(userDataList[i].emailEmpresa === getEmpresa.email && userDataList[i].senhaEmpresa === getEmpresa.senha){
+          return true
+        } 
+        return false
+      }
+    }
+
     // var email = /^([À-úA-z0-9._-]+@[a-z0-9._-]+\.[A-z0-9_-]+)$/;
 
     api
       //Teste MockAPI
-      .post(`/login`, getEmpresa)
+      .get(`/login`, getEmpresa)
 
       //"Funcional" backEnd ccs
       // .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
-        navigate("/dashboard");
-        console.log(response);
+        if(userHasAccount(response.data)){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Login efetuado com sucesso!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          navigate("/dashboard");
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Email ou senha inválidos!',
+          })
+  
+        }
+
+        console.log(response.data);
       })
       .catch((erro) => {
         console.log("Error")
