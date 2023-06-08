@@ -1,5 +1,6 @@
 import React from 'react';
 import './DadosFuncionarios.css'
+import IconeLixeira from './lixeira.png'
 
 // import { Container } from './styles';
 
@@ -27,6 +28,11 @@ function DadosFuncionarios() {
                         <span className='dados-func'>Funcionário</span>
                         <span className='dados-func'>zesilva@gmail.com</span>
                     </div>
+                </div>
+                <div  className='div-botao-excluir-funcionario'>
+                    <button className='botao-icone-exluir-func'>
+                        <img src={IconeLixeira} alt="icone-lixeira" />
+                    </button>
                 </div>
             </div>
         </div>

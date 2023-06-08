@@ -2,11 +2,13 @@ import React from 'react';
 import './Checkin.css';
 import BotaoCheckout from '../../components/Botoes/BotaoCheckout';
 import Vaga from '../dashboard/Componentes/Vaga/Vaga';
+import NavSideBar from '../../components/NavSideBar/index'
 // import { Container } from './styles';
 
 function Checkin() {
   return (
     <>
+      <NavSideBar/>
         <div className='container-checkin-pai'>
           <div className='espaco-icone'>
                 <BotaoCheckout/>

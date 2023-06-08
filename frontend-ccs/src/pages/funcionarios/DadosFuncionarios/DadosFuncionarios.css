@@ -43,3 +43,21 @@
 .dados-func{
     padding: 10px;
 }
+
+.div-botao-excluir-funcionario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-icone-exluir-func{
+    border: none;
+    background: none;
+    filter: opacity(50%);
+}
+
+.botao-icone-exluir-func:hover{
+    cursor: pointer;
+    transition: 0.25s;
+    filter: opacity(100%);
+}

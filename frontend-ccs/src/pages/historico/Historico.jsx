@@ -3,12 +3,13 @@ import './Historico.css'
 import BotaoCheckout from './../../components/Botoes/BotaoCheckout'
 import IconeDownloadCsv from './icon-download-csv.png'
 import InfoHistorico from './InfoHistorico/InfoHistorico';
+import NavSideBar from '../../components/NavSideBar/index'
 // import { Container } from './styles';
 
 function Historico() {
   return (
     <>
-
+        <NavSideBar/>
         <div className='div-pai-historico'>
             <div className='espaco-icone'>
                 <BotaoCheckout/>

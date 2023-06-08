@@ -11,6 +11,9 @@ function valores() {
         <>
             <div className="fundoValores">
                 <NavSideBar />
+                <div className='espaco-icone'>
+                    <BotaoCheckout/>
+                </div>
                 <div className='contValores'>
                     <h1 className='titleValores'>Alteração de valores</h1>
                     <CampoTexto

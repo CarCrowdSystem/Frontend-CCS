@@ -4,12 +4,14 @@ import './Funcionarios.css'
 import Lupa from './lupa-pesquisar-func.png'
 import SetaCima from './arrow_up.png'
 import DadosFuncionarios from './DadosFuncionarios/DadosFuncionarios';
+import NavSideBar from '../../components/NavSideBar/index'
 
 // import { Container } from './styles';
 
 function Funcionarios() {
   return (
     <>
+        <NavSideBar/>
         <div className='container-funcionarios-pai'>
             <div className='espaco-icone'>
                 <BotaoCheckout/>

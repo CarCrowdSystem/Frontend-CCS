@@ -3,6 +3,7 @@ import './Vaga.css';
 import Modal from '../../../../components/Modal/Modal';
 import DadosClienteCheckin from '../../../../components/Modal/DadosClienteCheckin/DadosClienteCheckin';
 import CadastroVagaConcluido from '../../../../components/Modal/CadastroVagaConcluido/CadastroVagaConcluido';
+import ClienteJaCadastrado from '../../../../components/Modal/ClienteJaCadastrado/ClienteJaCadastrado';
 
 function Vaga(props) {
   const [mostraModal, setMostraModal] = useState(false);

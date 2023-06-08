@@ -3,12 +3,14 @@ import Form from './Componentes/Formulario';
 import './Estacionamento.css';
 import Botao from '../../components/Botoes/BotaoEnviar/index';
 import BotaoCheckout from '../../components/Botoes/BotaoCheckout/index';
+import NavSideBar from '../../components/NavSideBar/index'
 
 // import { Container } from './styles';
 
 function Estacionamento() {
   return (
     <>  
+        <NavSideBar/>
         <div className='espaco-icone'>
             <BotaoCheckout/>
         </div>

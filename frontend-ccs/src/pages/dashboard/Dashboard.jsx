@@ -7,6 +7,7 @@ import CadastroVagaConcluido from '../../components/Modal/CadastroVagaConcluido/
 import ChartComponent from './Componentes/ChartJs/ChartComponent';
 import Teste from './Group 39.png'
 import Vaga from './Componentes/Vaga/Vaga'
+import NavSideBar from '../../components/NavSideBar/index'
 
 
 // import { Container } from './styles';
@@ -15,6 +16,7 @@ function Dashboard() {
 
   return (
     <>
+        <NavSideBar/>
         <div className='container-dashboard-pai'>
           <div className='espaco-icone'>
                 <BotaoCheckout/>
