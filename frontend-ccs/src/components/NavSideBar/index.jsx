@@ -8,23 +8,28 @@ function NavSideBar() {
     const menuItems = [
         {
             text: "Dashboard",
-            icon: "imgs/icons/navIcons/dashBranco.png"
+            icon: "imgs/icons/navIcons/dashBranco.png",
+            href: "/dashboard"
         },
         {
             text: "Histórico",
-            icon: "imgs/icons/navIcons/historicoBranco.png"
+            icon: "imgs/icons/navIcons/historicoBranco.png",
+            href: "/historico"
         },
         {
             text: "Estacionamento",
-            icon: "imgs/icons/navIcons/estacionamentoBranco.png"
+            icon: "imgs/icons/navIcons/estacionamentoBranco.png",
+            href: "/estacionamento"
         },
         {
             text: "Funcionários",
-            icon: "imgs/icons/navIcons/funcionarioBranco.png"
+            icon: "imgs/icons/navIcons/funcionarioBranco.png",
+            href: "/funcionarios"
         },
         {
             text: "Valores",
-            icon: "imgs/icons/navIcons/valoresBranco.png"
+            icon: "imgs/icons/navIcons/valoresBranco.png",
+            href: "/valores"
         },
 
     ]
@@ -51,9 +56,9 @@ function NavSideBar() {
                         </button>
                     </div>
                     <div className="nav-menu">
-                        {menuItems.map(({ text, icon }) => (
+                        {menuItems.map(({ text, icon, href }) => (
                             <a
-                                href="#"
+                                href={href}
                                 className={isExpended ? "menu-item" : "menu-item menu-item-NX"}
                             >
                                 <img src={icon} alt="" srcSet="" />
