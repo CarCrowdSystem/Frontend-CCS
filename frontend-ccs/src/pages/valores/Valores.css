@@ -1,15 +1,13 @@
-.fundoValores {
+/* .fundoValores {
     width: 100vw;
     height: 100vh;
     position: absolute;
     z-index: 0;
-
-}
+} */
 
 .contValores {
     width: 80%;
     height: 72vh;
-    height: 100vh;
     margin: 0 10%;
     display: flex;
     justify-content: center;
