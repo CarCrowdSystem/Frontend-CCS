@@ -1,0 +1,25 @@
+.fundoValores {
+    width: 100vw;
+    height: 88vh;
+    position: absolute;
+    z-index: 0;
+
+}
+
+.contValores {
+    width: 80%;
+    height: 88vh;
+    margin: 0 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    float: left;
+}
+
+.titleValores {
+    color: #ff8000;
+    font-size: 40px;
+    margin-bottom: 5vh;
+}
