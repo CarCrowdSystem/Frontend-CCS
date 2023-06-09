@@ -2,6 +2,7 @@ import React from "react";
 import "./Cadastro.css";
 import FloorDataComponent from "./Componentes/labelFloor/FloorsDates"
 import { useState } from "react";
+import { validateVagas } from './funcoes/funcao'
 
 // import { Container } from './styles';
 
@@ -12,8 +13,6 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
   const [qtdVagas, setQtdVagas] = useState(0);
   const [andarVaga, setAndarVaga] = useState(-5);
 
-  var floorName = ""
-
   function adicionarVaga() {
     const vaga = {
       qtdVagas: parseInt(qtdVagas),
@@ -23,31 +22,6 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
     setListaVagas([...listaVagas, vaga])
 
     funcaoRetornoVagas(vaga);
-
-    // if(andarVaga == '0'){
-    //   console.log("teste 1")
-    //   floorName = "5 Subsolo"
-    // } else if (andarVaga == '1'){
-    //   console.log("teste 2")
-    // } else if (andarVaga == '2'){
-    //   console.log("teste 3")
-    // }else if (andarVaga == '3'){
-    //   console.log("teste 4")
-    // }else if (andarVaga == '4'){
-    //   console.log("teste 5")
-    // }else if (andarVaga == '5'){
-    //   console.log("teste 6")
-    // }else if (andarVaga == '6'){
-    //   console.log("teste 7")
-    // }else if (andarVaga == '7'){
-    //   console.log("teste 8")
-    // }else if (andarVaga == '8'){
-    //   console.log("teste 9")
-    // }else if (andarVaga == '9'){
-    //   console.log("teste 10")
-    // }else if (andarVaga == '10'){
-    //   console.log("teste 11")
-    // }
   }
 
   return (
@@ -76,10 +50,11 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
         id="quantidade-vagas"
         className="campo-texto"
         type="text"
-        name="quanntidadVagas"
+        name="quantidadeVagas"
         placeholder="Digite a quantidade de vagas que há no andar"
         value={qtdVagas || ""}
         onChange={(e) => setQtdVagas(e.target.value)}
+        onKeyUp={(e) => validateVagas(e.target.value)}
       />
 
       <button onClick={adicionarVaga} type="button" className="button-add"> Adicionar </button>
