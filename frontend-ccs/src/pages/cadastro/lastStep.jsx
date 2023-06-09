@@ -1,8 +1,11 @@
 import React from "react";
+import { IMaskInput } from "react-imask";
+import { validateNome, validateCpf, validateEmail, validateSenha } from './funcoes/funcao'
 
 // import { Container } from './styles';
 
 const LastStep = ({data, updateFieldHandler}) => {
+
   return (
     <>
       <label>Nome completo</label>
@@ -15,28 +18,32 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.nomeUsuario || ""}
         onChange={(e) => updateFieldHandler("nomeUsuario", e.target.value)}
+        onKeyUp={(e) => validateNome(e.target.value)}
       />
 
       <label>CPF</label>
-      <input
+      <IMaskInput
         className="campo-texto"
         type="text"
         name="cpfUsuario"
-        placeholder="000.000.000-00"
+        mask="000.000.000-00"
+        placeholder="Digite seu CPF"
         required
         value={data.cpfUsuario || ""}
         onChange={(e) => updateFieldHandler("cpfUsuario", e.target.value)}
+        onKeyUp={(e) => validateCpf(e.target.value)}
       />
 
       <label>Email</label>
       <input
         className="campo-texto"
-        type="text"
+        type="email"
         name="emailUsuario"
         placeholder="empresa@gmail.com"
         required
         value={data.emailUsuario || ""}
         onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
+        onKeyUp={(e) => validateEmail(e.target.value)}
       />
 
       <label>Senha</label>
@@ -44,10 +51,12 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="password"
         name="senha"
+        minLength={8}
         placeholder="Mínimo de 8 caracteres"
         required
         value={data.senha || ""}
         onChange={(e) => updateFieldHandler("senha", e.target.value)}
+        onKeyUp={(e) => validateSenha(e.target.value)}
       />
 
       <label>Confirmar senha</label>
