@@ -1,13 +1,14 @@
-/* .fundoValores {
+.fundoValores {
     width: 100vw;
-    height: 100vh;
+    height: 88vh;
     position: absolute;
     z-index: 0;
-} */
+
+}
 
 .contValores {
     width: 80%;
-    height: 72vh;
+    height: 88vh;
     margin: 0 10%;
     display: flex;
     justify-content: center;
@@ -21,13 +22,4 @@
     color: #ff8000;
     font-size: 40px;
     margin-bottom: 5vh;
-}
-
-.botaoAqui {
-    width: 70px;
-    height: 70px;
-    border: 2px solid #ff8000;
-    position: absolute;
-    z-index: 1000;
-    right: 0;
 }
