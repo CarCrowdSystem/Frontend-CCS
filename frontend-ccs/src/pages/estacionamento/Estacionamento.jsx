@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 const formTemplate = {
   nomeEmpresa: "",
   cepEmpresa: "",
-  enderecoEmpresa: "",
+  enderecoRuaEmpresa: "",
   numeroEmpresa: "",
   telefoneEmpresa: "",
 };
@@ -35,9 +35,9 @@ function Estacionamento() {
   function atualizarEmpresa() {
     const patchEmpresa = {
       nomeEmpresa: data.nomeEmpresa,
-      cnpjEmpresa: data.cnpjEmpresa,
       cepEmpresa: data.cepEmpresa,
-      enderecoEmpresa: data.enderecoEmpresa,
+      enderecoRuaEmpresa: data.enderecoRuaEmpresa,
+      numeroEmpresa: data.numeroEmpresa,
       telefoneEmpresa: data.telefoneEmpresa,
     };
 
@@ -99,12 +99,12 @@ function Estacionamento() {
             <input
               className="campo-texto-estacionamento"
               type="text"
-              name="enderecoEmpresa"
+              name="enderecoRuaEmpresa"
               placeholder="Digite o nome da rua"
               required
-              value={data.enderecoEmpresa || ""}
+              value={data.enderecoRuaEmpresa || ""}
               onChange={(e) =>
-                updateFieldHandler("enderecoEmpresa", e.target.value)
+                updateFieldHandler("enderecoRuaEmpresa", e.target.value)
               }
             />
 
