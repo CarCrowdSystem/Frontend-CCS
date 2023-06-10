@@ -90,7 +90,7 @@ function Valores() {
               onChange={(e) => updateFieldHandler("diaria", e.target.value)}
             />
           </form>
-          <button onClick={() => atualizarValores()}>Salvar</button>
+          <button className="button-salvar-valores" onClick={() => atualizarValores()}>Salvar</button>
         </div>
       </div>
     </>

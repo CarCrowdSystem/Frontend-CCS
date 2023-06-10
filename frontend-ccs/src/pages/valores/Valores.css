@@ -33,3 +33,14 @@
 .form-valores label {
   width: 75%;
 }
+
+.button-salvar-valores{
+    border-radius: 8px;
+  background-color: #ffffff;
+  border-color: #ff8000;
+  border-style: solid;
+  color: #ff8000;
+  margin-top: 32px;
+  padding: 18px;
+  font-size: larger;
+}

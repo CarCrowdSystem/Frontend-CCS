@@ -26,14 +26,14 @@ body {
 }
 
 .div-botao-alterar button {
-    border-radius: 8px;
-    background-color: #FFFFFF;
-    border-color: #FF8000;
-    border-style: solid;
-    color: #FF8000;
-    margin-top: 32px;
-    padding: 18px;
-    font-size: larger; 
+  border-radius: 8px;
+  background-color: #ffffff;
+  border-color: #ff8000;
+  border-style: solid;
+  color: #ff8000;
+  margin-top: 32px;
+  padding: 18px;
+  font-size: larger;
 }
 
 .espaco-icone {
