@@ -1,212 +1,225 @@
-.espaco-icone{
-    display: flex;
-    height: 12vh;
-    justify-content: flex-end;
+.espaco-icone {
+  display: flex;
+  height: 12vh;
+  justify-content: flex-end;
 }
 
-.container-funcionarios-pai{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.container-funcionarios-pai {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.container-funcionarios-filho{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.container-funcionarios-filho {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.container-adicionar-funcionarios{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 60%;
+.container-adicionar-funcionarios {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
 }
 
-.div-title-adicionar-funcionarios{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
+.div-title-adicionar-funcionarios {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
-.titulo-adicionar-funcionarios{
-    font-size: 40px;
-    color: #FF8000;
+.titulo-adicionar-funcionarios {
+  font-size: 40px;
+  color: #ff8000;
 }
 
-.input-add-func{
-    border: 2px solid #FF8000;
-    height: 24px;
-    margin-bottom: 40px;
-    border-radius: 8px;
+.input-add-func {
+  border: 2px solid #ff8000;
+  padding: 5%;
+  margin-bottom: 40px;
+  border-radius: 8px;
 }
 
-.div-formulario-adicionar-funcionario{
-    display: flex;
-    justify-content: space-around;
+.div-formulario-adicionar-funcionario {
+  display: flex;
+  justify-content: space-around;
 }
 
-.form-adicionar-funcionarios{
-    display: flex;
-    flex-direction: column;
+.form-adicionar-funcionarios {
+  display: flex;
+  flex-direction: column;
 }
 
-.label-info-add-func{
-    margin-bottom: 10px;
+.form-adicionar-funcionarios input {
+  border: 2px solid #ff8000;
+  font-size: larger;
+  padding: 5%;
+  width: 14vw;
+  margin-bottom: 40px;
+  border-radius: 8px;
 }
 
-.combobox-cargo-add-func{
-    font-size: 16px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid #FF8000;
+.label-info-add-func {
+  margin-bottom: 10px;
 }
 
-.combobox-cargo-add-func:hover{
-    cursor: pointer;
+.combobox-cargo-add-func {
+  font-size: 16px;
+  background: none;
+  font-size: larger;
+  margin-top: 8%;
+  width: 16vw;
+  padding: 3%;
+  border: none;
+  border-bottom: 2px solid #ff8000;
 }
 
-.input-nome-func-add-func{
-    border: 2px solid #FF8000;
-    height: 24px;
-    margin-bottom: 70px;
-    border-radius: 8px;
+.combobox-cargo-add-func:hover {
+  cursor: pointer;
 }
 
-.div-botao-adicionar-funcionario{
-    display: flex;
-    justify-content: center;
+.input-nome-func-add-func {
+  border: 2px solid #ff8000;
+  padding: 5%;
+  margin-bottom: 70px;
+  border-radius: 8px;
 }
 
-.botao-adicionar-funcionario{
-    background-color: #FF8000;
-    color: white;
-    border: none;
-    width: 8vw;
-    height: 6vh;
-    border-radius: 8px;
-    margin-bottom: 32px;
-    margin-left: 10px;
+.div-botao-adicionar-funcionario {
+  display: flex;
+  justify-content: center;
 }
 
-.botao-adicionar-funcionario:hover{
-    cursor: pointer;
-    background-color: black;
-    transition: 0.5s;
+.botao-adicionar-funcionario {
+  background-color: #ff8000;
+  color: white;
+  border: none;
+  width: 8vw;
+  height: 6vh;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  margin-left: 10px;
 }
 
-.div-title-exibir-funcionarios{
-    display: flex;
-    justify-content: center;
+.botao-adicionar-funcionario:hover {
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }
 
-.div-pesquisa-funcionarios{
-    display: flex;
-    justify-content: center;
-    width: 85%;
+.div-title-exibir-funcionarios {
+  display: flex;
+  justify-content: center;
 }
 
-.container-pesquisa-funcionarios{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 32px;
+.div-pesquisa-funcionarios {
+  display: flex;
+  justify-content: center;
+  width: 85%;
 }
 
-.div-pesquisa-funcionarios{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.container-pesquisa-funcionarios {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 32px;
 }
 
-.input-pesquisar-func{
-    border: 2px solid #FF8000;
-    height: 25px;
-    width: 14vw;
-    border-radius: 8px;
-    padding-left: 4px;
+.div-pesquisa-funcionarios {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.botao-pesquisar-func{
-    background: none;
-    border: none;
-    height: 28px;
-    display: flex;
-    align-items: center;
+.input-pesquisar-func {
+  border: 2px solid #ff8000;
+  height: 25px;
+  width: 14vw;
+  border-radius: 8px;
+  padding-left: 4px;
 }
 
-.botao-pesquisar-func:hover{
-    cursor: pointer;
+.botao-pesquisar-func {
+  background: none;
+  border: none;
+  height: 28px;
+  display: flex;
+  align-items: center;
 }
 
-.img-lupa-pesquisar-func{
-    width: 12px;
+.botao-pesquisar-func:hover {
+  cursor: pointer;
 }
 
-.div-buscar-pelo-nome{
-    display: flex;
-    justify-content: space-between;
-    width: 31%;
+.img-lupa-pesquisar-func {
+  width: 12px;
 }
 
-.div-separacao-pesquisa-func{
-    display: flex;
-    justify-content: space-between;
-    width: 85%;
+.div-buscar-pelo-nome {
+  display: flex;
+  justify-content: space-between;
+  width: 31%;
 }
 
-.botao-ordenar-func{
-    color: white;
-    font-size: 16px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    width: 5vw;
-    background-color: #8C8C8C;
-    border-radius: 8px;
-    border: none;
+.div-separacao-pesquisa-func {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
 }
 
-.botao-ordenar-func:hover{
-    background-color: black;
-    transition: 0.5s;
-    cursor: pointer;
+.botao-ordenar-func {
+  color: white;
+  font-size: 16px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 5vw;
+  background-color: #8c8c8c;
+  border-radius: 8px;
+  border: none;
 }
 
-.img-seta-cima{
-    width: 24px;
+.botao-ordenar-func:hover {
+  background-color: black;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
-.container-card-info-funcionarios{
-    display: flex;
-    justify-content: center;
-    height: 20vh;
-    width: 90%;
-    overflow-y: scroll;
-    flex-wrap: wrap;
-    margin-top: 24px;
+.img-seta-cima {
+  width: 24px;
 }
 
-.div-pai-card-info-funcionarios{
-    display: flex;
-    justify-content: center;
+.container-card-info-funcionarios {
+  display: flex;
+  justify-content: center;
+  height: 30vh;
+  width: 90%;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  margin-top: 24px;
 }
 
-.container-card-info-funcionarios::-webkit-scrollbar{
-    background-color: #F6F6F6;
-    width: 8px;
-    border-radius: 8px;
+.div-pai-card-info-funcionarios {
+  display: flex;
+  justify-content: center;
+}
+
+.container-card-info-funcionarios::-webkit-scrollbar {
+  background-color: #f6f6f6;
+  width: 8px;
+  border-radius: 8px;
 }
 
 .container-card-info-funcionarios::-webkit-scrollbar-track {
-    background-color: #F6F6F6;
+  background-color: #f6f6f6;
 }
 
 .container-card-info-funcionarios::-webkit-scrollbar-thumb {
-    background-color: #FF8000;
-    border-radius: 8px;
+  background-color: #ff8000;
+  border-radius: 8px;
 }
 
 .container-card-info-funcionarios::-webkit-scrollbar-thumb:hover {
-    background-color: black;
+  background-color: black;
 }

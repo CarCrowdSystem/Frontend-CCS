@@ -71,14 +71,14 @@ function NavSideBar() {
                 <div className="nav-footer">
                     {isExpended && (
                         <div className="nav-details">
-                            <img src="imgs/Group 39.png" alt="" srcset="" />
+                            <img src="imgs/Group 39.png" alt="" srcSet="" />
                             <div className="nav-footer-info">
                                 <p className='nav-footer-user-name'>User name</p>
                                 <p className='nav-footer-user-position'>Store Admin</p>
                             </div>
                         </div>
                     )}
-                    <img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="" srcset="" />
+                    <img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="" srcSet="" />
                     {!isExpended && <div className="tooltip">Sair</div>}
                 </div>
             </div>

@@ -32,6 +32,7 @@ function Funcionarios() {
 
   function cadastrarFuncionario() {
     const postFuncionario = {
+      id: data.id,
       nomeFuncionario: data.nomeFuncionario,
       cpfFuncionario: data.cpfFuncionario,
       emailFuncionario: data.emailFuncionario,
@@ -47,6 +48,7 @@ function Funcionarios() {
       // .post(`/distrubuicao`, postEmpresa)
       .then((response) => {
         console.log(response.data);
+        updateList();
       })
       .catch((erro) => {
         console.log("Error");
@@ -56,17 +58,56 @@ function Funcionarios() {
     console.log(postFuncionario);
   }
 
-  useEffect(()=> {
+  function defazerUltimoCadastro() {
+    var id = funcionarios.length;
     api
-      .get(`/funca`) 
+      .delete(`/funca/${id}`)
+      .then(() => {
+        funcionarios.filter((funcionario) => funcionario.id !== id);
+        updateList();
+      })
+      
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
+
+  useEffect(() => {
+    api
+      .get(`/funca`)
       .then((response) => {
-        console.log(response.data); 
+        console.log(response.data);
         setFuncionarios(response.data);
       })
       .catch((erro) => {
         console.log(erro);
       });
   }, []);
+
+  function updateList() {
+    api
+      .get(`/funca`)
+      .then((response) => {
+        setFuncionarios(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
+
+  function funDeleteFunc(id) {
+    api
+      .delete(`/funca/${id}`)
+      .then(() => {
+        setFuncionarios(
+          funcionarios.filter((funcionario) => funcionario.id !== id)
+        );
+        updateList();
+      })
+      .catch(() => {
+        alert("deu erro");
+      });
+  }
 
   return (
     <>
@@ -88,7 +129,6 @@ function Funcionarios() {
                   Nome:
                 </label>
                 <input
-                  className="input-nome-func-add-func"
                   type="text"
                   name="nomeFuncionario"
                   value={data.nomeFuncionario || ""}
@@ -105,7 +145,7 @@ function Funcionarios() {
                     updateFieldHandler("cargoFuncionario", e.target.value)
                   }
                 >
-                  <option value=""></option>
+                  <option value="false"></option>
                   <option value="false">Funcionário</option>
                   <option value="true">Gerente</option>
                 </select>
@@ -142,7 +182,7 @@ function Funcionarios() {
                 </label>
                 <input
                   className="input-add-func"
-                  type="text"
+                  type="password"
                   name="senha"
                   value={data.senha || ""}
                   onChange={(e) => updateFieldHandler("senha", e.target.value)}
@@ -152,7 +192,7 @@ function Funcionarios() {
                 </label>
                 <input
                   className="input-add-func"
-                  type="text"
+                  type="password"
                   name="confirmaSenha"
                   value={data.confirmaSenha || ""}
                   onChange={(e) =>
@@ -168,7 +208,12 @@ function Funcionarios() {
               >
                 Adicionar
               </button>
-              <button className="botao-adicionar-funcionario">Desfazer</button>
+              <button
+                className="botao-adicionar-funcionario"
+                onClick={() => defazerUltimoCadastro()}
+              >
+                Desfazer
+              </button>
             </div>
             <div className="div-title-exibir-funcionarios">
               <h1 className="titulo-adicionar-funcionarios">Funcionários</h1>
@@ -199,15 +244,17 @@ function Funcionarios() {
             <div className="div-pai-card-info-funcionarios">
               <div className="container-card-info-funcionarios">
                 {funcionarios.map((funcionario, i) => (
-                <React.Fragment key={i}>
-                  <DadosFuncionarios
-                    nome={funcionario.nomeFuncionario}
-                    cargo={funcionario.cargoFuncionario}
-                    email={funcionario.emailFuncionario}
-                    cpf={funcionario.cpfFuncionario}
-                  />
-                </React.Fragment>
-                ))} 
+                  <React.Fragment key={i}>
+                    <DadosFuncionarios
+                      nome={funcionario.nomeFuncionario}
+                      cargo={funcionario.cargoFuncionario}
+                      email={funcionario.emailFuncionario}
+                      cpf={funcionario.cpfFuncionario}
+                      id={funcionario.id}
+                      funDelete={funDeleteFunc}
+                    />
+                  </React.Fragment>
+                ))}
               </div>
             </div>
           </div>
