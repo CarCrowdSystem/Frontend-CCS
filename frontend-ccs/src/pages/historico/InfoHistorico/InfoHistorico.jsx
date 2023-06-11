@@ -3,20 +3,20 @@ import './InfoHistorico.css'
 
 // import { Container } from './styles';
 
-function InfoHistorico(props) {
+const InfoHistorico = ({nomeCliente, modeloCarro, placa, andar, vaga, telefone, data, entrada, saida, valor}) => {
   return (
     <>
         <div className='valores-historico-cliente'>
-            <span>{props.children}</span>
-            <span>Onix</span>
-            <span>AAAAAA</span>
-            <span>Térreo</span>
-            <span>12</span>
-            <span>(11) 99999-9999</span>
-            <span>14/02/2023</span>
-            <span>09:55</span>
-            <span>10:55</span>
-            <span>R$<span>30,00</span></span>
+            <span>{nomeCliente}</span>
+            <span>{modeloCarro}</span>
+            <span>{placa}</span>
+            <span>{andar}</span>
+            <span>{vaga}</span>
+            <span>{telefone}</span>
+            <span>{data}</span>
+            <span>{entrada}</span>
+            <span>{saida}</span>
+            <span>{valor}</span>
         </div>
     </>
   );
