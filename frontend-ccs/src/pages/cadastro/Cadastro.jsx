@@ -74,39 +74,80 @@ function Cadastro() {
   const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
     useForm(formCadastro);
 
-  function cadastrarEmpresa() {
-    const postEmpresa = {
-      nomeEmpresa: data.nomeEmpresa,
-      cnpjEmpresa: data.cnpjEmpresa,
-      cepEmpresa: data.cepEmpresa,
-      enderecoEmpresa: data.enderecoEmpresa,
-      telefoneEmpresa: data.telefoneEmpresa,
-      vagas: listaVagas,
-      nomeUsuario: data.nomeUsuario,
-      cpfUsuario: data.cpfUsuario,
-      emailUsuario: data.emailUsuario,
-      senha: data.senha,
-    };
-
-    api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
-
-      // "Funcional" backEnd ccs
-      .post(`/distrubuicao`, postEmpresa)
-      .then((response) => {
-        navigate("/login");
-        setTimeout(5000)
-        console.log(response);
-      })
-      .catch((erro) => {
-        console.log("Error")
-        console.log(erro);
-      });
-
-    console.log(postEmpresa);
-  }
-
+    function cadastrarEmpresa() {
+      const postEmpresaPartUm= {
+        nomeEmpresa: data.nomeEmpresa,
+        cnpjEmpresa: data.cnpjEmpresa,
+        cepEmpresa: data.cepEmpresa,
+        enderecoEmpresa: data.enderecoEmpresa,
+        telefoneEmpresa: data.telefoneEmpresa,
+      };
+  
+      const postEmpresaPartDois = {
+        vagas: listaVagas,
+      }
+  
+      const postEmpresaPartTres = {
+        nomeUsuario: data.nomeUsuario,
+        cpfUsuario: data.cpfUsuario,
+        emailUsuario: data.emailUsuario,
+        senha: data.senha,
+      }
+  
+      api
+        // Teste MockAPI
+        // .post(/teste, postEmpresa)
+  
+        // "Funcional" backEnd ccs
+        .post(`/estacionamento`, postEmpresaPartUm)
+        .then((response) => {
+          navigate("/login");
+          setTimeout(5000)
+          console.log(response);
+        })
+        .catch((erro) => {
+          console.log("Error")
+          console.log(erro);
+        });
+  
+      console.log(postEmpresaPartUm);
+  
+          api
+        // Teste MockAPI
+        // .post(/teste, postEmpresa)
+  
+        // "Funcional" backEnd ccs
+        .post(`/vaga`, postEmpresaPartDois)
+        .then((response) => {
+          navigate("/login");
+          setTimeout(5000)
+          console.log(response);
+        })
+        .catch((erro) => {
+          console.log("Error")
+          console.log(erro);
+        });
+  
+      console.log(postEmpresaPartDois);
+  
+          api
+        // Teste MockAPI
+        // .post(/teste, postEmpresa)
+  
+        // "Funcional" backEnd ccs
+        .post(`/funcionarios`, postEmpresaPartTres)
+        .then((response) => {
+          navigate("/login");
+          setTimeout(5000)
+          console.log(response);
+        })
+        .catch((erro) => {
+          console.log("Error")
+          console.log(erro);
+        });
+  
+      console.log(postEmpresaPartTres);
+    }
   return (
     <>
       <section className="view-cadastro">
