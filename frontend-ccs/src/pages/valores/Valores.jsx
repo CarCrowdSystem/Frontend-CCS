@@ -3,6 +3,7 @@ import "../valores/Valores.css";
 import NavSideBar from "../../components/NavSideBar/index";
 import BotaoCheckout from "../../components/Botoes/BotaoCheckout";
 import Botao from "../../components/Botoes/BotaoEnviar/index";
+import api from "../../api.js";
 // import { Container } from './styles';
 
 const formTemplate = {
@@ -21,27 +22,27 @@ function Valores() {
   };
 
   function atualizarValores() {
-    const patchValores = {
+    const postValores = {
       primeiraHora: data.primeiraHora,
-      demaisHoras: data.demaisHoras,
+      horaAdicional: data.demaisHoras,
       diaria: data.diaria,
     };
 
-    // api
-    // Teste MockAPI
-    // .post(`/teste`)
+    api
+      // Teste MockAPI
+      // .post(`/teste`)
 
-    // "Funcional" backEnd ccs
-    // .post(`/distrubuicao` )
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((erro) => {
-    //   console.log("Error")
-    //   console.log(erro);
-    // });
+      // "Funcional" backEnd ccs
+      .post(`/valor?idEstacionamento=${41}`, postValores)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((erro) => {
+        console.log("Error");
+        console.log(erro);    
+      });
 
-    console.log(patchValores);
+    console.log(postValores);
   }
 
   return (
@@ -90,7 +91,12 @@ function Valores() {
               onChange={(e) => updateFieldHandler("diaria", e.target.value)}
             />
           </form>
-          <button className="button-salvar-valores" onClick={() => atualizarValores()}>Salvar</button>
+          <button
+            className="button-salvar-valores"
+            onClick={() => atualizarValores()}
+          >
+            Salvar
+          </button>
         </div>
       </div>
     </>

@@ -33,7 +33,7 @@ const DadosFuncionarios = ({ nome, cargo, email, cpf, id, funDelete }) => {
               </label>
             </div>
             <div className="div-dados-info-funcionario">
-              <span className="dados-func">{cargo === "false" ? "Funcionario" : "Gerente"}</span>
+              <span className="dados-func">{cargo === false ? "Funcionario" : "Gerente"}</span>
               <span className="dados-func">{email}</span>
             </div>
           </div>

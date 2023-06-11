@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Form from "./Componentes/Formulario";
 import "./Estacionamento.css";
 import Botao from "../../components/Botoes/BotaoEnviar/index";
@@ -14,11 +14,11 @@ import { useNavigate } from "react-router-dom";
 // import { Container } from './styles';
 
 const formTemplate = {
-  nomeEmpresa: "",
-  cepEmpresa: "",
-  enderecoRuaEmpresa: "",
-  numeroEmpresa: "",
-  telefoneEmpresa: "",
+  nomeEmpresa: "teste",
+  cepEmpresa: "teste",
+  enderecoRuaEmpresa: "teste",
+  numeroEmpresa: "teste",
+  telefoneEmpresa: "teste",
 };
 
 function Estacionamento() {
@@ -32,28 +32,40 @@ function Estacionamento() {
     });
   };
 
+  // useEffect(() => {
+  //   api
+  //     .get(`/funcionarios`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setFuncionarios(response.data);
+  //     })
+  //     .catch((erro) => {
+  //       console.log(erro);
+  //     });
+  // }, []);
+
   function atualizarEmpresa() {
     const patchEmpresa = {
-      nomeEmpresa: data.nomeEmpresa,
-      cepEmpresa: data.cepEmpresa,
+      nomeEstacionamento: data.nomeEmpresa,
+      cep: data.cepEmpresa,
       enderecoRuaEmpresa: data.enderecoRuaEmpresa,
-      numeroEmpresa: data.numeroEmpresa,
-      telefoneEmpresa: data.telefoneEmpresa,
+      numeroEndereco: data.numeroEmpresa,
+      telefone: data.telefoneEmpresa,
     };
 
-    // api
+    api
     // Teste MockAPI
     // .post(`/teste`)
 
     // "Funcional" backEnd ccs
-    // .post(`/distrubuicao` )
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((erro) => {
-    //   console.log("Error")
-    //   console.log(erro);
-    // });
+    .patch(`/estacionamento/${41}`, patchEmpresa)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((erro) => {
+      console.log("Error")
+      console.log(erro);
+    });
     
     console.log(patchEmpresa);
   }

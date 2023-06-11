@@ -14,7 +14,7 @@ const formTemplate = {
   nomeFuncionario: "",
   cpfFuncionario: "",
   emailFuncionario: "",
-  cargoFuncionario: "",
+  cargoFuncionario: false,
   senha: "",
   confirmaSenha: "",
 };
@@ -31,21 +31,23 @@ function Funcionarios() {
   };
 
   function cadastrarFuncionario() {
+    // Colocar id do estacionamento
+    // Pegar pelo sessionStorege
     const postFuncionario = {
-      id: data.id,
-      nomeFuncionario: data.nomeFuncionario,
-      cpfFuncionario: data.cpfFuncionario,
-      emailFuncionario: data.emailFuncionario,
-      cargoFuncionario: data.cargoFuncionario,
+      idEstacionamento: 41,
+      nomeUsuario: data.nomeFuncionario,
+      cpfUsuario: data.cpfFuncionario,
+      emailUsuario: data.emailFuncionario,
+      adm: data.cargoFuncionario,
       senha: data.senha,
     };
 
+    console.log("Dados data", data);
     api
       // Teste MockAPI
-      .post(`/funca`, postFuncionario)
-
+      // .post(`/funca`, postFuncionario)
       // "Funcional" backEnd ccs
-      // .post(`/distrubuicao`, postEmpresa)
+      .post(`/funcionarios`, postFuncionario)
       .then((response) => {
         console.log(response.data);
         updateList();
@@ -58,23 +60,9 @@ function Funcionarios() {
     console.log(postFuncionario);
   }
 
-  function defazerUltimoCadastro() {
-    var id = funcionarios.length;
-    api
-      .delete(`/funca/${id}`)
-      .then(() => {
-        funcionarios.filter((funcionario) => funcionario.id !== id);
-        updateList();
-      })
-      
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }
-
   useEffect(() => {
     api
-      .get(`/funca`)
+      .get(`/funcionarios`)
       .then((response) => {
         console.log(response.data);
         setFuncionarios(response.data);
@@ -86,7 +74,7 @@ function Funcionarios() {
 
   function updateList() {
     api
-      .get(`/funca`)
+      .get(`/funcionarios`)
       .then((response) => {
         setFuncionarios(response.data);
       })
@@ -95,9 +83,22 @@ function Funcionarios() {
       });
   }
 
+  function defazerUltimoCadastro() {
+    var id = funcionarios.length;
+    api
+      .delete(`/funcionarios/${id}`)
+      .then(() => {
+        funcionarios.filter((funcionario) => funcionario.id !== id);
+        updateList();
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
+
   function funDeleteFunc(id) {
     api
-      .delete(`/funca/${id}`)
+      .delete(`/funcionarios/${id}`)
       .then(() => {
         setFuncionarios(
           funcionarios.filter((funcionario) => funcionario.id !== id)
@@ -107,6 +108,39 @@ function Funcionarios() {
       .catch(() => {
         alert("deu erro");
       });
+  }
+
+  function ondenaAZ() {
+    api
+      .get(`/funcionarios/nome-ordenado-a`)
+      .then((response) => {
+        setFuncionarios(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
+
+  function ondenaZA(){
+    api
+      .get(`/funcionarios/nome-ordenado-z`)
+      .then((response) => {
+        setFuncionarios(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
+
+  var contador = 0 
+  function selecionarOrdenacao(indicador){
+    contador += indicador
+
+    if(contador % 2){
+      ondenaZA()
+    } else {
+      ondenaAZ()
+    }
   }
 
   return (
@@ -139,15 +173,13 @@ function Funcionarios() {
                 <select
                   className="combobox-cargo-add-func"
                   name="cargoFuncionario"
-                  id=""
                   value={data.cargoFuncionario || ""}
                   onChange={(e) =>
                     updateFieldHandler("cargoFuncionario", e.target.value)
                   }
                 >
-                  <option value="false"></option>
-                  <option value="false">Funcionário</option>
-                  <option value="true">Gerente</option>
+                  <option value={false}>Funcionário</option>
+                  <option value={true}>Gerente</option>
                 </select>
               </div>
               <div className="form-adicionar-funcionarios">
@@ -221,7 +253,10 @@ function Funcionarios() {
             <div className="container-pesquisa-funcionarios">
               <div className="div-pesquisa-funcionarios">
                 <div className="div-separacao-pesquisa-func">
-                  <button className="botao-ordenar-func">
+                  <button
+                    className="botao-ordenar-func"
+                    onClick={() => selecionarOrdenacao(1)}
+                  >
                     <img className="img-seta-cima" src={SetaCima} alt="" /> A-Z
                   </button>
                   <div className="div-buscar-pelo-nome">
@@ -246,10 +281,10 @@ function Funcionarios() {
                 {funcionarios.map((funcionario, i) => (
                   <React.Fragment key={i}>
                     <DadosFuncionarios
-                      nome={funcionario.nomeFuncionario}
-                      cargo={funcionario.cargoFuncionario}
-                      email={funcionario.emailFuncionario}
-                      cpf={funcionario.cpfFuncionario}
+                      nome={funcionario.nome}
+                      cargo={funcionario.adm}
+                      email={funcionario.email}
+                      cpf={funcionario.cpf}
                       id={funcionario.id}
                       funDelete={funDeleteFunc}
                     />
