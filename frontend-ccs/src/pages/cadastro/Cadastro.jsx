@@ -90,10 +90,10 @@ function Cadastro() {
 
     api
       // Teste MockAPI
-      .post(`/teste`, postEmpresa)
+      // .post(`/teste`, postEmpresa)
 
       // "Funcional" backEnd ccs
-      // .post(`/distrubuicao`, postEmpresa)
+      .post(`/distrubuicao`, postEmpresa)
       .then((response) => {
         navigate("/login");
         setTimeout(5000)

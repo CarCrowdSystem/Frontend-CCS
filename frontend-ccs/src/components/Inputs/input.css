@@ -61,3 +61,16 @@
     border: 3px solid #FF8000;
     outline-style: none;
 }
+
+.campo-texto-correct {
+    background-color: #FFF;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0,0.08);
+    width: 75%;
+    font-size: 16px;
+    padding: 16px;
+    margin: 2%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px solid green;
+    outline-style: none;
+}
