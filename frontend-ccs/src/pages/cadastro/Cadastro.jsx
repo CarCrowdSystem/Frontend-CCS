@@ -74,80 +74,88 @@ function Cadastro() {
   const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
     useForm(formCadastro);
 
-    function cadastrarEmpresa() {
-      const postEmpresaPartUm= {
-        nomeEmpresa: data.nomeEmpresa,
-        cnpjEmpresa: data.cnpjEmpresa,
-        cepEmpresa: data.cepEmpresa,
-        enderecoEmpresa: data.enderecoEmpresa,
-        telefoneEmpresa: data.telefoneEmpresa,
-      };
-  
-      const postEmpresaPartDois = {
-        vagas: listaVagas,
-      }
-  
-      const postEmpresaPartTres = {
-        nomeUsuario: data.nomeUsuario,
-        cpfUsuario: data.cpfUsuario,
-        emailUsuario: data.emailUsuario,
-        senha: data.senha,
-      }
-  
-      api
-        // Teste MockAPI
-        // .post(/teste, postEmpresa)
-  
-        // "Funcional" backEnd ccs
-        .post(`/estacionamento`, postEmpresaPartUm)
-        .then((response) => {
-          navigate("/login");
-          setTimeout(5000)
-          console.log(response);
-        })
-        .catch((erro) => {
-          console.log("Error")
-          console.log(erro);
-        });
-  
-      console.log(postEmpresaPartUm);
-  
-          api
-        // Teste MockAPI
-        // .post(/teste, postEmpresa)
-  
-        // "Funcional" backEnd ccs
-        .post(`/vaga`, postEmpresaPartDois)
-        .then((response) => {
-          navigate("/login");
-          setTimeout(5000)
-          console.log(response);
-        })
-        .catch((erro) => {
-          console.log("Error")
-          console.log(erro);
-        });
-  
-      console.log(postEmpresaPartDois);
-  
-          api
-        // Teste MockAPI
-        // .post(/teste, postEmpresa)
-  
-        // "Funcional" backEnd ccs
-        .post(`/funcionarios`, postEmpresaPartTres)
-        .then((response) => {
-          navigate("/login");
-          setTimeout(5000)
-          console.log(response);
-        })
-        .catch((erro) => {
-          console.log("Error")
-          console.log(erro);
-        });
-  
-      console.log(postEmpresaPartTres);
+  var id_estacionamento = 0;
+
+  function cadastrarEmpresa() {
+    const postEmpresa = {
+      nomeEmpresa: data.nomeEmpresa,
+      cnpjEmpresa: data.cnpjEmpresa,
+      cepEmpresa: data.cepEmpresa,
+      enderecoEmpresa: data.enderecoEmpresa,
+      telefoneEmpresa: data.telefoneEmpresa,
+    };
+
+    api
+      // Teste MockAPI
+      // .post(`/teste`, postEmpresa)
+
+      // "Funcional" backEnd ccs
+      .post(`/estacionamentos`, postEmpresa)
+      .then((response) => {
+        console.log(response.data.idEstacionamento);
+        id_estacionamento = response.data.idEstacionamento;
+      })
+      .catch((erro) => {
+        console.log("Error")
+        console.log(erro);
+      });
+    console.log(postEmpresa);
+
+    setTimeout(() => cadastrarEmpresa2(), 6000)
+  }
+
+  function cadastrarEmpresa2() {
+
+    const postEmpresa2 = {
+      vagas: listaVagas,
     }
+
+        api
+      // Teste MockAPI
+      // .post(`/teste`, postEmpresa)
+
+      // "Funcional" backEnd ccs
+      .post(`/vagas/${id_estacionamento}`, postEmpresa2)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((erro) => {
+        console.log("Error")
+        console.log(erro);
+      });
+    console.log(postEmpresa2);
+    setTimeout(() => cadastrarEmpresa3(), 7000)
+  }
+
+  function cadastrarEmpresa3() {
+
+    const postEmpresa3 = {
+      nomeUsuario: data.nomeUsuario,
+      cpfUsuario: data.cpfUsuario,
+      emailUsuario: data.emailUsuario,
+      senha: data.senha,
+      adm: true,
+      idEstacionamento: id_estacionamento,
+    }
+
+        api
+      // Teste MockAPI
+      // .post(`/teste`, postEmpresa)
+
+      // "Funcional" backEnd ccs
+      .post(`/funcionarios`, postEmpresa3)
+      .then((response) => {
+     //   navigate("/login");
+        console.log(response);
+      })
+      .catch((erro) => {
+        console.log("Error")
+        console.log(erro);
+      });
+
+    console.log(postEmpresa3);
+  }
+
   return (
     <>
       <section className="view-cadastro">
