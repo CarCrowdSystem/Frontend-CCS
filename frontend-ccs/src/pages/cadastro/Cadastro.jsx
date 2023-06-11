@@ -148,7 +148,6 @@ function Cadastro() {
   
       console.log(postEmpresaPartTres);
     }
-
   return (
     <>
       <section className="view-cadastro">

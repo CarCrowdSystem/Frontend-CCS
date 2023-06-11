@@ -64,7 +64,7 @@ const firstStep = ({data, updateFieldHandler}) => {
         className={statusTelefone ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="telefoneEmpresa"
-        mask="(00) 00000-0000"
+        // mask="(00) 00000-0000"
         placeholder="Digite o número de telefone com DDD"
         required
         value={data.telefoneEmpresa || ""}

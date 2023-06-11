@@ -14,7 +14,7 @@
     "react-imask": "^6.6.3",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
-    "sweetalert2": "^11.7.11",
+    "sweetalert2": "^11.7.12",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

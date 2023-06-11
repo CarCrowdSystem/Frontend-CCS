@@ -26,7 +26,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="text"
         name="cpfUsuario"
-        mask="000.000.000-00"
+        // mask="000.000.000-00"
         placeholder="Digite seu CPF"
         required
         value={data.cpfUsuario || ""}
