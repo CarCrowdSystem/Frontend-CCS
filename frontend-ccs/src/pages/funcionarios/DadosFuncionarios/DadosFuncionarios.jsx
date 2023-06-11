@@ -4,7 +4,7 @@ import IconeLixeira from './lixeira.png'
 
 // import { Container } from './styles';
 
-function DadosFuncionarios() {
+const DadosFuncionarios = ({nome, cargo, email, cpf}) => {
   return (
     <>
         <div className='card-info-funcionario'>
@@ -15,8 +15,8 @@ function DadosFuncionarios() {
                         <label className='label-inf-funcionarios' htmlFor="">CPF:</label>
                     </div>
                     <div className='div-dados-info-funcionario'>
-                        <span className='dados-func'>José Silva</span>
-                        <span className='dados-func'>123456789-10</span>
+                        <span className='dados-func'>{nome}</span>
+                        <span className='dados-func'>{cpf}</span>
                     </div>
                 </div>
                 <div className='info-funcionarios'>
@@ -25,8 +25,8 @@ function DadosFuncionarios() {
                         <label className='label-inf-funcionarios' htmlFor="">E-mail:</label>
                     </div>
                     <div className='div-dados-info-funcionario'>
-                        <span className='dados-func'>Funcionário</span>
-                        <span className='dados-func'>zesilva@gmail.com</span>
+                        <span className='dados-func'>{cargo}</span>
+                        <span className='dados-func'>{email}</span>
                     </div>
                 </div>
                 <div  className='div-botao-excluir-funcionario'>
