@@ -4,6 +4,8 @@ import NavSideBar from "../../components/NavSideBar/index";
 import BotaoCheckout from "../../components/Botoes/BotaoCheckout";
 import Botao from "../../components/Botoes/BotaoEnviar/index";
 import api from "../../api.js";
+
+import Swal from "sweetalert2";
 // import { Container } from './styles';
 
 const formTemplate = {
@@ -48,15 +50,40 @@ function Valores() {
       // "Funcional" backEnd ccs
       .patch(`/valor?idEstacionamento=${41}`, patchValores)
       .then((response) => {
+        Swal.fire({
+          title: 'Valores atualizados!',
+          icon: 'success',
+          confirmButtonColor: '#ff8000',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        })
         console.log(response);
       })
       .catch((erro) => {
+        Swal.fire({
+          title: 'Erro ao atualizar os valores!',
+          text: 'Tente novamente mais tarde!',
+          icon: 'error',
+          confirmButtonColor: '#ff8000',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        })
         console.log("Error");
         console.log(erro);    
       });
 
     console.log(patchValores);
   }
+
+  // function testeAlert(){
+  //   Swal.fire({
+  //     title: 'Valores atualizados!',
+  //     icon: 'success',
+  //     confirmButtonColor: '#ff8000',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Ok'
+  //   })
+  // }
 
   return (
     <>
@@ -110,6 +137,7 @@ function Valores() {
           >
             Salvar
           </button>
+          {/* <button onClick={() => testeAlert()}>teste</button> */}
         </div>
       </div>
     </>
