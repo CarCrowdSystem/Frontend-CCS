@@ -4,6 +4,11 @@
     justify-content: space-between;
 }
 
+.view-cadastro-container {
+    display: flex;
+    height: 100vh;
+}
+
 .div-button-cadastro button{
     border-radius: 8px;
     background-color: #FFFFFF;
