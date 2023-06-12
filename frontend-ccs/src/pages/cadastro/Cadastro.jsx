@@ -150,28 +150,25 @@ function Cadastro() {
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
         Swal.fire({
-          title:
-            "Cadastro realizado com sucesso! Deseja navegar para home ou login? ",
-          showDenyButton: true,
-          confirmButtonText: `Home`,
-          denyButtonText: `Login`,
+          title: 'Cadastro realizado!',
+          text: "Você será direcionado para login!",
+          icon: 'success',
+          confirmButtonColor: '#ff8000',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            navigate("/");
-          } else if (result.isDenied) {
-            navigate("/login");
+          if (result.isConfirmed) { 
+            navigate("/login")
           }
-        });
+        })
 
         console.log(response);
       })
       .catch((erro) => {
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href="">Why do I have this issue?</a>'
+          title: 'Houve um erro no cadastro!',
+          text: 'Verifique se os campos estão correntamente preenchidos'
         })
         console.log("Error");
         console.log(erro);
@@ -179,6 +176,14 @@ function Cadastro() {
 
     console.log(postEmpresa3);
   }
+
+  // function testeAlert(){
+  //   Swal.fire({
+  //     icon: 'error',
+  //     title: 'Houve um erro no cadastro!',
+  //     text: 'Verifique se os campos estão correntamente preenchidos'
+  //   })
+  // }
 
   return (
     <>
@@ -219,6 +224,7 @@ function Cadastro() {
                     Enviar
                   </button>
                 )}
+                {/* <button onClick={() => testeAlert()}>teste alert</button> */}
               </div>
             </form>
           </div>
