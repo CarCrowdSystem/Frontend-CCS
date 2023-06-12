@@ -76,6 +76,10 @@
     flex-wrap: wrap;
 }
 
+.container-itens-historico h2 {
+    margin: 1.5%;
+}
+
 .div-valores-historico::-webkit-scrollbar{
     background-color: #F6F6F6;
     width: 8px;

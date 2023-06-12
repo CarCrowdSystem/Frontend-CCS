@@ -3,6 +3,7 @@ import "./Estacionamento.css";
 import BotaoCheckout from "../../components/Botoes/BotaoCheckout/index";
 import NavSideBar from "../../components/NavSideBar/index";
 import api from "../../api";
+import Swal from "sweetalert2";
 
 import { useState } from "react";
 
@@ -45,7 +46,7 @@ function Estacionamento() {
         setEstacionamento(response.data);
         dadosEstacionamento = response.data;
         console.log("Variavel Global", dadosEstacionamento);
-        setTimeout(() => pegarEndereco(response.data.cep), 5000);
+        setTimeout(() => pegarEndereco(response.data.cep), 1000);
         console.log(response.data);
       })
       .catch((erro) => {
@@ -72,7 +73,7 @@ function Estacionamento() {
     const putEmpresa = {
       nomeEmpresa: data.nomeEmpresa,
       cepEmpresa: data.cepEmpresa,
-      cnpjEmpresa: "funcionaPoDeus", 
+      cnpjEmpresa: "funcionaPoDeus",
       enderecoEmpresa: data.numeroEmpresa,
       telefoneEmpresa: data.telefoneEmpresa,
     };
@@ -85,6 +86,13 @@ function Estacionamento() {
       .put(`/estacionamentos/${41}`, putEmpresa)
       .then((response) => {
         console.log(response);
+        Swal.fire({
+          title: "Estacionamento atualizado!",
+          icon: "success",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         updateList();
       })
       .catch((erro) => {
@@ -113,9 +121,9 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="nomeEmpresa"
-              placeholder={dadosEstacionamento.nomeEstacionamento }
+              placeholder={dadosEstacionamento.nomeEstacionamento}
               required
-              value={data.nomeEmpresa || ""} 
+              value={data.nomeEmpresa || ""}
               onChange={(e) =>
                 updateFieldHandler("nomeEmpresa", e.target.value)
               }
@@ -137,9 +145,10 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="enderecoRuaEmpresa"
-              placeholder={logradouro.logradouro}
+              // placeholder={logradouro.logradouro}
+              disabled={true}
               required
-              value={data.enderecoRuaEmpresa || ""}
+              value={logradouro.logradouro}
               onChange={(e) =>
                 updateFieldHandler("enderecoRuaEmpresa", e.target.value)
               }
@@ -176,6 +185,7 @@ function Estacionamento() {
           <button onClick={() => atualizarEmpresa()} type="submit">
             Alterar
           </button>
+          {/* <button onClick={() => testeAlert()}>teste</button> */}
         </div>
       </div>
     </>

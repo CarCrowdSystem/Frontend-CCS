@@ -6,6 +6,7 @@ import SetaCima from "./arrow_up.png";
 import DadosFuncionarios from "./DadosFuncionarios/DadosFuncionarios";
 import NavSideBar from "../../components/NavSideBar/index";
 import api from "../../api.js";
+import Swal from "sweetalert2";
 
 import { useState } from "react";
 // import { Container } from './styles';
@@ -49,10 +50,25 @@ function Funcionarios() {
       // "Funcional" backEnd ccs
       .post(`/funcionarios`, postFuncionario)
       .then((response) => {
+        Swal.fire({
+          title: "Funcionario adicionado!",
+          icon: "success",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         console.log(response.data);
         updateList();
       })
       .catch((erro) => {
+        Swal.fire({
+          title: "Erro ao adicionar o funcionario!",
+          text: "Verifique os campos!",
+          icon: "error",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         console.log("Error");
         console.log(erro);
       });
@@ -89,9 +105,23 @@ function Funcionarios() {
       .delete(`/funcionarios/${id}`)
       .then(() => {
         funcionarios.filter((funcionario) => funcionario.id !== id);
+        Swal.fire({
+          title: "Funcionario deletado com sucesso!",
+          icon: "success",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         updateList();
       })
       .catch((erro) => {
+        Swal.fire({
+          title: "Erro ao deletar funcionario!",
+          icon: "error",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         console.log(erro);
       });
   }
@@ -103,9 +133,23 @@ function Funcionarios() {
         setFuncionarios(
           funcionarios.filter((funcionario) => funcionario.id !== id)
         );
+        Swal.fire({
+          title: "Funcionario deletado com sucesso!",
+          icon: "success",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         updateList();
       })
       .catch(() => {
+        Swal.fire({
+          title: "Erro ao deletar funcionario!",
+          icon: "error",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         alert("deu erro");
       });
   }
@@ -121,7 +165,7 @@ function Funcionarios() {
       });
   }
 
-  function ondenaZA(){
+  function ondenaZA() {
     api
       .get(`/funcionarios/nome-ordenado-z`)
       .then((response) => {
@@ -132,16 +176,25 @@ function Funcionarios() {
       });
   }
 
-  var contador = 0 
-  function selecionarOrdenacao(indicador){
-    contador += indicador
-
-    if(contador % 2){
-      ondenaZA()
+  var contador = 0;
+  function selecionarOrdenacao(indicador) {
+    contador += indicador;
+    if (contador % 2) {
+      ondenaZA();
     } else {
-      ondenaAZ()
+      ondenaAZ();
     }
   }
+
+  // function testeAlert() {
+  //   Swal.fire({
+  //     title: "Erro ao deletar funcionario!",
+  //     icon: "error",
+  //     confirmButtonColor: "#ff8000",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Ok",
+  //   });
+  // }
 
   return (
     <>
@@ -246,6 +299,7 @@ function Funcionarios() {
               >
                 Desfazer
               </button>
+              {/* <button onClick={() => testeAlert()}>teste</button> */}
             </div>
             <div className="div-title-exibir-funcionarios">
               <h1 className="titulo-adicionar-funcionarios">Funcionários</h1>
