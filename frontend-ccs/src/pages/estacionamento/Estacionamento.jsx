@@ -10,6 +10,8 @@ import { useState } from "react";
 
 // import { Container } from './styles';
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
 const formTemplate = {
   nomeEmpresa: "",
   cepEmpresa: "",
@@ -40,12 +42,12 @@ function Estacionamento() {
 
   function updateList() {
     api
-      .get(`/estacionamentos/${41}`)
+      .get(`/estacionamentos/${sessionIdEstacionamento}`)
       .then((response) => {
         setEstacionamento(response.data);
         dadosEstacionamento = response.data;
         console.log("Variavel Global", dadosEstacionamento);
-        setTimeout(() => pegarEndereco(response.data.cep), 5000);
+        setTimeout(() => pegarEndereco(response.data.cep), 1000);
         console.log(response.data);
       })
       .catch((erro) => {
@@ -82,7 +84,7 @@ function Estacionamento() {
       // .post(`/teste`)
 
       // "Funcional" backEnd ccs
-      .put(`/estacionamentos/${41}`, putEmpresa)
+      .put(`/estacionamentos/${sessionIdEstacionamento}`, putEmpresa)
       .then((response) => {
         console.log(response);
         updateList();

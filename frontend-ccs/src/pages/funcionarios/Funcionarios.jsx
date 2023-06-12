@@ -19,6 +19,9 @@ const formTemplate = {
   confirmaSenha: "",
 };
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+var sessionNomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
+
 function Funcionarios() {
   const [data, setData] = useState(formTemplate);
 
@@ -34,7 +37,7 @@ function Funcionarios() {
     // Colocar id do estacionamento
     // Pegar pelo sessionStorege
     const postFuncionario = {
-      idEstacionamento: 41,
+      idEstacionamento: sessionIdEstacionamento,
       nomeUsuario: data.nomeFuncionario,
       cpfUsuario: data.cpfFuncionario,
       emailUsuario: data.emailFuncionario,
@@ -59,10 +62,9 @@ function Funcionarios() {
 
     console.log(postFuncionario);
   }
-
   useEffect(() => {
     api
-      .get(`/funcionarios`)
+      .get(`/funcionarios/${sessionIdEstacionamento}`)
       .then((response) => {
         console.log(response.data);
         setFuncionarios(response.data);
@@ -74,7 +76,7 @@ function Funcionarios() {
 
   function updateList() {
     api
-      .get(`/funcionarios`)
+      .get(`/funcionarios/${sessionIdEstacionamento}`)
       .then((response) => {
         setFuncionarios(response.data);
       })
@@ -121,7 +123,7 @@ function Funcionarios() {
       });
   }
 
-  function ondenaZA(){
+  function ondenaZA() {
     api
       .get(`/funcionarios/nome-ordenado-z`)
       .then((response) => {
@@ -132,11 +134,11 @@ function Funcionarios() {
       });
   }
 
-  var contador = 0 
-  function selecionarOrdenacao(indicador){
+  var contador = 0
+  function selecionarOrdenacao(indicador) {
     contador += indicador
 
-    if(contador % 2){
+    if (contador % 2) {
       ondenaZA()
     } else {
       ondenaAZ()
