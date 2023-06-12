@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../valores/Valores.css";
 import NavSideBar from "../../components/NavSideBar/index";
 import BotaoCheckout from "../../components/Botoes/BotaoCheckout";
@@ -7,13 +7,14 @@ import api from "../../api.js";
 // import { Container } from './styles';
 
 const formTemplate = {
-  primeiraHora: "",
-  demaisHoras: "",
-  diaria: "",
+  primeiraHora: "pega no back",
+  demaisHoras: "pega no back",
+  diaria: "pega no back",
 };
 
 function Valores() {
   const [data, setData] = useState(formTemplate);
+  const [valor, setValor] = useState([]);
 
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
@@ -21,8 +22,20 @@ function Valores() {
     });
   };
 
+  useEffect(() => {
+    api
+      .get(`/valor`)
+      .then((response) => {
+        console.log(response.data);
+        setValor(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
+
   function atualizarValores() {
-    const postValores = {
+    const patchValores = {
       primeiraHora: data.primeiraHora,
       horaAdicional: data.demaisHoras,
       diaria: data.diaria,
@@ -33,7 +46,7 @@ function Valores() {
       // .post(`/teste`)
 
       // "Funcional" backEnd ccs
-      .post(`/valor?idEstacionamento=${41}`, postValores)
+      .patch(`/valor?idEstacionamento=${41}`, patchValores)
       .then((response) => {
         console.log(response);
       })
@@ -42,7 +55,7 @@ function Valores() {
         console.log(erro);    
       });
 
-    console.log(postValores);
+    console.log(patchValores);
   }
 
   return (
@@ -60,7 +73,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="primeiraHora"
-              placeholder={"R$ "}
+              placeholder={"R$ "+ data.primeiraHora}
               required
               value={data.primeiraHora || ""}
               onChange={(e) =>
@@ -73,7 +86,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="demaisHoras"
-              placeholder={"R$ "}
+              placeholder={"R$ "+ data.demaisHoras}
               required
               value={data.demaisHoras || ""}
               onChange={(e) =>
@@ -85,7 +98,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="diaria"
-              placeholder={"R$ "}
+              placeholder={"R$ "+ data.diaria}
               required
               value={data.diaria || ""}
               onChange={(e) => updateFieldHandler("diaria", e.target.value)}

@@ -30,10 +30,10 @@ function Login() {
 
     api
       //Teste MockAPI
-      .get(`/login`, getEmpresa)
+/*       .get(`/login`, getEmpresa) */
 
       //"Funcional" backEnd ccs
-      // .post(`/funcionarios/login`, getEmpresa)
+      .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
         if(userHasAccount(response.data)){
           Swal.fire({

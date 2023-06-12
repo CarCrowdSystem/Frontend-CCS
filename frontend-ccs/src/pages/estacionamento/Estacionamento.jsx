@@ -1,30 +1,27 @@
 import React, { useEffect } from "react";
-import Form from "./Componentes/Formulario";
 import "./Estacionamento.css";
-import Botao from "../../components/Botoes/BotaoEnviar/index";
 import BotaoCheckout from "../../components/Botoes/BotaoCheckout/index";
 import NavSideBar from "../../components/NavSideBar/index";
-import CampoTexto from "./Componentes/CampoTexto";
 import api from "../../api";
 
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 // import { Container } from './styles';
 
 const formTemplate = {
-  nomeEmpresa: "teste",
-  cepEmpresa: "teste",
-  enderecoRuaEmpresa: "teste",
-  numeroEmpresa: "teste",
-  telefoneEmpresa: "teste",
+  nomeEmpresa: "",
+  cepEmpresa: "",
+  numeroEmpresa: "",
+  telefoneEmpresa: "",
 };
 
 function Estacionamento() {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const [data, setData] = useState(formTemplate);
+  const [estacionamento, setEstacionamento] = useState([]);
 
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
@@ -32,41 +29,62 @@ function Estacionamento() {
     });
   };
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/funcionarios`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setFuncionarios(response.data);
-  //     })
-  //     .catch((erro) => {
-  //       console.log(erro);
-  //     });
-  // }, []);
+  useEffect(() => {
+    updateList();
+  }, []);
+
+
+  function updateList() {
+    api
+      .get(`/estacionamentos/${41}`)
+      .then((response) => {
+        setEstacionamento(response.data);
+        console.log(response.data)
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+      setTimeout(() => pegarEndereco(), 5000)
+  }
+
+  function pegarEndereco() {
+    console.log("Estou aq", estacionamento)
+    api
+    .get(`/estacionamentos/buscar/${estacionamento}`)
+    .then((response) => {
+      setEstacionamento(response.data);
+      console.log(response.data)
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
+  }
+
+
 
   function atualizarEmpresa() {
     const patchEmpresa = {
-      nomeEstacionamento: data.nomeEmpresa,
-      cep: data.cepEmpresa,
-      enderecoRuaEmpresa: data.enderecoRuaEmpresa,
-      numeroEndereco: data.numeroEmpresa,
-      telefone: data.telefoneEmpresa,
+      nomeEmpresa: data.nomeEmpresa,
+      cepEmpresa: data.cepEmpresa,
+      enderecoEmpresa: data.numeroEmpresa,
+      telefoneEmpresa: data.telefoneEmpresa,
     };
 
     api
-    // Teste MockAPI
-    // .post(`/teste`)
+      // Teste MockAPI
+      // .post(`/teste`)
 
-    // "Funcional" backEnd ccs
-    .patch(`/estacionamento/${41}`, patchEmpresa)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((erro) => {
-      console.log("Error")
-      console.log(erro);
-    });
-    
+      // "Funcional" backEnd ccs
+      .patch(`/estacionamentos/${41}`, patchEmpresa)
+      .then((response) => {
+        console.log(response);
+        updateList();
+      })
+      .catch((erro) => {
+        console.log("Error")
+        console.log(erro);
+      });
+
     console.log(patchEmpresa);
   }
 
