@@ -11,6 +11,8 @@ import { useState } from "react";
 
 // import { Container } from './styles';
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
 const formTemplate = {
   nomeEmpresa: "",
   cepEmpresa: "",
@@ -41,7 +43,7 @@ function Estacionamento() {
 
   function updateList() {
     api
-      .get(`/estacionamentos/${41}`)
+      .get(`/estacionamentos/${sessionIdEstacionamento}`)
       .then((response) => {
         setEstacionamento(response.data);
         dadosEstacionamento = response.data;
@@ -83,7 +85,7 @@ function Estacionamento() {
       // .post(`/teste`)
 
       // "Funcional" backEnd ccs
-      .put(`/estacionamentos/${41}`, putEmpresa)
+      .put(`/estacionamentos/${sessionIdEstacionamento}`, putEmpresa)
       .then((response) => {
         console.log(response);
         Swal.fire({

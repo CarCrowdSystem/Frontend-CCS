@@ -40,6 +40,9 @@ function Login() {
           showConfirmButton: false,
           timer: 1500,
         });
+        console.log("Estou aqui", response)
+        sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
+        sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
         navigate("/dashboard");
 
         console.log(response.data);
