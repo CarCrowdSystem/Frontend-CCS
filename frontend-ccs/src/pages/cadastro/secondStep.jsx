@@ -2,7 +2,7 @@ import React from "react";
 import "./Cadastro.css";
 import FloorDataComponent from "./Componentes/labelFloor/FloorsDates"
 import { useState } from "react";
-import { validateVagas } from './funcoes/funcao'
+// import { validateVagas } from './funcoes/funcao'
 
 // import { Container } from './styles';
 
@@ -54,7 +54,7 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
         placeholder="Digite a quantidade de vagas que há no andar"
         value={qtdVagas || ""}
         onChange={(e) => setQtdVagas(e.target.value)}
-        onKeyUp={(e) => validateVagas(e.target.value)}
+        // onKeyUp={(e) => validateVagas(e.target.value)}
       />
 
       <button onClick={adicionarVaga} type="button" className="button-add"> Adicionar </button>

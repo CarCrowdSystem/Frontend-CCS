@@ -5,6 +5,7 @@ import LastStep from "./lastStep";
 import "./Cadastro.css";
 import Steps from "./Steps";
 import api from "../../api.js";
+import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
 
@@ -45,12 +46,16 @@ function Cadastro() {
   function retornoVagas(vaga) {
     console.log(vaga);
 
-    setListaVagas([...listaVagas, vaga])
+    setListaVagas([...listaVagas, vaga]);
   }
 
   const formCadastro = [
     <FirstStep data={data} updateFieldHandler={updateFieldHandler} />,
-    <SecondStep vagas={listaVagas} updateFieldHandler={updateFieldHandler} funcaoRetornoVagas={retornoVagas} />,
+    <SecondStep
+      vagas={listaVagas}
+      updateFieldHandler={updateFieldHandler}
+      funcaoRetornoVagas={retornoVagas}
+    />,
     <LastStep data={data} updateFieldHandler={updateFieldHandler} />,
   ];
 
@@ -92,25 +97,25 @@ function Cadastro() {
       // "Funcional" backEnd ccs
       .post(`/estacionamentos`, postEmpresa)
       .then((response) => {
+        console.log(response)
         console.log(response.data.idEstacionamento);
         id_estacionamento = response.data.idEstacionamento;
       })
       .catch((erro) => {
-        console.log("Error")
+        console.log("Error");
         console.log(erro);
       });
     console.log(postEmpresa);
 
-    setTimeout(() => cadastrarEmpresa2(), 6000)
+    setTimeout(() => cadastrarEmpresa2(), 6000);
   }
 
   function cadastrarEmpresa2() {
-
     const postEmpresa2 = {
       vagas: listaVagas,
-    }
+    };
 
-        api
+    api
       // Teste MockAPI
       // .post(`/teste`, postEmpresa)
 
@@ -120,15 +125,14 @@ function Cadastro() {
         console.log(response);
       })
       .catch((erro) => {
-        console.log("Error")
+        console.log("Error");
         console.log(erro);
       });
     console.log(postEmpresa2);
-    setTimeout(() => cadastrarEmpresa3(), 7000)
+    setTimeout(() => cadastrarEmpresa3(), 7000);
   }
 
   function cadastrarEmpresa3() {
-
     const postEmpresa3 = {
       nomeUsuario: data.nomeUsuario,
       cpfUsuario: data.cpfUsuario,
@@ -136,20 +140,40 @@ function Cadastro() {
       senha: data.senha,
       adm: true,
       idEstacionamento: id_estacionamento,
-    }
+    };
 
-        api
+    api
       // Teste MockAPI
       // .post(`/teste`, postEmpresa)
 
       // "Funcional" backEnd ccs
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
-     //   navigate("/login");
+        Swal.fire({
+          title:
+            "Cadastro realizado com sucesso! Deseja navegar para home ou login? ",
+          showDenyButton: true,
+          confirmButtonText: `Home`,
+          denyButtonText: `Login`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            navigate("/");
+          } else if (result.isDenied) {
+            navigate("/login");
+          }
+        });
+
         console.log(response);
       })
       .catch((erro) => {
-        console.log("Error")
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
+        console.log("Error");
         console.log(erro);
       });
 
@@ -158,7 +182,7 @@ function Cadastro() {
 
   return (
     <>
-      <section className="view-cadastro">
+      <section className="view-cadastro-container">
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">

@@ -26,7 +26,7 @@ const firstStep = ({data, updateFieldHandler}) => {
         className={statusCnpj ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cnpjEmpresa"
-        mask="00.000.000/0000-00"
+        // mask="00.000.000/0000-00"
         placeholder="Digite o CNPJ da empresa"
         required
         value={data.cnpjEmpresa || ""}
@@ -39,7 +39,7 @@ const firstStep = ({data, updateFieldHandler}) => {
         className={statusCep ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cepEmpresa"
-        mask="00000-000"
+        // mask="00000-000"
         placeholder="Digite o CEP da empresa"
         required
         value={data.cepEmpresa || ""}
