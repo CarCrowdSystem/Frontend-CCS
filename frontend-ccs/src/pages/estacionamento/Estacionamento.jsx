@@ -13,15 +13,20 @@ import { useState } from "react";
 const formTemplate = {
   nomeEmpresa: "",
   cepEmpresa: "",
+  enderecoRuaEmpresa: "",
   numeroEmpresa: "",
   telefoneEmpresa: "",
 };
+
+var dadosEstacionamento = {};
+var logradouro = {};
 
 function Estacionamento() {
   //const navigate = useNavigate();
 
   const [data, setData] = useState(formTemplate);
-  const [estacionamento, setEstacionamento] = useState([]);
+  const [estacionamentos, setEstacionamento] = useState({});
+  const [estacionamento2, setEstacionamento2] = useState([]);
 
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
@@ -33,39 +38,41 @@ function Estacionamento() {
     updateList();
   }, []);
 
-
   function updateList() {
     api
       .get(`/estacionamentos/${41}`)
       .then((response) => {
         setEstacionamento(response.data);
-        console.log(response.data)
+        dadosEstacionamento = response.data;
+        console.log("Variavel Global", dadosEstacionamento);
+        setTimeout(() => pegarEndereco(response.data.cep), 5000);
+        console.log(response.data);
       })
       .catch((erro) => {
         console.log(erro);
       });
-      setTimeout(() => pegarEndereco(), 5000)
   }
 
-  function pegarEndereco() {
-    console.log("Estou aq", estacionamento)
+  function pegarEndereco(endereco) {
+    console.log("Estou aq", endereco);
     api
-    .get(`/estacionamentos/buscar/${estacionamento}`)
-    .then((response) => {
-      setEstacionamento(response.data);
-      console.log(response.data)
-    })
-    .catch((erro) => {
-      console.log(erro);
-    });
+      .get(`/estacionamentos/buscar/${endereco}`)
+      .then((response) => {
+        logradouro = response.data;
+        console.log("Variavel global", logradouro);
+        setEstacionamento2(response.data);
+        console.log(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
   }
-
-
 
   function atualizarEmpresa() {
-    const patchEmpresa = {
+    const putEmpresa = {
       nomeEmpresa: data.nomeEmpresa,
       cepEmpresa: data.cepEmpresa,
+      cnpjEmpresa: "funcionaPoDeus", 
       enderecoEmpresa: data.numeroEmpresa,
       telefoneEmpresa: data.telefoneEmpresa,
     };
@@ -75,17 +82,17 @@ function Estacionamento() {
       // .post(`/teste`)
 
       // "Funcional" backEnd ccs
-      .patch(`/estacionamentos/${41}`, patchEmpresa)
+      .put(`/estacionamentos/${41}`, putEmpresa)
       .then((response) => {
         console.log(response);
         updateList();
       })
       .catch((erro) => {
-        console.log("Error")
+        console.log("Error");
         console.log(erro);
       });
 
-    console.log(patchEmpresa);
+    console.log(putEmpresa);
   }
 
   return (
@@ -106,9 +113,9 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="nomeEmpresa"
-              placeholder="Digite o nome da empresa"
+              placeholder={dadosEstacionamento.nomeEstacionamento }
               required
-              value={data.nomeEmpresa || ""}
+              value={data.nomeEmpresa || ""} 
               onChange={(e) =>
                 updateFieldHandler("nomeEmpresa", e.target.value)
               }
@@ -119,7 +126,7 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="cepEmpresa"
-              placeholder="00000-000"
+              placeholder={dadosEstacionamento.cep}
               required
               value={data.cepEmpresa || ""}
               onChange={(e) => updateFieldHandler("cepEmpresa", e.target.value)}
@@ -130,7 +137,7 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="enderecoRuaEmpresa"
-              placeholder="Digite o nome da rua"
+              placeholder={logradouro.logradouro}
               required
               value={data.enderecoRuaEmpresa || ""}
               onChange={(e) =>
@@ -143,7 +150,7 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="numeroEmpresa"
-              placeholder="Digite o número de endereço da empresa"
+              placeholder={dadosEstacionamento.numeroEndereco}
               required
               value={data.numeroEmpresa || ""}
               onChange={(e) =>
@@ -156,7 +163,7 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="telefoneEmpresa"
-              placeholder="(00)00000-0000"
+              placeholder={dadosEstacionamento.telefone}
               required
               value={data.telefoneEmpresa || ""}
               onChange={(e) =>
