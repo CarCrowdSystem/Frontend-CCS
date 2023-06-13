@@ -16,7 +16,14 @@ import NomeEstacionamento from './Componentes/NomeEstacionamento'
 function Dashboard() {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   var sessionNomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
-  
+  var sessionTotalCheckout = sessionStorage.getItem("TOTAL_CHECKOUT_DIARIO");
+  var sessionTotalFaturamento = sessionStorage.getItem("TOTAL_FATURAMENTO");
+  var sessionAndaresSaida = parseInt(sessionStorage.getItem("ANDARES_SAIDA"));
+  var sessionAndaresEntrada = parseInt(sessionStorage.getItem("ANDARES_ENTRADA"));
+  var sessionVagasLivres = parseInt(sessionStorage.getItem("VAGAS_LIVRES"));
+  var sessionMomentoVagas = sessionStorage.getItem("MOMENTO_VAGAS");
+
+
   return (
     <>
       <NavSideBar />
@@ -40,7 +47,7 @@ function Dashboard() {
                       <h3 className='title-card'>Vagas disponíveis</h3>
                     </div>
                     <div className='valor-painel'>
-                      <p className='valor-dashboard'>0</p>
+                      <p className='valor-dashboard'>{sessionVagasLivres}</p>
                     </div>
                   </div>
                   <div className='painel-pequeno'>
@@ -48,7 +55,7 @@ function Dashboard() {
                       <h3 className='title-card'>Andares disponíveis</h3>
                     </div>
                     <div className='valor-painel'>
-                      <p className='valor-dashboard'>0/0</p>
+                      <p className='valor-dashboard'>{sessionAndaresSaida} | {sessionAndaresEntrada + sessionAndaresSaida}</p>
                     </div>
                   </div>
                 </div>
@@ -61,7 +68,7 @@ function Dashboard() {
                       <h3 className='title-card'>Carteira de faturamento diário</h3>
                     </div>
                     <div className='valor-painel'>
-                      <p className='valor-monetario-dashboard'>R$</p><p className='valor-monetario-dashboard'>0</p>
+                      <p className='valor-monetario-dashboard'>R$</p><p className='valor-monetario-dashboard'>{sessionTotalFaturamento}</p>
                     </div>
                   </div>
                   <div className='painel-pequeno'>
@@ -69,7 +76,7 @@ function Dashboard() {
                       <h3 className='title-card'>Total de checkout's diário</h3>
                     </div>
                     <div className='valor-painel'>
-                      <p className='valor-dashboard'>0</p>
+                      <p className='valor-dashboard'>{sessionTotalCheckout}</p>
                     </div>
                   </div>
                 </div>
