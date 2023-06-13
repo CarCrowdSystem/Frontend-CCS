@@ -14,6 +14,8 @@ const formTemplate = {
   diaria: "pega no back",
 };
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
 function Valores() {
   const [data, setData] = useState(formTemplate);
   const [valor, setValor] = useState([]);
@@ -48,7 +50,7 @@ function Valores() {
       // .post(`/teste`)
 
       // "Funcional" backEnd ccs
-      .patch(`/valor?idEstacionamento=${41}`, patchValores)
+      .post(`/valor?idEstacionamento=${sessionIdEstacionamento}`, patchValores)
       .then((response) => {
         Swal.fire({
           title: 'Valores atualizados!',

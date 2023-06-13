@@ -57,7 +57,6 @@ function Estacionamento() {
   }
 
   function pegarEndereco(endereco) {
-    console.log("Estou aq", endereco);
     api
       .get(`/estacionamentos/buscar/${endereco}`)
       .then((response) => {
