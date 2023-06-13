@@ -23,24 +23,24 @@ function TelaCheckout(props) {
     console.log("hideDiv");
   };
 
-  useEffect(() => {
-    api
-      .get(`/dadosCheckOut`)
-      .then((response) => {
-        console.log(response.data);
-        setCheckouts(response.data)
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .get(`/dadosCheckOut`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setCheckouts(response.data)
+  //     })
+  //     .catch((erro) => {
+  //       console.log(erro);
+  //     });
+  // }, []);
 
   useEffect(() => {
     api
-      .get(`/historicos//total-checkout?idEstacionamento=${sessionIdEstacionamento}`)
+      .get(`/historicos/pegar-momento-vagas?idEstacionamento=${sessionIdEstacionamento}`)
       .then((response) => {
         console.log(response.data);
-        setCheckouts(response.data)
+        // setCheckouts(response.data)
       })
       .catch((erro) => {
         console.log(erro);

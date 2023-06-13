@@ -9,7 +9,7 @@ const CampoTexto = (props) => {
     }
 
     return(
-        <div className="campo-texto">
+        <div className="campo-texto-formulario">
             <label>{props.label}</label>
             <input value={props.valor} onChange={aoDigitado} required={props.obrigatorio} placeholder={placeholderModificado}/>
         </div>

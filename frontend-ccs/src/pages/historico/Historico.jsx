@@ -10,23 +10,24 @@ import { useState } from "react";
 // import { Container } from './styles';
 
 function Historico() {
+  var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [historicos, setHistoricos] = useState([]);
 
-  useEffect(() => {
-    api
-      .get(`/estacionamentos`)
-      .then((response) => {
-        console.log("Outro useEffect", response.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }, []);
-  
-  // mock teste 
-  useEffect(() => {
-    api
-      .get(`/estacionamentos/${1}/estacionamento`)
+  // useEffect(() => {
+  //   api
+  //     .get(`/estacionamentos`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setHistoricos(response.data)
+  //     })
+  //     .catch((erro) => {
+  //       console.log(erro);
+  //     });
+  // }, []);
+
+  function pegaCsv(){
+    api 
+      .get(`/historicos/gerar-csv`)
       .then((response) => {
         console.log(response.data);
         setHistoricos(response.data)
@@ -34,7 +35,7 @@ function Historico() {
       .catch((erro) => {
         console.log(erro);
       });
-  }, []);
+  }
 
   return (
     <>
@@ -51,7 +52,7 @@ function Historico() {
             <div className="div-button-baixar-csv">
               <div className="div-csv-download">
                 <p>Baixar arquivo .csv:</p>
-                <button className="button-download-csv">
+                <button className="button-download-csv" onClick={() => pegaCsv()}>
                   <img
                     className="img-csv-download"
                     src={IconeDownloadCsv}
