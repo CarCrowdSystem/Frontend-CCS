@@ -38,14 +38,11 @@ function Login() {
           icon: "success",
           title: "Login efetuado com sucesso!",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
         });
-        console.log("Estou aqui", response)
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
-        navigate("/dashboard");
-
-        console.log(response.data);
+        pegarDadosDash(response.data.idEstacionamento);
       })
       .catch((erro) => {
         Swal.fire({
@@ -58,6 +55,41 @@ function Login() {
       });
 
     console.log(getEmpresa);
+  }
+
+  function pegarDadosDash(idE){
+    api
+    .get(`/historicos/pegar-dados-dash?id=${idE}`)
+    .then((response) => {
+      console.log(response.data)
+      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
+      sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
+      sessionStorage.setItem("MOMENTO_VAGAS", response.data.momentoVagas);
+      const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
+        if (momento.statusRegistro === 'Saida') {
+          contador++;
+        }
+        return contador;
+      }, 0);
+      sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
+      const andaresSaida = new Set();
+      const andaresEntrada = new Set();
+      
+      response.data.momentoVagas.forEach(momento => {
+        if (momento.statusRegistro === 'Saida') {
+          andaresSaida.add(momento.andar);
+        } else if (momento.statusRegistro === 'Entrada' && !andaresSaida.has(momento.andar)) {
+          andaresEntrada.add(momento.andar);
+        }
+      });
+      sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
+      sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
+
+      setTimeout(() => navigate("/dashboard"), 2000)
+    })
+    .catch((erro) => {
+        console.log("Deu b.o", erro)
+    })
   }
 
   return (

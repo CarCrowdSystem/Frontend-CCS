@@ -16,6 +16,8 @@ const formTemplate = {
   diaria: "",
 };
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
 function Valores() {
   const [data, setData] = useState(formTemplate);
   const [valor, setValor] = useState([]);
@@ -51,6 +53,7 @@ function Valores() {
 
       // "Funcional" backEnd ccs
       .post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores)
+
       .then((response) => {
         Swal.fire({
           title: 'Valores atualizados!',
