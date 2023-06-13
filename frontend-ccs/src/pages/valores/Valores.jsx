@@ -8,10 +8,12 @@ import api from "../../api.js";
 import Swal from "sweetalert2";
 // import { Container } from './styles';
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
 const formTemplate = {
-  primeiraHora: "pega no back",
-  demaisHoras: "pega no back",
-  diaria: "pega no back",
+  primeiraHora: "",
+  demaisHoras: "",
+  diaria: "",
 };
 
 function Valores() {
@@ -26,10 +28,10 @@ function Valores() {
 
   useEffect(() => {
     api
-      .get(`/valor`)
+      .get(`/valores?id=${sessionIdEstacionamento}`)
       .then((response) => {
         console.log(response.data);
-        setValor(response.data);
+        // setValor(response.data);
       })
       .catch((erro) => {
         console.log(erro);
@@ -37,7 +39,7 @@ function Valores() {
   }, []);
 
   function atualizarValores() {
-    const patchValores = {
+    const postValores = {
       primeiraHora: data.primeiraHora,
       horaAdicional: data.demaisHoras,
       diaria: data.diaria,
@@ -48,7 +50,7 @@ function Valores() {
       // .post(`/teste`)
 
       // "Funcional" backEnd ccs
-      .patch(`/valor?idEstacionamento=${41}`, patchValores)
+      .post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores)
       .then((response) => {
         Swal.fire({
           title: 'Valores atualizados!',
@@ -72,7 +74,7 @@ function Valores() {
         console.log(erro);    
       });
 
-    console.log(patchValores);
+    console.log(postValores);
   }
 
   // function testeAlert(){
@@ -100,7 +102,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="primeiraHora"
-              placeholder={"R$ "+ data.primeiraHora}
+              placeholder={"R$ "+ valores.primeiraHora}
               required
               value={data.primeiraHora || ""}
               onChange={(e) =>
