@@ -9,6 +9,9 @@ import Swal from "sweetalert2";
 // import { Container } from './styles';
 
 var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+var sessionDiaria = sessionStorage.getItem("VALOR_DIARIA");
+var sessionPrimeiraHora = sessionStorage.getItem("VALOR_PRIMEIRA_HORA");
+var sessionDemaisHoras = sessionStorage.getItem("VALOR_DEMAIS_HORAS");
 
 const formTemplate = {
   primeiraHora: "",
@@ -28,18 +31,6 @@ function Valores() {
     });
   };
 
-  useEffect(() => {
-    api
-      .get(`/valores?id=${sessionIdEstacionamento}`)
-      .then((response) => {
-        console.log(response.data);
-        // setValor(response.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }, []);
-
   function atualizarValores() {
     const postValores = {
       primeiraHora: data.primeiraHora,
@@ -53,28 +44,31 @@ function Valores() {
 
       // "Funcional" backEnd ccs
       .post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores)
-
       .then((response) => {
         Swal.fire({
-          title: 'Valores atualizados!',
-          icon: 'success',
-          confirmButtonColor: '#ff8000',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Ok'
-        })
+          title: "Valores atualizados!",
+          icon: "success",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
+
+        sessionStorage.setItem("VALOR_PRIMEIRA_HORA", postValores.primeiraHora);
+        sessionStorage.setItem("VALOR_DEMAIS_HORAS", postValores.horaAdicional);
+        sessionStorage.setItem("VALOR_DIARIA", postValores.diaria);
         console.log(response);
       })
       .catch((erro) => {
         Swal.fire({
-          title: 'Erro ao atualizar os valores!',
-          text: 'Tente novamente mais tarde!',
-          icon: 'error',
-          confirmButtonColor: '#ff8000',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Ok'
-        })
+          title: "Erro ao atualizar os valores!",
+          text: "Tente novamente mais tarde!",
+          icon: "error",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
         console.log("Error");
-        console.log(erro);    
+        console.log(erro);
       });
 
     console.log(postValores);
@@ -105,7 +99,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="primeiraHora"
-              placeholder={"R$ "+ valores.primeiraHora}
+              placeholder={"R$ " + sessionPrimeiraHora}
               required
               value={data.primeiraHora || ""}
               onChange={(e) =>
@@ -118,7 +112,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="demaisHoras"
-              placeholder={"R$ "+ data.demaisHoras}
+              placeholder={"R$ " + sessionDemaisHoras}
               required
               value={data.demaisHoras || ""}
               onChange={(e) =>
@@ -130,7 +124,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="diaria"
-              placeholder={"R$ "+ data.diaria}
+              placeholder={"R$ " + sessionDiaria}
               required
               value={data.diaria || ""}
               onChange={(e) => updateFieldHandler("diaria", e.target.value)}

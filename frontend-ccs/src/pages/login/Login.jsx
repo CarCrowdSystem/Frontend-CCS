@@ -43,6 +43,7 @@ function Login() {
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
         pegarDadosDash(response.data.idEstacionamento);
+        pegarValores(response.data.idEstacionamento)
       })
       .catch((erro) => {
         Swal.fire({
@@ -90,6 +91,21 @@ function Login() {
     .catch((erro) => {
         console.log("Deu b.o", erro)
     })
+  }
+
+  function pegarValores(idEstacionamento){
+    api
+    .get(`/valores?id=${idEstacionamento}`)
+    .then((response) => {
+      sessionStorage.setItem("VALOR_PRIMEIRA_HORA", response.data.primeiraHora)
+      sessionStorage.setItem("VALOR_DEMAIS_HORAS", response.data.horaAdicional)
+      sessionStorage.setItem("VALOR_DIARIA", response.data.diaria)
+      console.log(response.data);
+      // setValor(response.data);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
   }
 
   return (
