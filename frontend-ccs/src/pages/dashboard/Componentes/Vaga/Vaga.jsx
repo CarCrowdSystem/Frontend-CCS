@@ -22,7 +22,7 @@ const Vaga = ({numero, status, andar, andarSelecionado}) => {
     <>
       {mostraModal && (
         <Modal onFecharModal={fecharModal}>
-          <DadosClienteCheckin />
+          <ClienteJaCadastrado />
         </Modal>
       )}
       <div onClick={mostrarModal} className={!status === "Saida" ? 'div-vaga-pai-checkin-indisponivel' : 'div-vaga-pai-checkin'}>

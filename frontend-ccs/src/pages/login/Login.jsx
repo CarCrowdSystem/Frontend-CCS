@@ -62,7 +62,6 @@ function Login() {
     api
     .get(`/historicos/pegar-dados-dash?id=${idE}`)
     .then((response) => {
-      console.log(response.data)
       sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
       sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
       const dadosVagas = Object.values(response.data.momentoVagas)
