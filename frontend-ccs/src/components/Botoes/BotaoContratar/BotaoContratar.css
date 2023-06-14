@@ -1,0 +1,73 @@
+.espacoBtn {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.btnContratar {
+    width: fit-content;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 30px;
+    padding: 25px;
+    border: none;
+    cursor: pointer;
+    color: #FFF;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btnContratar:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FF8000;
+    z-index: -2;
+}
+
+.btnContratar:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #FFFFFF;
+    transition: all 0.3s;
+    z-index: -1;
+}
+
+.btnContratar:hover {
+    color: #FF8000;
+    cursor: pointer;
+}
+
+.btnContratar:hover:before {
+    width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    .btnContratar {
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 24px;
+        padding: 15px;
+    }  
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px){
+    .btnContratar {
+        border-radius: 8px;
+        padding: 20px;
+    }  
+}
+
+@media screen and (min-width: 1024px){
+    
+}

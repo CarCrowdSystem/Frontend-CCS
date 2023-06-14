@@ -1,0 +1,45 @@
+.div-pai-modal{
+    position: absolute;
+    z-index: 500;
+    width: 25%;
+    height: 50vh;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    right: 37.5%;
+    top: 25%;
+    box-shadow: -2px 2px 20px black;
+}
+
+.div-filho-modal{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.div-botao-fechar-modal{
+    display: flex;
+    justify-content: flex-end;
+    height: 10%;
+    margin-top: 10px;
+}
+
+.botao-fechar-modal{
+    border: none;
+    background-color: #402000;
+    width: 10%;
+    color: white;
+    border-radius: 8px;
+}
+
+.botao-fechar-modal:hover{
+    cursor: pointer;
+}
+
+.conteudo-modal{
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    height: 80%;
+}
