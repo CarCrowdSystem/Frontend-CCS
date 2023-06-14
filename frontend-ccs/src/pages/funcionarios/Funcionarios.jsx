@@ -162,6 +162,7 @@ function Funcionarios() {
     api
       .get(`/funcionarios/nome-ordenado-a/${sessionIdEstacionamento}`)
       .then((response) => {
+        console.log("aaaaa", response)
         setFuncionarios(response.data);
       })
       .catch((erro) => {
@@ -173,6 +174,7 @@ function Funcionarios() {
     api
       .get(`/funcionarios/nome-ordenado-z/${sessionIdEstacionamento}`)
       .then((response) => {
+        console.log("zzzzzzzzzz", response)
         setFuncionarios(response.data);
       })
       .catch((erro) => {

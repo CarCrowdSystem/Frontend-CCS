@@ -87,3 +87,9 @@
     cursor: pointer;
     transition: 0.3s;
 }  
+
+.p-cadastro-novo-cliente:hover{
+    cursor: pointer;
+    color: #FF8000;
+    transition: 0.3s;
+}

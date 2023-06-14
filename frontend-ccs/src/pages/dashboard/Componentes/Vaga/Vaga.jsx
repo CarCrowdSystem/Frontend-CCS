@@ -7,6 +7,7 @@ import ClienteJaCadastrado from '../../../../components/Modal/ClienteJaCadastrad
 
 const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
   const [mostraModal, setMostraModal] = useState(false);
+  const [mostraModalCadastro, setMostraModalCadastro] = useState(false);
 
   function mostrarModal() {
     setMostraModal(true);
@@ -18,13 +19,36 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
     console.log("fechou");
   }
 
+  const handleFecharModalCadastro = () => {
+    setMostraModal(true);
+    setMostraModalCadastro(false);
+  }
+
+  const handleMostrarModalCadastro = () => {
+    setMostraModal(false);
+    setMostraModalCadastro(true);
+  }
+
   return (
     <>
       {mostraModal && (
-        <Modal onFecharModal={fecharModal}>
-          <ClienteJaCadastrado 
-            idVaga={idVaga}
-          />
+              <Modal onFecharModal={fecharModal}>
+                <ClienteJaCadastrado 
+                  func={handleMostrarModalCadastro} 
+                  idVaga={idVaga}
+                />
+              </Modal>
+            )}
+
+            {mostraModalCadastro && (
+              <Modal onFecharModal={handleFecharModalCadastro}>
+                <DadosClienteCheckin />
+              </Modal>
+            )}
+
+      {mostraModalCadastro && (
+        <Modal onFecharModal={handleFecharModalCadastro}>
+          <DadosClienteCheckin />
         </Modal>
       )}
       <div className={andar == andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>

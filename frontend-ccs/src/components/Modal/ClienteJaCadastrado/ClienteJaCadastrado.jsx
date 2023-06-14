@@ -6,7 +6,7 @@ import api from '../../../api';
 
 var placa = ''
 
-function ClienteJaCadastrado ({idVaga}) {
+function ClienteJaCadastrado ({idVaga, func}) {
   const [modalAberto, setModalAberto] = useState(false);
 
   const abrirModalCadastrarCliente = () => {
@@ -39,7 +39,7 @@ function ClienteJaCadastrado ({idVaga}) {
             <label className='label-checkin' htmlFor=''>Placa:</label>
           </div>
           <div className='div-inputs-checkin'>
-            <input className='input-checkin' type='text' 
+            <input className='input-checkin' type='text'
               onChange={(e) =>
                 placa=e.target.value
               }
@@ -47,14 +47,14 @@ function ClienteJaCadastrado ({idVaga}) {
           </div>
         </div>
         <div className='div-botao-cadastro-cliente-checkin'>
-          <BotaoCadastrarVeiculo onClick={abrirModalCadastrarCliente} />
-          <button className='button-salvar-checkin' onClick={realizaCheckin}>Salvar</button>
+          <div className='div-vaga-pai-botao-cadastrar'>
+            <div className='div-botao-cadastrar-veiculo' onClick={func}>
+              <p className='p-cadastro-novo-cliente'>Cadastrar</p>
+            </div>
+          </div>
+          <button className='button-salvar-checkin'  onClick={realizaCheckin}>Salvar</button>
         </div>
       </div>
-
-      {modalAberto ? (
-        <DadosClienteCheckin onClose={fecharModalCadastrarCliente} />
-      ) : null}
     </>
   );
 }
