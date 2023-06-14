@@ -13,17 +13,17 @@ function Historico() {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [historicos, setHistoricos] = useState([]);
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/estacionamentos`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setHistoricos(response.data)
-  //     })
-  //     .catch((erro) => {
-  //       console.log(erro);
-  //     });
-  // }, []);
+  useEffect(() => {
+    api
+      .get(`/historicos/dados?id=${sessionIdEstacionamento}`)
+      .then((response) => {
+        console.log(response.data);
+        setHistoricos(response.data)
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
 
   function pegaCsv(){
     api 
@@ -69,23 +69,23 @@ function Historico() {
               <h2 className="elements-checkout">Vaga</h2>
               <h2 className="elements-checkout">Telefone</h2>
               <h2 className="elements-checkout">Data</h2>
-              <h2 className="elements-checkout">Entrada</h2>
-              <h2 className="elements-checkout">Saida</h2>
+              <h2 className="elements-checkout">Hora</h2>
+              <h2 className="elements-checkout">Status</h2>
               <h2 className="elements-checkout">Valor</h2>
             </div>
             <div className="div-valores-historico">
                 {historicos.map((historico, i) => (
                     <React.Fragment key={i}>
                         <InfoHistorico
-                            nomeCliente={historico.nomeCliente}
-                            modeloCarro={historico.modeloCarro}
+                            nomeCliente={historico.cliente}
+                            modeloCarro={historico.modelo}
                             placa={historico.placa}
                             andar={historico.andar}
                             vaga={historico.vaga}
                             telefone={historico.telefone}
                             data={historico.data}
-                            entrada={historico.entrada}
-                            saida={historico.saida}
+                            hora={historico.hora}
+                            status={historico.status}
                             valor={historico.valor}
                         />
                     </React.Fragment>
