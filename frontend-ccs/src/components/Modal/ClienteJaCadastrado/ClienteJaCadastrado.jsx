@@ -4,20 +4,10 @@ import BotaoCadastrarVeiculo from '../../Botoes/BotaoContratar/botaoCadastrarVei
 import DadosClienteCheckin from '../DadosClienteCheckin/DadosClienteCheckin';
 import api from '../../../api';
 
-const formTemplate = {
-  placa: "",
-  idVaga: "",
-};
+var placa = ''
 
-function ClienteJaCadastrado() {
-  const [data, setData] = useState(formTemplate);
+function ClienteJaCadastrado ({idVaga}) {
   const [modalAberto, setModalAberto] = useState(false);
-
-  const updateFieldHandler = (key, value) => {
-    setData((prev) => {
-      return { ...prev, [key]: value };
-    });
-  };
 
   const abrirModalCadastrarCliente = () => {
     setModalAberto(true);
@@ -29,7 +19,7 @@ function ClienteJaCadastrado() {
 
   function realizaCheckin(){
     api
-    .post(`/historicos/checkin-placa?placa=${formTemplate.placa}&idVaga=${70}`)
+    .post(`/historicos/checkin-placa?placa=${placa}&idVaga=${idVaga}`)
     .then((response)=>{
       console.log(response)
     })
@@ -51,7 +41,7 @@ function ClienteJaCadastrado() {
           <div className='div-inputs-checkin'>
             <input className='input-checkin' type='text' 
               onChange={(e) =>
-                updateFieldHandler("placa", e.target.value)
+                placa=e.target.value
               }
             />
           </div>
