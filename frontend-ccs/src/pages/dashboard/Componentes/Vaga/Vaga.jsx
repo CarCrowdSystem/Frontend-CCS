@@ -5,7 +5,7 @@ import DadosClienteCheckin from '../../../../components/Modal/DadosClienteChecki
 import CadastroVagaConcluido from '../../../../components/Modal/CadastroVagaConcluido/CadastroVagaConcluido';
 import ClienteJaCadastrado from '../../../../components/Modal/ClienteJaCadastrado/ClienteJaCadastrado';
 
-function Vaga(props) {
+const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
   const [mostraModal, setMostraModal] = useState(false);
   const [mostraModalCadastro, setMostraModalCadastro] = useState(false);
 
@@ -32,21 +32,43 @@ function Vaga(props) {
   return (
     <>
       {mostraModal && (
-        <Modal onFecharModal={fecharModal}>
-          <ClienteJaCadastrado handleMostrarModalCadastro={handleMostrarModalCadastro} />
-        </Modal>
-      )}
+              <Modal onFecharModal={fecharModal}>
+                <ClienteJaCadastrado handleMostrarModalCadastro={handleMostrarModalCadastro} />
+              </Modal>
+            )}
+
+            {mostraModalCadastro && (
+              <Modal onFecharModal={handleFecharModalCadastro}>
+                <DadosClienteCheckin />
+              </Modal>
+            )}
 
       {mostraModalCadastro && (
         <Modal onFecharModal={handleFecharModalCadastro}>
           <DadosClienteCheckin />
         </Modal>
       )}
-
-      <div onClick={mostrarModal} className='div-vaga-pai-checkin'>
-        <div className='div-vaga-filho-checkin'>
-          <p>Vaga</p>
-          <p className='numero-vaga-checkin'>{props.children}</p>
+      <div className={andar == andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
+        <div
+          onClick={mostrarModal}
+          className={
+            !status === "Saida"
+              ? "div-vaga-pai-checkin-indisponivel"
+              : "div-vaga-pai-checkin"
+          }
+        >
+          <div className="div-vaga-filho-checkin">
+            <p className={idVaga}>Vaga</p>
+            <p
+              className={
+                !status === "Saida"
+                  ? "numero-vaga-checkin-indisponivel"
+                  : "numero-vaga-checkin"
+              }
+            >
+              {numero}
+            </p>
+          </div>
         </div>
       </div>
     </>
