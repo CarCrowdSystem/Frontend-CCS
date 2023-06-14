@@ -44,3 +44,11 @@
     color: #ff1010;
     padding: 8px;
 }
+
+.div-vagas-selecionadas {
+    padding: 1%;
+}
+
+.div-vagas-nao-selecionada {
+    display: none;
+}
