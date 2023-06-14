@@ -60,7 +60,7 @@
 
 .container-itens-historico{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 80px;
     align-items: flex-end;
     margin-bottom: 10px;
@@ -68,6 +68,7 @@
 }
 
 .div-valores-historico{
+    padding: 12px;
     display: block;
     height: 56vh;
     overflow-y: scroll;

@@ -21,7 +21,8 @@ const formTemplate = {
 };
 
 var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
-var sessionNomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
+
+var contador = 0;
 
 function Funcionarios() {
   const [data, setData] = useState(formTemplate);
@@ -78,6 +79,7 @@ function Funcionarios() {
 
     console.log(postFuncionario);
   }
+
   useEffect(() => {
     api
       .get(`/funcionarios/${sessionIdEstacionamento}`)
@@ -158,7 +160,7 @@ function Funcionarios() {
 
   function ondenaAZ() {
     api
-      .get(`/funcionarios/nome-ordenado-a`)
+      .get(`/funcionarios/nome-ordenado-a/${sessionIdEstacionamento}`)
       .then((response) => {
         setFuncionarios(response.data);
       })
@@ -169,7 +171,7 @@ function Funcionarios() {
 
   function ondenaZA() {
     api
-      .get(`/funcionarios/nome-ordenado-z`)
+      .get(`/funcionarios/nome-ordenado-z/${sessionIdEstacionamento}`)
       .then((response) => {
         setFuncionarios(response.data);
       })
@@ -178,13 +180,15 @@ function Funcionarios() {
       });
   }
 
-  var contador = 0;
-  function selecionarOrdenacao(indicador) {
-    contador += indicador;
-    if (contador % 2) {
-      ondenaZA();
-    } else {
+  function selecionarOrdenacao() {
+    if (contador == 0) {
+      contador++
+      console.log("chamou a")
       ondenaAZ();
+    } else { 
+      contador = 0;
+      console.log("chamou Z")
+      ondenaZA();
     }
   }
 
@@ -311,7 +315,7 @@ function Funcionarios() {
                 <div className="div-separacao-pesquisa-func">
                   <button
                     className="botao-ordenar-func"
-                    onClick={() => selecionarOrdenacao(1)}
+                    onClick={() => selecionarOrdenacao()}
                   >
                     <img className="img-seta-cima" src={SetaCima} alt="" /> A-Z
                   </button>

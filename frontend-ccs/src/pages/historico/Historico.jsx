@@ -30,7 +30,6 @@ function Historico() {
       .get(`/historicos/gerar-csv`)
       .then((response) => {
         console.log(response.data);
-        setHistoricos(response.data)
       })
       .catch((erro) => {
         console.log(erro);
