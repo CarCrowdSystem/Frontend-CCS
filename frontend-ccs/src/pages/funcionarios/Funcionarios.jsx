@@ -36,8 +36,6 @@ function Funcionarios() {
   };
 
   function cadastrarFuncionario() {
-    // Colocar id do estacionamento
-    // Pegar pelo sessionStorege
     const postFuncionario = {
       idEstacionamento: sessionIdEstacionamento,
       nomeUsuario: data.nomeFuncionario,
@@ -47,7 +45,6 @@ function Funcionarios() {
       senha: data.senha,
     };
 
-    console.log("Dados data", data);
     api
       // Teste MockAPI
       // .post(`/funca`, postFuncionario)
@@ -162,7 +159,6 @@ function Funcionarios() {
     api
       .get(`/funcionarios/nome-ordenado-a/${sessionIdEstacionamento}`)
       .then((response) => {
-        console.log("aaaaa", response)
         setFuncionarios(response.data);
       })
       .catch((erro) => {
@@ -174,7 +170,6 @@ function Funcionarios() {
     api
       .get(`/funcionarios/nome-ordenado-z/${sessionIdEstacionamento}`)
       .then((response) => {
-        console.log("zzzzzzzzzz", response)
         setFuncionarios(response.data);
       })
       .catch((erro) => {
@@ -194,15 +189,6 @@ function Funcionarios() {
     }
   }
 
-  // function testeAlert() {
-  //   Swal.fire({
-  //     title: "Erro ao deletar funcionario!",
-  //     icon: "error",
-  //     confirmButtonColor: "#ff8000",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Ok",
-  //   });
-  // }
 
   return (
     <>
@@ -307,7 +293,6 @@ function Funcionarios() {
               >
                 Desfazer
               </button>
-              {/* <button onClick={() => testeAlert()}>teste</button> */}
             </div>
             <div className="div-title-exibir-funcionarios">
               <h1 className="titulo-adicionar-funcionarios">Funcionários</h1>

@@ -119,6 +119,7 @@ function Dashboard() {
               <div className="container-painel-filho">
                 <div className="container-painel-grande">
                   <div className="painel-grande">
+                  <h4> Andar </h4>
                     <div className="container-combobox-andares-dash">      
                       <select
                         className="combobox-andares-dash"

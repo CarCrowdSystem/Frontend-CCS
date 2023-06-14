@@ -1,15 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 
+var teste = 10
+
 const ChartComponent = () => {
   const chartRef = useRef(null);
 
+  teste += 1
   useEffect(() => {
     const data = {
       labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
       datasets: [{
         label: 'Quantidade de carros estacionados',
-        data: [20, 10, 15, 20, 25, 50, 60],
+        data: [20, 10, 15, 20, teste, 0, 0],
         backgroundColor: '#FF8000',
       }]
     };
