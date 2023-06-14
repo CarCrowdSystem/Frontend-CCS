@@ -33,7 +33,10 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
     <>
       {mostraModal && (
               <Modal onFecharModal={fecharModal}>
-                <ClienteJaCadastrado handleMostrarModalCadastro={handleMostrarModalCadastro} />
+                <ClienteJaCadastrado 
+                  func={handleMostrarModalCadastro} 
+                  idVaga={idVaga}
+                />
               </Modal>
             )}
 

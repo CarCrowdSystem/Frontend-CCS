@@ -6,7 +6,7 @@ import api from '../../../api';
 
 var placa = ''
 
-function ClienteJaCadastrado ({idVaga, props}) {
+function ClienteJaCadastrado ({idVaga, func}) {
   const [modalAberto, setModalAberto] = useState(false);
 
   const abrirModalCadastrarCliente = () => {
@@ -48,7 +48,7 @@ function ClienteJaCadastrado ({idVaga, props}) {
         </div>
         <div className='div-botao-cadastro-cliente-checkin'>
           <div className='div-vaga-pai-botao-cadastrar'>
-            <div className='div-botao-cadastrar-veiculo' onClick={props.handleMostrarModalCadastro}>
+            <div className='div-botao-cadastrar-veiculo' onClick={func}>
               <p className='p-cadastro-novo-cliente'>Cadastrar</p>
             </div>
           </div>
