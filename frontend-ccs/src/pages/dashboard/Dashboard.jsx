@@ -140,6 +140,7 @@ function Dashboard() {
                             status={vaga.statusRegistro}
                             andar={vaga.andar}
                             andarSelecionado={selectedOption}
+                            idVaga={vaga.idVaga}
                           />
                         </React.Fragment>
                       ))}
