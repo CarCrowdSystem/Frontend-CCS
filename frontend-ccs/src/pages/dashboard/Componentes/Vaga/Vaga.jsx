@@ -27,11 +27,27 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
           />
         </Modal>
       )}
-      <div onClick={mostrarModal} className={!status === "Saida" ? 'div-vaga-pai-checkin-indisponivel' : 'div-vaga-pai-checkin'}>
-        <div className='div-vaga-filho-checkin'>
-          <p className={idVaga}>Vaga</p>
-          <p className={!status === "Saida" ? 'numero-vaga-checkin-indisponivel' : 'numero-vaga-checkin'}>{numero}</p>
-          {/* <p className='numero-vaga-checkin'>{andar}</p> */}
+      <div className={andar == andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
+        <div
+          onClick={mostrarModal}
+          className={
+            !status === "Saida"
+              ? "div-vaga-pai-checkin-indisponivel"
+              : "div-vaga-pai-checkin"
+          }
+        >
+          <div className="div-vaga-filho-checkin">
+            <p className={idVaga}>Vaga</p>
+            <p
+              className={
+                !status === "Saida"
+                  ? "numero-vaga-checkin-indisponivel"
+                  : "numero-vaga-checkin"
+              }
+            >
+              {numero}
+            </p>
+          </div>
         </div>
       </div>
     </>
