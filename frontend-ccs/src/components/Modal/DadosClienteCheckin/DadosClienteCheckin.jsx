@@ -22,7 +22,6 @@ const postteFieldHandler = (key, value) => {
     });
     };
 
-
     function realizarCadastroVeiculo(){
         const postVeiculo = {
             placa: data.placa,

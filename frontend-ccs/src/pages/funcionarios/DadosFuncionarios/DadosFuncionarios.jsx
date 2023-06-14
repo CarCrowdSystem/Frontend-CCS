@@ -4,7 +4,8 @@ import IconeLixeira from "./lixeira.png";
 
 // import { Container } from './styles';
 
-const DadosFuncionarios = ({ nome, cargo, email, cpf, id, funDelete }) => {
+const DadosFuncionarios = ({ idFunc, nome, cargo, email, cpf, funDelete }) => {
+  
   return (
     <>
       <div className="card-info-funcionario">
@@ -40,7 +41,7 @@ const DadosFuncionarios = ({ nome, cargo, email, cpf, id, funDelete }) => {
           <div className="div-botao-excluir-funcionario">
             <button
               className="botao-icone-exluir-func"
-              onClick={() => funDelete(id)}
+              onClick={() => funDelete(idFunc)}
             >
               <img src={IconeLixeira} alt="icone-lixeira" />
             </button>

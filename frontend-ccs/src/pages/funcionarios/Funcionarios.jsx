@@ -101,11 +101,12 @@ function Funcionarios() {
   }
 
   function defazerUltimoCadastro() {
-    var id = funcionarios.length;
+    var id = funcionarios[funcionarios.length - 1].idFuncionario
+    console.log(id)
     api
       .delete(`/funcionarios/${id}`)
       .then(() => {
-        funcionarios.filter((funcionario) => funcionario.id !== id);
+        funcionarios.filter((funcionario) => funcionario.idFuncionario !== id);
         Swal.fire({
           title: "Funcionario deletado com sucesso!",
           icon: "success",
@@ -326,6 +327,7 @@ function Funcionarios() {
                 {funcionarios.map((funcionario, i) => (
                   <React.Fragment key={i}>
                     <DadosFuncionarios
+                      idFunc={funcionario.idFuncionario}
                       nome={funcionario.nome}
                       cargo={funcionario.adm}
                       email={funcionario.email}
