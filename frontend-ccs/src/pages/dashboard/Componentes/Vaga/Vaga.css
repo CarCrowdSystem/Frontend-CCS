@@ -10,6 +10,18 @@
     margin-bottom: 16px;
 }
 
+.div-vaga-pai-checkin-indisponivel{
+    display: flex;
+    height: 64px;
+    width: 64px;
+    background-color: #F6F6F6;
+    border-radius: 15px;
+    border: 3px solid #151515;
+    justify-content: center;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
 .div-vaga-pai-checkin:hover{
     cursor: pointer;
     border-color: black;
@@ -25,5 +37,10 @@
 
 .numero-vaga-checkin{
     color: #FF8000;
+    padding: 8px;
+}
+
+.numero-vaga-checkin-indisponivel {
+    color: #ff1010;
     padding: 8px;
 }

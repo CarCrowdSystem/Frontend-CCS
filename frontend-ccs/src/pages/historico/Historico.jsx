@@ -13,17 +13,17 @@ function Historico() {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [historicos, setHistoricos] = useState([]);
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/estacionamentos`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setHistoricos(response.data)
-  //     })
-  //     .catch((erro) => {
-  //       console.log(erro);
-  //     });
-  // }, []);
+  useEffect(() => {
+    api
+      .get(`/historicos/pegar-checkouts?id=${sessionIdEstacionamento}`)
+      .then((response) => {
+        console.log(response.data);
+        setHistoricos(response.data)
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
 
   function pegaCsv(){
     api 
