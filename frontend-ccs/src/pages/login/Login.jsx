@@ -64,7 +64,15 @@ function Login() {
     .then((response) => {
       sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
       sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
-      sessionStorage.setItem("MOMENTO_VAGAS", response.data.momentoVagas);
+      const dadosVagas = Object.values(response.data.momentoVagas)
+      sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
+      console.log("teste variavel", dadosVagas[0])
+      console.log(Array.isArray(dadosVagas))
+
+      function valuesToArray(obj) {
+        return 
+      }
+
       const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
         if (momento.statusRegistro === 'Saida') {
           contador++;

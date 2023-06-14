@@ -4,6 +4,14 @@ import InfoClienteCheckout from "./InfoClienteCheckout/InfoClienteCheckout";
 import "./TelaCheckout.css";
 import api from "../../api.js";
 
+const formTemplate = {
+  nome: "Sem checkouts",
+  telefone: " ",
+  andar: " ",
+  vaga: " ",
+  valor: " "
+};
+
 function TelaCheckout(props) {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [hideDiv, setHideDiv] = useState(true);
@@ -23,21 +31,21 @@ function TelaCheckout(props) {
     console.log("hideDiv");
   };
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/dadosCheckOut`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setCheckouts(response.data)
-  //     })
-  //     .catch((erro) => {
-  //       console.log(erro);
-  //     });
-  // }, []);
-
   useEffect(() => {
     api
-      .get(`/historicos/pegar-momento-vagas?idEstacionamento=${sessionIdEstacionamento}`)
+      .get(`/historicos/pegar-checkouts?id=${sessionIdEstacionamento}`)
+      .then((response) => {
+        console.log(response.data);
+        setCheckouts(response.data)
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
+
+  function fazCheckout() {
+    api
+      .post(`/historicos/checkout?idVeiculo=${checkouts[0].fkVeiculo}`)
       .then((response) => {
         console.log(response.data);
         // setCheckouts(response.data)
@@ -45,7 +53,7 @@ function TelaCheckout(props) {
       .catch((erro) => {
         console.log(erro);
       });
-  }, []);
+  }
 
   return (
     <>
@@ -96,7 +104,7 @@ function TelaCheckout(props) {
               ))}
             </div>
             <div className="container-botao-checkout">
-              <button className="botao-checkout-tela-checkout">
+              <button className="botao-checkout-tela-checkout" onClick={() => fazCheckout()}>
                 Check-out
               </button>
             </div>
