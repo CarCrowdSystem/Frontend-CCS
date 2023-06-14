@@ -3,6 +3,7 @@ import '../ClienteJaCadastrado/ClienteJaCadastrado.css';
 import BotaoCadastrarVeiculo from '../../Botoes/BotaoContratar/botaoCadastrarVeiculo';
 import DadosClienteCheckin from '../DadosClienteCheckin/DadosClienteCheckin';
 import api from '../../../api';
+import Swal from "sweetalert2";
 
 var placa = ''
 
@@ -21,9 +22,25 @@ function ClienteJaCadastrado ({idVaga, func}) {
     api
     .post(`/historicos/checkin-placa?placa=${placa}&idVaga=${idVaga}`)
     .then((response)=>{
+      Swal.fire({
+        title: "Checkin feito com sucesso!",
+        icon: "success",
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok",
+      });
       console.log(response)
     })
     .catch((error)=>{
+      console.log(error.response.data.message)
+      Swal.fire({
+        title: "Erro ao fazer checkin!",
+        text: (error.response.data.message)?error.response.data.message : error.response.data ,
+        icon: "error",
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok",
+      });
       console.log(error)
     })
   }

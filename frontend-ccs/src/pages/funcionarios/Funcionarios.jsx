@@ -180,11 +180,9 @@ function Funcionarios() {
   function selecionarOrdenacao() {
     if (contador == 0) {
       contador++
-      console.log("chamou a")
       ondenaAZ();
     } else { 
       contador = 0;
-      console.log("chamou Z")
       ondenaZA();
     }
   }

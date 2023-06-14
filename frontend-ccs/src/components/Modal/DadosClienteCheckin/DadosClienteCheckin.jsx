@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './DadosClienteCheckin.css'
 import CampoTexto from './../../../pages/estacionamento/Componentes/CampoTexto/index.js'
 import api from '../../../api';
+import Swal from "sweetalert2";
 
 // import { Container } from './styles';
 
@@ -32,9 +33,24 @@ const postteFieldHandler = (key, value) => {
         api
         .post(`/veiculo`, postVeiculo)
         .then((response)=>{
-          console.log(response)
+            Swal.fire({
+                title: "Cadastrado com sucesso!",
+                icon: "success",
+                confirmButtonColor: "#ff8000",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ok",
+              });
         })
         .catch((error)=>{
+            console.log(error.response)
+            Swal.fire({
+                title: "Erro ao fazer checkin!",
+                text: (error.response.data.message)?error.response.data.message : error.response.data ,
+                icon: "error",
+                confirmButtonColor: "#ff8000",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ok",
+              });
           console.log(error)
         })
 
