@@ -5,7 +5,7 @@ import DadosClienteCheckin from '../../../../components/Modal/DadosClienteChecki
 import CadastroVagaConcluido from '../../../../components/Modal/CadastroVagaConcluido/CadastroVagaConcluido';
 import ClienteJaCadastrado from '../../../../components/Modal/ClienteJaCadastrado/ClienteJaCadastrado';
 
-const Vaga = ({numero, status, andar, andarSelecionado}) => {
+const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
   const [mostraModal, setMostraModal] = useState(false);
 
   function mostrarModal() {
@@ -22,7 +22,9 @@ const Vaga = ({numero, status, andar, andarSelecionado}) => {
     <>
       {mostraModal && (
         <Modal onFecharModal={fecharModal}>
-          <ClienteJaCadastrado />
+          <ClienteJaCadastrado 
+            idVaga={idVaga}
+          />
         </Modal>
       )}
       <div className={andar == andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
@@ -35,7 +37,7 @@ const Vaga = ({numero, status, andar, andarSelecionado}) => {
           }
         >
           <div className="div-vaga-filho-checkin">
-            <p>Vaga</p>
+            <p className={idVaga}>Vaga</p>
             <p
               className={
                 !status === "Saida"

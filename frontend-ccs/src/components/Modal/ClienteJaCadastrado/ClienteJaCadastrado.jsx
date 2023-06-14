@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import '../ClienteJaCadastrado/ClienteJaCadastrado.css';
 import BotaoCadastrarVeiculo from '../../Botoes/BotaoContratar/botaoCadastrarVeiculo';
 import DadosClienteCheckin from '../DadosClienteCheckin/DadosClienteCheckin';
+import api from '../../../api';
 
-function ClienteJaCadastrado() {
+var placa = ''
+
+function ClienteJaCadastrado ({idVaga}) {
   const [modalAberto, setModalAberto] = useState(false);
 
   const abrirModalCadastrarCliente = () => {
@@ -13,6 +16,17 @@ function ClienteJaCadastrado() {
   const fecharModalCadastrarCliente = () => {
     setModalAberto(false);
   };
+
+  function realizaCheckin(){
+    api
+    .post(`/historicos/checkin-placa?placa=${placa}&idVaga=${idVaga}`)
+    .then((response)=>{
+      console.log(response)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
   return (
     <>
@@ -25,12 +39,16 @@ function ClienteJaCadastrado() {
             <label className='label-checkin' htmlFor=''>Placa:</label>
           </div>
           <div className='div-inputs-checkin'>
-            <input className='input-checkin' type='text' />
+            <input className='input-checkin' type='text' 
+              onChange={(e) =>
+                placa=e.target.value
+              }
+            />
           </div>
         </div>
         <div className='div-botao-cadastro-cliente-checkin'>
           <BotaoCadastrarVeiculo onClick={abrirModalCadastrarCliente} />
-          <button className='button-salvar-checkin'>Salvar</button>
+          <button className='button-salvar-checkin' onClick={realizaCheckin}>Salvar</button>
         </div>
       </div>
 
