@@ -5,13 +5,16 @@ import CampoTexto from './../../../pages/estacionamento/Componentes/CampoTexto/i
 // import { Container } from './styles';
 
 function DadosClienteCheckin() {
+
+
+
   return (
     <>
         <div className='div-pai-checkin-cliente'>
             <div className='div-title-dados-cliente'>
                 <h1 className='title-dados-cliente'>Dados do cliente</h1>
             </div>
-            <div className='form-dados-cliente-checkin'>
+            <div className='form-dados-cadastro-checkin'>
                 <div className='div-label-checkin'>
                     <label className='label-checkin' htmlFor="">Nome:</label>
                     <label className='label-checkin' htmlFor="">Telefone:</label>

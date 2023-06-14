@@ -22,7 +22,7 @@ function Vaga(props) {
     <>
       {mostraModal && (
         <Modal onFecharModal={fecharModal}>
-          <DadosClienteCheckin />
+          <ClienteJaCadastrado />
         </Modal>
       )}
       <div onClick={mostrarModal} className='div-vaga-pai-checkin'>

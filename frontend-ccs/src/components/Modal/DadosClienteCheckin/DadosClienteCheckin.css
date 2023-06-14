@@ -10,7 +10,8 @@
     font-size: 24px;
 }
 
-.form-dados-cliente-checkin{
+
+.form-dados-cadastro-checkin{
     display: flex;
     justify-content: center;
     height: 80%;
@@ -45,12 +46,13 @@
 .div-pai-checkin-cliente{
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 522px;
 }
 
 .div-botao-cadastro-cliente-checkin{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .button-cadastrar-checkin{
@@ -68,3 +70,20 @@
     cursor: pointer;
     transition: 0.3s;
 }   
+
+.button-salvar-checkin{
+    height: 48px;
+    width: 96px;
+    border: 2px solid #F6F6F6;
+    color: #F6F6F6;
+    border-radius: 8px;
+    background-color: #FF8000;
+    margin-left: 8px;
+}
+
+.button-salvar-checkin:hover{
+    color: #FF8000;
+    background-color: #F6F6F6;
+    cursor: pointer;
+    transition: 0.3s;
+}  
