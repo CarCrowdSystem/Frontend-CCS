@@ -1,0 +1,84 @@
+.divArrowBack {
+  margin-top: 2%;
+  width: 95%;
+}
+
+.arrowBack {
+  width: 5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.divLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div-logo-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cadastro {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background-color: #f8f8f8;
+}
+
+.sideImageCadastro {
+  width: 60%;
+  padding: 1vh;
+}
+
+/* formulario */
+.formulario {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  font-size: 64px;
+}
+
+.logo {
+  width: 20%;
+}
+
+.button-cadastra {
+  border-radius: 8px;
+  background-color: #454e4d;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+}
+
+.button-cadastra a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.componentesLogin {
+  height: 100%;
+  width: 100%;
+}
+
+.footer-login {
+  display: flex;
+  justify-content: space-evenly;
+  height: 20vh;
+  align-items: center;
+}
+
+.view-login {
+  display: flex;
+  height: 100vh;
+}
