@@ -66,12 +66,6 @@ function Login() {
       sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
       const dadosVagas = Object.values(response.data.momentoVagas)
       sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
-      console.log("teste variavel", dadosVagas[0])
-      console.log(Array.isArray(dadosVagas))
-
-      function valuesToArray(obj) {
-        return 
-      }
 
       const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
         if (momento.statusRegistro === 'Saida') {
@@ -79,6 +73,7 @@ function Login() {
         }
         return contador;
       }, 0);
+      
       sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
       const andaresSaida = new Set();
       const andaresEntrada = new Set();
