@@ -2,12 +2,23 @@ import React from "react";
 import "./Cadastro.css";
 import FloorDataComponent from "./Componentes/labelFloor/FloorsDates"
 import { useState } from "react";
+import { validateVagas } from "./funcoes/funcao";
 // import { validateVagas } from './funcoes/funcao'
 
 // import { Container } from './styles';
 
 
-const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
+const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
+
+  const [validacao, setValidacao] = useState({
+    "vagas": false,
+  });
+
+  function atualizarValidacao(campo, valido) {
+    const novaValidacao = { ...validacao };
+    novaValidacao[campo] = valido;
+    setValidacao(novaValidacao);
+  }
 
   const [listaVagas, setListaVagas] = useState(vagas);
   const [qtdVagas, setQtdVagas] = useState(0);
@@ -48,13 +59,13 @@ const SecondStep = ({vagas, updateFieldHandler, funcaoRetornoVagas}) =>{
       <label>Quantidade de vagas</label>
       <input
         id="quantidade-vagas"
-        className="campo-texto"
+        className={validacao.vagas ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="quantidadeVagas"
         placeholder="Digite a quantidade de vagas que há no andar"
         value={qtdVagas || ""}
         onChange={(e) => setQtdVagas(e.target.value)}
-        // onKeyUp={(e) => validateVagas(e.target.value)}
+        onKeyUp={(e) => validateVagas(e.target.value, atualizarValidacao)}
       />
 
       <button onClick={adicionarVaga} type="button" className="button-add"> Adicionar </button>
