@@ -25,6 +25,7 @@ var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 var contador = 0;
 
 var nomeFunc = ''
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
 function Funcionarios() {
   const [data, setData] = useState(formTemplate);
@@ -39,7 +40,7 @@ function Funcionarios() {
 
   function buscarFuncionarioPorNome() {
     api
-      .get(`/funcionarios/nome/${nomeFunc}`)
+      .get(`/buscar-nome-funcionario/${sessionIdEstacionamento}/${nomeFunc}`)
       .then((response) => {
         setFuncionarios(response.data);
       })
