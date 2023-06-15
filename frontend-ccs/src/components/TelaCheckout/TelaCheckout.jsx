@@ -12,6 +12,15 @@ const formTemplate = {
   valor: " "
 };
 
+var checkout = 0
+
+function checkoutsCount(){
+  checkout++
+  sessionStorage.setItem("CHECKOUT", checkout);
+  console.log(checkout)
+}
+
+
 function TelaCheckout(props) {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [hideDiv, setHideDiv] = useState(true);
@@ -44,15 +53,16 @@ function TelaCheckout(props) {
   }, []);
 
   function fazCheckout() {
-    api
-      .post(`/historicos/checkout?idVeiculo=${checkouts[0].fkVeiculo}`)
-      .then((response) => {
-        console.log(response.data);
+    // api
+    //   .post(`/historicos/checkout?idVeiculo=${checkouts[0].fkVeiculo}`)
+    //   .then((response) => {
+    //     console.log(response.data);
         // setCheckouts(response.data)
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
+        checkoutsCount()
+      // })
+      // .catch((erro) => {
+      //   console.log(erro);
+      // });
   }
 
   return (

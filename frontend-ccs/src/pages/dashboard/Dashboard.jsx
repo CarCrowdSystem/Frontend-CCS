@@ -154,12 +154,14 @@ function Dashboard() {
                   <div className="painel-grande">
                     <div className="titulo-card-painel">
                       <h3 className="title-card">
-                        Dias da semana anterior com maiores picos de carro
+                        Dias da semana com maiores picos de carro
                       </h3>
                     </div>
                     <div className="div-grafico-dashboard">
                       <img className="img-grafico" src={Teste} alt="" />
-                      <ChartComponent />
+                      <ChartComponent
+                        totalCheckout={sessionTotalCheckout} 
+                      />
                     </div>
                   </div>
                 </div>

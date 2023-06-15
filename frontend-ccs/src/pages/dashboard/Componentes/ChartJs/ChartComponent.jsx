@@ -1,18 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 
-var teste = 10
+// var novoCheckout = Number(sessionStorage.getItem("CHECKOUT"))
 
-const ChartComponent = () => {
+const ChartComponent = ({totalCheckout}) => {
   const chartRef = useRef(null);
-
-  teste += 1
   useEffect(() => {
     const data = {
       labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
       datasets: [{
         label: 'Quantidade de carros estacionados',
-        data: [20, 10, 15, 20, teste, 0, 0],
+        data: [20, 10, 15, 20, totalCheckout, 0, 0],
         backgroundColor: '#FF8000',
       }]
     };
