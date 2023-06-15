@@ -5,12 +5,14 @@ import IconeDownloadCsv from "./icon-download-csv.png";
 import InfoHistorico from "./InfoHistorico/InfoHistorico";
 import NavSideBar from "../../components/NavSideBar/index";
 import api from "../../api.js";
+import DownloadLink from "./dowloadCsv/DownloadLink";
 
 import { useState } from "react";
 // import { Container } from './styles';
 
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
 function Historico() {
-  var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [historicos, setHistoricos] = useState([]);
 
   useEffect(() => {
@@ -24,17 +26,6 @@ function Historico() {
         console.log(erro);
       });
   }, []);
-
-  function pegaCsv(){
-    api 
-      .get(`/historicos/gerar-csv`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }
 
   return (
     <>
@@ -50,14 +41,14 @@ function Historico() {
             </div>
             <div className="div-button-baixar-csv">
               <div className="div-csv-download">
-                <p>Baixar arquivo .csv:</p>
-                <button className="button-download-csv" onClick={() => pegaCsv()}>
+                {/* <button className="button-download-csv" onClick={pegaCsv}>
                   <img
                     className="img-csv-download"
                     src={IconeDownloadCsv}
                     alt=""
                   />
-                </button>
+                </button> */}
+                <DownloadLink />
               </div>
             </div>
             <div className="container-itens-historico">
