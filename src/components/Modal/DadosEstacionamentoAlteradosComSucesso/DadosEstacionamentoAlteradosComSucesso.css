@@ -1,0 +1,13 @@
+.div-dados-estacionamento-alterados-com-sucesso{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+}
+
+.texto-dados-estacionamento-alterados-com-sucesso{
+    font-size: 24px;
+    margin-left: 16px;
+    text-align: center;
+}
