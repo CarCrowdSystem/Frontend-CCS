@@ -57,6 +57,7 @@ function ClienteJaCadastrado ({idVaga, func}) {
           </div>
           <div className='div-inputs-checkin'>
             <input className='input-checkin' type='text'
+              maxLength={7}
               onChange={(e) =>
                 placa=e.target.value
               }

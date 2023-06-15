@@ -40,6 +40,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         className={validacao.cpf ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cpfUsuario"
+        maxLength={11}
         // mask="000.000.000-00"
         placeholder="Digite seu CPF"
         required

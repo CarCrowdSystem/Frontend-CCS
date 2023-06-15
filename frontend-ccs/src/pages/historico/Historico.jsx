@@ -41,13 +41,6 @@ function Historico() {
             </div>
             <div className="div-button-baixar-csv">
               <div className="div-csv-download">
-                {/* <button className="button-download-csv" onClick={pegaCsv}>
-                  <img
-                    className="img-csv-download"
-                    src={IconeDownloadCsv}
-                    alt=""
-                  />
-                </button> */}
                 <DownloadLink />
               </div>
             </div>

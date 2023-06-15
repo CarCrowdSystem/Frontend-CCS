@@ -236,6 +236,7 @@ function Funcionarios() {
                   className="input-add-func"
                   type="text"
                   name="cpfFuncionario"
+                  maxLength={11}
                   value={data.cpfFuncionario || ""}
                   onChange={(e) =>
                     updateFieldHandler("cpfFuncionario", e.target.value)
