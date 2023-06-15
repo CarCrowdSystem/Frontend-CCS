@@ -2,50 +2,125 @@
 import "./Login.css";
 import "../../components/Inputs/input.css";
 import Button from "./Componentes/Botao/index";
-// import CampoTexto from "./home/Componentes/CampoTexto/inde";
-// import Botao from "./Componentes/Botao";
+import api from "../../api.js";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-function Login(props) {
-  var display = "flex";
+function Login() {
+  const navigate = useNavigate();
 
   function loginEmpresa(e) {
     e.preventDefault();
 
     const getEmpresa = {
-      emailEmpresa: e.target.emailEmpresa.value,
-      cnpjEmpresa: e.target.senhaEmpresa.value,
+      email: e.target.emailEmpresa.value,
+      senha: e.target.senhaEmpresa.value,
     };
 
-    var nome = /^[À-úA-z ]{3,35}$/;
-    // var cargoReg = /^[À-úA-z ]{3,35}$/;
-    // var email = /^([À-úA-z0-9._-]+@[a-z0-9._-]+\.[A-z0-9_-]+)$/;
+    // function userHasAccount(userDataList){
+    //   for(var i = 0; i < userDataList.length; i++){
+    //     if(userDataList[i].emailEmpresa === getEmpresa.email && userDataList[i].senhaEmpresa === getEmpresa.senha){
+    //       return true
+    //     }
+    //       return false
+    //   }
+    // }
 
-    if (getEmpresa.emailEmpresa.match(nome) && getEmpresa.senhaEmpresa !== "") {
-      console.log("Hello there!");
-      display = "none";
-    } else {
-      console.log("Bye then");
-      display = "flex";
-    }
+    api
+      //Teste MockAPI
+      /*.get(`/login`, getEmpresa) */
 
-    // api
-    //   .get(`/nomedorequest`, postEmpresa)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((erro) => {
-    //     console.log(erro);
-    //   });
+      //"Funcional" backEnd ccs
+      .post(`/funcionarios/login`, getEmpresa)
+      .then((response) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login efetuado com sucesso!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
+        sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
+        pegarDadosDash(response.data.idEstacionamento);
+        pegarValores(response.data.idEstacionamento)
+      })
+      .catch((erro) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Email ou senha inválidos!",
+        });
+        console.log("Error");
+        console.log(erro);
+      });
 
     console.log(getEmpresa);
   }
 
+  function pegarDadosDash(idE){
+    api
+    .get(`/historicos/pegar-dados-dash?id=${idE}`)
+    .then((response) => {
+      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
+      sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
+      const dadosVagas = Object.values(response.data.momentoVagas)
+      sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
+      console.log("teste variavel", dadosVagas[0])
+      console.log(Array.isArray(dadosVagas))
+
+      function valuesToArray(obj) {
+        return 
+      }
+
+      const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
+        if (momento.statusRegistro === 'Saida') {
+          contador++;
+        }
+        return contador;
+      }, 0);
+      sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
+      const andaresSaida = new Set();
+      const andaresEntrada = new Set();
+      
+      response.data.momentoVagas.forEach(momento => {
+        if (momento.statusRegistro === 'Saida') {
+          andaresSaida.add(momento.andar);
+        } else if (momento.statusRegistro === 'Entrada' && !andaresSaida.has(momento.andar)) {
+          andaresEntrada.add(momento.andar);
+        }
+      });
+      sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
+      sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
+
+      setTimeout(() => navigate("/dashboard"), 2000)
+    })
+    .catch((erro) => {
+        console.log("Deu b.o", erro)
+    })
+  }
+
+  function pegarValores(idEstacionamento){
+    api
+    .get(`/valores?id=${idEstacionamento}`)
+    .then((response) => {
+      sessionStorage.setItem("VALOR_PRIMEIRA_HORA", response.data.primeiraHora)
+      sessionStorage.setItem("VALOR_DEMAIS_HORAS", response.data.horaAdicional)
+      sessionStorage.setItem("VALOR_DIARIA", response.data.diaria)
+      console.log(response.data);
+      // setValor(response.data);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
+  }
+
   return (
     <>
-      <section className="view-cadastro">
+      <section className="view-login">
         <div className="div-all-fields">
           <div className="div-arrow-back">
-            <a href='/'>
+            <a href="/">
               <img className="arrowBack" src="/imgs/icons/Vector.png" />
             </a>
           </div>
@@ -73,14 +148,14 @@ function Login(props) {
                 placeholder="Digite sua senha"
               />
 
-              <a href="colocar link modal">Esqueci minha senha</a>
-
               <Button type="submit">Entrar</Button>
             </form>
 
             <div className="footer-login">
               <h2>Não possui cadastro?</h2>
-              <button className="button-cadastra">Cadastre-se</button>
+              <button className="button-cadastra">
+                <a href="/cadastro">Cadastre-se</a>
+              </button>
             </div>
           </div>
         </div>

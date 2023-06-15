@@ -32,12 +32,12 @@
 
 .label-estacionamento{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     width: 10%;
 }
 
 label{
-    justify-items: end;
+    justify-items: flex-end;
 }
 

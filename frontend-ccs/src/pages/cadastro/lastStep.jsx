@@ -1,54 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
+import { IMaskInput } from "react-imask";
+import { validateNomeUsuario, validateCpf, validateEmail, validateSenha, validateSenha2 } from './funcoes/funcao'
 
 // import { Container } from './styles';
 
-function LastStep() {
+const LastStep = ({data, updateFieldHandler}) => {
+
+  const [validacao, setValidacao] = useState({
+    "nomeUsuario": false,
+    "cpf": false,
+    "email": false,
+    "senha": false,
+    //"senha2": false,
+  });
+
+  function atualizarValidacao(campo, valido) {
+    const novaValidacao = { ...validacao };
+    novaValidacao[campo] = valido;
+    setValidacao(novaValidacao);
+  }
+
   return (
     <>
       <label>Nome completo</label>
       <input
         id="name-field"
-        className="campo-texto"
+        className={validacao.nomeUsuario ? "campo-texto-correct" : "campo-texto"}
         type="text"
-        name="nomeEmpresa"
-        placeholder="Digite o nome da empresa"
+        name="nomeUsuario"
+        placeholder="Digite seu nome completo"
         required
+        value={data.nomeUsuario || ""}
+        onChange={(e) => updateFieldHandler("nomeUsuario", e.target.value)}
+        onKeyUp={(e) => validateNomeUsuario(e.target.value, atualizarValidacao)}
       />
 
       <label>CPF</label>
-      <input
-        className="campo-texto"
+      <IMaskInput
+        className={validacao.cpf ? "campo-texto-correct" : "campo-texto"}
         type="text"
-        name="cnpjEmpresa"
-        placeholder="Digite o cnpj da empresa"
+        name="cpfUsuario"
+        // mask="000.000.000-00"
+        placeholder="Digite seu CPF"
         required
+        value={data.cpfUsuario || ""}
+        onChange={(e) => updateFieldHandler("cpfUsuario", e.target.value)}
+        onKeyUp={(e) => validateCpf(e.target.value, atualizarValidacao)}
       />
 
       <label>Email</label>
       <input
-        className="campo-texto"
-        type="text"
-        name="cepEmpresa"
-        placeholder="Digite o cep da empresa"
+        className={validacao.email ? "campo-texto-correct" : "campo-texto"}
+        type="email"
+        name="emailUsuario"
+        placeholder="empresa@gmail.com"
         required
+        value={data.emailUsuario || ""}
+        onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
+        onKeyUp={(e) => validateEmail(e.target.value, atualizarValidacao)}
       />
 
       <label>Senha</label>
       <input
-        className="campo-texto"
-        type="text"
-        name="enderecoEmpresa"
-        placeholder="Digite o endereco da empresa"
+        className={validacao.senha ? "campo-texto-correct" : "campo-texto"}
+        type="password"
+        name="senha"
+        minLength={8}
+        placeholder="Mínimo de 8 caracteres"
         required
+        value={data.senha || ""}
+        onChange={(e) => updateFieldHandler("senha", e.target.value)}
+        onKeyUp={(e) => validateSenha(e.target.value, atualizarValidacao)}
       />
 
-      <label>Comfirmar senha</label>
+      <label>Confirmar senha</label>
       <input
         className="campo-texto"
-        type="text"
-        name="emailEmpresa"
-        placeholder="Digite o email da empresa"
+        type="password"
+        name="confirmaSenha"
+        placeholder="Confirmar senha"
         required
+        value={data.confirmaSenha || ""}
+        onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}
       />
     </>
   );

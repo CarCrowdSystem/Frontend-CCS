@@ -1,93 +1,91 @@
-import React from "react";
-import Button from "./Componentes/Botao/index";
-
+import React, { useState } from "react";
+import { IMaskInput } from "react-imask";
+import { validateNome2, validateCnpj, validateCep, validateNum, validateTelefone} from './funcoes/funcao'
 // import { Container } from './styles';
 
-function firstStep() {
-  function cadastrarEmpresa(e) {
-    e.preventDefault();
+const FirstStep = ({data, updateFieldHandler}) => {
 
-    const postEmpresa = {
-      nomeEmpresa: e.target.nomeEmpresa.value,
-      cnpjEmpresa: e.target.cnpjEmpresa.value,
-      cepEmpresa: e.target.cepEmpresa.value,
-      enderecoEmpresa: e.target.enderecoEmpresa.value,
-      emailEmpresa: e.target.emailEmpresa.value,
-    };
+  const [validacao, setValidacao] = useState({
+    "nome": false,
+    "cnpj": false,
+    "cep": false,
+    "num": false,
+    "telefone": false
+  });
 
-    var nome = /^[À-úA-z ]{3,35}$/;
-    // var cargoReg = /^[À-úA-z ]{3,35}$/;
-    // var email = /^([À-úA-z0-9._-]+@[a-z0-9._-]+\.[A-z0-9_-]+)$/;
-
-    // <form onSubmit={cadastrarEmpresa}>
-
-    if (postEmpresa.nomeEmpresa.match(nome) && postEmpresa.cnpjEmpresa != "") {
-      console.log("Hello there!");
-    } else {
-      console.log("Bye then");
-    }
-
-    // api
-    //   .post(`/nomedorequest`, postEmpresa)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((erro) => {
-    //     console.log(erro);
-    //   });
-
-    console.log(postEmpresa);
+  function atualizarValidacao(campo, valido) {
+    const novaValidacao = { ...validacao };
+    novaValidacao[campo] = valido;
+    setValidacao(novaValidacao);
   }
 
   return (
     <>
       <label>Nome fantasia</label>
       <input
-        id="name-field"
-        className="campo-texto"
+        className={validacao.nome ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="nomeEmpresa"
         placeholder="Digite o nome da empresa"
         required
-      />
+       // ref = { register ({ pattern: /^[A-Za-z]+$/i }) }
+        value={data.nomeEmpresa}
+        onChange={(e) => updateFieldHandler("nomeEmpresa", e.target.value)}
+        onKeyUp={(e) => validateNome2(e.target.value, atualizarValidacao)}
+      /> 
 
       <label>CNPJ</label>
-      <input
-        className="campo-texto"
+      <IMaskInput
+        className={validacao.cnpj ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cnpjEmpresa"
-        placeholder="Digite o cnpj da empresa"
+        //mask="00.000.000/0000-00"
+        placeholder="Digite o CNPJ da empresa"
         required
+        value={data.cnpjEmpresa || ""}
+        onChange={(e) => updateFieldHandler("cnpjEmpresa", e.target.value)}
+        onKeyUp={(e) => validateCnpj(e.target.value, atualizarValidacao)}
       />
 
       <label>CEP</label>
-      <input
-        className="campo-texto"
+      <IMaskInput
+        className={validacao.cep ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cepEmpresa"
-        placeholder="Digite o cep da empresa"
+        // mask="00000-000"
+        placeholder="Digite o CEP da empresa"
         required
+        value={data.cepEmpresa || ""}
+        onChange={(e) => updateFieldHandler("cepEmpresa", e.target.value)}
+        onKeyUp={(e) => validateCep(e.target.value, atualizarValidacao)}
       />
 
       <label>Número</label>
       <input
-        className="campo-texto"
+        className={validacao.num ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="enderecoEmpresa"
-        placeholder="Digite o endereco da empresa"
+        placeholder="Digite o número de endereço da empresa"
         required
+        value={data.enderecoEmpresa || ""}
+        onChange={(e) => updateFieldHandler("enderecoEmpresa", e.target.value)}
+        onKeyUp={(e) => validateNum(e.target.value, atualizarValidacao)}
       />
 
-      <label>Email da empresa</label>
-      <input
-        className="campo-texto"
+      <label>Telefone</label>
+      <IMaskInput
+        className={validacao.telefone ? "campo-texto-correct" : "campo-texto"}
         type="text"
-        name="emailEmpresa"
-        placeholder="Digite o email da empresa"
+        name="telefoneEmpresa"
+        // mask="(00) 00000-0000"
+        placeholder="Digite o número de telefone com DDD"
         required
+        value={data.telefoneEmpresa || ""}
+        onChange={(e) => updateFieldHandler("telefoneEmpresa", e.target.value)}
+        onKeyUp={(e) => validateTelefone(e.target.value, atualizarValidacao)}
       />
     </>
   );
-}
+};
 
-export default firstStep;
+export default FirstStep;

@@ -10,7 +10,7 @@
     justify-content: center;
     transform: translateX(100%);
     transition: transform 0.5s ease-in-out;
-    z-index: 1000;
+    z-index: 1200;
   }
   
 .sumir {
@@ -26,7 +26,7 @@
     width:100vw;
     height: 100vh;
     background-color: black; 
-    filter: opacity(10%);
+    filter: opacity(15%);
     z-index: 1000;
 }
 
@@ -113,8 +113,9 @@
 }
 
 .botao-checkout-tela-checkout{
-    height: 10%;
-    width: 100%;
+    height: 8%;
+    width: 8vw;
+    margin-left: 8px;
     border-radius: 8px;
     background-color: #FF8000;
     color: #FFFFFF;

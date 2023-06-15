@@ -1,43 +1,83 @@
-body{
-    background-color: #F6F6F6;
+body {
+  background-color: #f6f6f6;
 }
 
-.titulo-estacionamento{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+.titulo-estacionamento {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.title-estacionamento{
-    font-size: 48px;
-    color: #FF8000;
+.title-estacionamento {
+  font-size: 48px;
+  color: #ff8000;
 }
 
-.div-formulario{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.div-formulario {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .div-botao-alterar {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.espaco-icone{
-    display: flex;
-    height: 12vh;
-    justify-content: end;
+.div-botao-alterar button {
+  border-radius: 8px;
+  background-color: #ffffff;
+  border-color: #ff8000;
+  border-style: solid;
+  color: #ff8000;
+  margin-top: 32px;
+  padding: 18px;
+  font-size: larger;
 }
 
-.icone-checkout{
-    width: 10%;
-    background-color: #FF8000;
+.espaco-icone {
+  display: flex;
+  height: 12vh;
+  justify-content: flex-end;
 }
 
-.valor-monetario-painel{
-    display: flex;
-    justify-content: center;
+.icone-checkout {
+  width: 10%;
+  background-color: #ff8000;
 }
 
+.valor-monetario-painel {
+  display: flex;
+  justify-content: center;
+}
+
+.div-form-estacionamento {
+  display: flex;
+  justify-content: center;
+}
+
+.form-estacionamento {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.campo-texto-estacionamento {
+  background-color: #fff;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.08);
+  width: 65%;
+  color: black;
+  font-size: 16px;
+  padding: 16px;
+  margin: 2%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 3px solid #ff8000;
+  outline-style: none;
+}
+
+.form-estacionamento label {
+  width: 65%;
+}
