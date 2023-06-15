@@ -1,0 +1,11 @@
+.form-campo-texto-estacionamento{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+}

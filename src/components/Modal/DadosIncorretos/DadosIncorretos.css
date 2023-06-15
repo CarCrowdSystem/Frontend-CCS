@@ -1,0 +1,13 @@
+.div-dados-incorretos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+}
+
+.texto-dados-incorretos{
+    font-size: 24px;
+    margin-left: 16px;
+    text-align: center;
+}
