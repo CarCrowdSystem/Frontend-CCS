@@ -39,6 +39,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         className={validacao.cnpj ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cnpjEmpresa"
+        maxLength={14}
         //mask="00.000.000/0000-00"
         placeholder="Digite o CNPJ da empresa"
         required
@@ -52,6 +53,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         className={validacao.cep ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cepEmpresa"
+        maxLength={9}
         // mask="00000-000"
         placeholder="Digite o CEP da empresa"
         required
@@ -77,6 +79,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         className={validacao.telefone ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="telefoneEmpresa"
+        maxLength={11}
         // mask="(00) 00000-0000"
         placeholder="Digite o número de telefone com DDD"
         required

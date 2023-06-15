@@ -82,6 +82,7 @@ const postteFieldHandler = (key, value) => {
                     <input className='input-checkin'
                         type="text"
                         name="telefoneCliente"
+                        maxLength={11}
                         required
                         value={data.telefoneCliente || ""}
                         onChange={(e) =>

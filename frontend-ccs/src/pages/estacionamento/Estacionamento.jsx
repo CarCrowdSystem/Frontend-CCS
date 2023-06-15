@@ -135,6 +135,7 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="cepEmpresa"
+              maxLength={9}
               placeholder={dadosEstacionamento.cep}
               required
               value={data.cepEmpresa || ""}
@@ -146,7 +147,6 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="enderecoRuaEmpresa"
-              // placeholder={logradouro.logradouro}
               disabled={true}
               required
               value={logradouro.logradouro}
@@ -173,6 +173,7 @@ function Estacionamento() {
               className="campo-texto-estacionamento"
               type="text"
               name="telefoneEmpresa"
+              maxLength={11}
               placeholder={dadosEstacionamento.telefone}
               required
               value={data.telefoneEmpresa || ""}
@@ -186,7 +187,6 @@ function Estacionamento() {
           <button onClick={() => atualizarEmpresa()} type="submit">
             Alterar
           </button>
-          {/* <button onClick={() => testeAlert()}>teste</button> */}
         </div>
       </div>
     </>
