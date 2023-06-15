@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import '../ClienteJaCadastrado/ClienteJaCadastrado.css';
-import BotaoCadastrarVeiculo from '../../Botoes/BotaoContratar/botaoCadastrarVeiculo';
-import DadosClienteCheckin from '../DadosClienteCheckin/DadosClienteCheckin';
 import api from '../../../api';
 import Swal from "sweetalert2";
 
 var placa = ''
 
 function ClienteJaCadastrado ({idVaga, func}) {
-  const [modalAberto, setModalAberto] = useState(false);
+ // const [modalAberto, setModalAberto] = useState(false);
 
-  const abrirModalCadastrarCliente = () => {
+/*   const abrirModalCadastrarCliente = () => {
     setModalAberto(true);
-  };
+  }; */
 
-  const fecharModalCadastrarCliente = () => {
+/*   const fecharModalCadastrarCliente = () => {
     setModalAberto(false);
-  };
+  }; */
 
   function realizaCheckin(){
     api

@@ -126,11 +126,11 @@ export function validateSenha(senha, atualizarValidacao) {
 }
 
 export function validateSenha2(senha, atualizarValidacao) {
-  if (senha == senha1) {
+  if (senha === senha1) {
     console.log("senha inválido");
-    atualizarValidacao("senha", false);
+    atualizarValidacao("senha2", false);
   } else {
     console.log("senha válido");
-    atualizarValidacao("senha", true);
+    atualizarValidacao("senha2", true);
   }
 }

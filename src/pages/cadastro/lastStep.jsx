@@ -11,7 +11,7 @@ const LastStep = ({data, updateFieldHandler}) => {
     "cpf": false,
     "email": false,
     "senha": false,
-    //"senha2": false,
+    "senha2": false,
   });
 
   function atualizarValidacao(campo, valido) {
@@ -75,13 +75,14 @@ const LastStep = ({data, updateFieldHandler}) => {
 
       <label>Confirmar senha</label>
       <input
-        className="campo-texto"
+        className={validacao.senha2 ? "campo-texto-correct" : "campo-texto"}
         type="password"
         name="confirmaSenha"
         placeholder="Confirmar senha"
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}
+        onKeyUp={(e) => validateSenha2(e.target.value, atualizarValidacao)}
       />
     </>
   );

@@ -31,14 +31,14 @@ body{
 
 .titulo-nome-estacionamento{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     margin: 30px;
 }
 
 .title-nome-estacionamento{
     width: 50%;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     font-size: 36px;
 }
 

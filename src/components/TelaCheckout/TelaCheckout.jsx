@@ -20,9 +20,9 @@ function checkoutsCount(){
   console.log(checkout)
 }
 
-
+var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 function TelaCheckout(props) {
-  var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+
   const [hideDiv, setHideDiv] = useState(true);
 
   const [checkouts, setCheckouts] = useState([]);

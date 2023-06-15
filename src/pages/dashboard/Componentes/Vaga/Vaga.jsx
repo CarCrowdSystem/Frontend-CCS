@@ -51,7 +51,7 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
           <DadosClienteCheckin />
         </Modal>
       )}
-      <div className={andar == andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
+      <div className={andar === andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
         <div
           onClick={mostrarModal}
           className={

@@ -179,7 +179,7 @@ function Funcionarios() {
   }
 
   function selecionarOrdenacao() {
-    if (contador == 0) {
+    if (contador === 0) {
       contador++
       ondenaAZ();
     } else { 

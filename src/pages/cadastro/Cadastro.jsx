@@ -33,7 +33,7 @@ function Cadastro() {
 
   const [data, setData] = useState(formTemplate);
 
-  const [postEmpresa, setPostEmpresa] = useState({});
+ // const [postEmpresa, setPostEmpresa] = useState({});
 
   const [listaVagas, setListaVagas] = useState([]);
 

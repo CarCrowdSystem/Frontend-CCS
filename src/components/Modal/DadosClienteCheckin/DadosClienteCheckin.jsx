@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './DadosClienteCheckin.css'
-import CampoTexto from './../../../pages/estacionamento/Componentes/CampoTexto/index.js'
 import api from '../../../api';
 import Swal from "sweetalert2";
 

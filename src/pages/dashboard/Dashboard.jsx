@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import "./Dashboard.css";
 import BotaoCheckout from "../../components/Botoes/BotaoCheckout";
-import Modal from "../../components/Modal/Modal";
-import DadosClienteCheckin from "../../components/Modal/DadosClienteCheckin/DadosClienteCheckin";
-import CadastroVagaConcluido from "../../components/Modal/CadastroVagaConcluido/CadastroVagaConcluido";
 import ChartComponent from "./Componentes/ChartJs/ChartComponent";
 import Teste from "./Group 39.png";
 import Vaga from "./Componentes/Vaga/Vaga";

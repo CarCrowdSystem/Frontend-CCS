@@ -61,7 +61,7 @@ function NavSideBar() {
                                 href={href}
                                 className={isExpended ? "menu-item" : "menu-item menu-item-NX"}
                             >
-                                <img src={icon} alt="" srcSet="" />
+                                <img src={icon} alt="iconeNav"/>
                                 {isExpended && <p>{text}</p>}
                                 {!isExpended && <div className="tooltip">{text}</div>}
                             </a>
@@ -71,15 +71,13 @@ function NavSideBar() {
                 <div className="nav-footer">
                     {isExpended && (
                         <div className="nav-details">
-                            <img src="imgs/Group 39.png" alt="" srcSet="" />
+                            <img src="imgs/Group 39.png" alt="logoFooter" />
                             <div className="nav-footer-info">
-                                <p className='nav-footer-user-name'>User name</p>
-                                <p className='nav-footer-user-position'>Store Admin</p>
                             </div>
                         </div>
                     )}
-                    <img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="" srcSet="" />
-                    {!isExpended && <div className="tooltip">Sair</div>}
+                    <a href="/login"><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconeLogout" />
+                    {!isExpended && <div className="tooltip">Sair</div>}</a>
                 </div>
             </div>
         </>
