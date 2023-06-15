@@ -24,6 +24,8 @@ var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
 var contador = 0;
 
+var nomeFunc = ''
+
 function Funcionarios() {
   const [data, setData] = useState(formTemplate);
 
@@ -34,6 +36,17 @@ function Funcionarios() {
       return { ...prev, [key]: value };
     });
   };
+
+  function buscarFuncionarioPorNome() {
+    api
+      .get(`/funcionarios/nome/${nomeFunc}`)
+      .then((response) => {
+        setFuncionarios(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
 
   function cadastrarFuncionario() {
     const postFuncionario = {
@@ -310,8 +323,11 @@ function Funcionarios() {
                       placeholder="Buscar pelo nome..."
                       className="input-pesquisar-func"
                       type="text"
+                      onChange={
+                        (e) => (nomeFunc = e.target.value)
+                      }
                     />
-                    <button className="botao-pesquisar-func">
+                    <button className="botao-pesquisar-func" onClick={buscarFuncionarioPorNome}>
                       <img
                         className="img-lupa-pesquisar-func"
                         src={Lupa}
