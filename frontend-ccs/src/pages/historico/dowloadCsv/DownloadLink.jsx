@@ -11,7 +11,8 @@ const DownloadLink = () => {
 
   const handleDownload = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/ccs-dev/historicos/download-csv?id=49', { responseType: 'blob' });
+    //   const response = await axios.get('http://localhost:8080/ccs-dev/historicos/download-csv?id=49', { responseType: 'blob' });
+      const response = await axios.get('https://ccs-1686432983512.azurewebsites.net/ccs-dev/historicos/download-csv?id=49', { responseType: 'blob' });
       const file = new Blob([response.data], { type: 'text/csv' });
       const fileUrl = URL.createObjectURL(file);
       setFileUrl(fileUrl);
