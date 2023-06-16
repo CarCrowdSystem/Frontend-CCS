@@ -6,15 +6,15 @@ import Swal from "sweetalert2";
 var placa = ''
 
 function ClienteJaCadastrado ({idVaga, func}) {
- // const [modalAberto, setModalAberto] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false);
 
-/*   const abrirModalCadastrarCliente = () => {
+  const abrirModalCadastrarCliente = () => {
     setModalAberto(true);
-  }; */
+  };
 
-/*   const fecharModalCadastrarCliente = () => {
+  const fecharModalCadastrarCliente = () => {
     setModalAberto(false);
-  }; */
+  };
 
   function realizaCheckin(){
     api
@@ -55,6 +55,7 @@ function ClienteJaCadastrado ({idVaga, func}) {
           </div>
           <div className='div-inputs-checkin'>
             <input className='input-checkin' type='text'
+              maxLength={7}
               onChange={(e) =>
                 placa=e.target.value
               }

@@ -3,6 +3,7 @@ import IconVoltarCheckout from "./icone_voltar_tela_checkout.png";
 import InfoClienteCheckout from "./InfoClienteCheckout/InfoClienteCheckout";
 import "./TelaCheckout.css";
 import api from "../../api.js";
+import Swal from "sweetalert2";
 
 const formTemplate = {
   nome: "Sem checkouts",
@@ -12,17 +13,8 @@ const formTemplate = {
   valor: " "
 };
 
-var checkout = 0
-
-function checkoutsCount(){
-  checkout++
-  sessionStorage.setItem("CHECKOUT", checkout);
-  console.log(checkout)
-}
-
-var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 function TelaCheckout(props) {
-
+  var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [hideDiv, setHideDiv] = useState(true);
 
   const [checkouts, setCheckouts] = useState([]);
@@ -41,28 +33,73 @@ function TelaCheckout(props) {
   };
 
   useEffect(() => {
+    pegaCheckouts()
+  }, []);
+
+  function pegarDadosDash(){
+    api
+    .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
+    .then((response) => {
+      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
+      sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
+      const dadosVagas = Object.values(response.data.momentoVagas)
+      sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
+
+      const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
+        if (momento.statusRegistro === 'Saida') {
+          contador++;
+        }
+        return contador;
+      }, 0);
+      sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
+      const andaresSaida = new Set();
+      const andaresEntrada = new Set();
+
+      response.data.momentoVagas.forEach(momento => {
+        if (momento.statusRegistro === 'Saida') {
+          andaresSaida.add(momento.andar);
+        } else if (momento.statusRegistro === 'Entrada' && !andaresSaida.has(momento.andar)) {
+          andaresEntrada.add(momento.andar);
+        }
+      });
+      sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
+      sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
+    })
+    .catch((erro) => {
+        console.log("Deu b.o", erro)
+    })
+  }
+
+  function pegaCheckouts(){
     api
       .get(`/historicos/pegar-checkouts?id=${sessionIdEstacionamento}`)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         setCheckouts(response.data)
       })
       .catch((erro) => {
         console.log(erro);
       });
-  }, []);
+  }
 
   function fazCheckout() {
-    // api
-    //   .post(`/historicos/checkout?idVeiculo=${checkouts[0].fkVeiculo}`)
-    //   .then((response) => {
-    //     console.log(response.data);
-        // setCheckouts(response.data)
-        checkoutsCount()
-      // })
-      // .catch((erro) => {
-      //   console.log(erro);
-      // });
+    api
+      .post(`/historicos/checkout?idVeiculo=${checkouts[0].fkVeiculo}`)
+      .then((response) => {
+        Swal.fire({
+          title: "Estacionamento atualizado!",
+          icon: "success",
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok",
+        });
+        console.log(response);
+        pegaCheckouts()
+        pegarDadosDash()
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
   }
 
   return (

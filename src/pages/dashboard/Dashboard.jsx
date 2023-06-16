@@ -10,8 +10,6 @@ import api from "../../api.js";
 import { useState } from "react";
 
 // import { Container } from './styles';
-
-function Dashboard() {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   var sessionNomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
   var sessionTotalCheckout = sessionStorage.getItem("TOTAL_CHECKOUT_DIARIO");
@@ -23,6 +21,7 @@ function Dashboard() {
   var sessionVagasLivres = parseInt(sessionStorage.getItem("VAGAS_LIVRES"));
   var momentoVagas = sessionStorage.getItem("MOMENTO_VAGAS");
 
+function Dashboard() {
   const [options, setOptions] = useState([]);
   const [vagas, setVagas] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
@@ -155,7 +154,7 @@ function Dashboard() {
                       </h3>
                     </div>
                     <div className="div-grafico-dashboard">
-                      <img className="img-grafico" src={Teste} alt="" />
+                      <img className="img-grafico" src={Teste} alt="imgGrafico" />
                       <ChartComponent
                         totalCheckout={sessionTotalCheckout} 
                       />

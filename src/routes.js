@@ -9,6 +9,8 @@ import Checkin from "./pages/checkin/Checkin";
 import Valores from "./pages/valores/Valores";
 import Historico from "./pages/historico/Historico";
 import Funcionarios from "./pages/funcionarios/Funcionarios";
+import CheckoutCliente from "./pages/dashboard/Componentes/CheckoutCliente";
+
 import {
     BrowserRouter,
     Routes,
@@ -30,6 +32,7 @@ function Rotas(){
                 <Route path="/valores" element={<Valores />} />
                 <Route path="/historico" element={<Historico />} />
                 <Route path="/funcionarios" element={<Funcionarios />} />
+                <Route path="/checkout-cliente" element={<CheckoutCliente />} />
             </Routes>
         </BrowserRouter>
     )

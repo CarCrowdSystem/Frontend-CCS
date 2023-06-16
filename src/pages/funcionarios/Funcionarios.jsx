@@ -24,6 +24,8 @@ var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
 var contador = 0;
 
+var nomeFunc = ''
+
 function Funcionarios() {
   const [data, setData] = useState(formTemplate);
 
@@ -34,6 +36,17 @@ function Funcionarios() {
       return { ...prev, [key]: value };
     });
   };
+
+  function buscarFuncionarioPorNome() {
+    api
+      .get(`/funcionarios/nome/${nomeFunc}`)
+      .then((response) => {
+        setFuncionarios(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }
 
   function cadastrarFuncionario() {
     const postFuncionario = {
@@ -46,9 +59,6 @@ function Funcionarios() {
     };
 
     api
-      // Teste MockAPI
-      // .post(`/funca`, postFuncionario)
-      // "Funcional" backEnd ccs
       .post(`/funcionarios`, postFuncionario)
       .then((response) => {
         Swal.fire({
@@ -236,6 +246,7 @@ function Funcionarios() {
                   className="input-add-func"
                   type="text"
                   name="cpfFuncionario"
+                  maxLength={11}
                   value={data.cpfFuncionario || ""}
                   onChange={(e) =>
                     updateFieldHandler("cpfFuncionario", e.target.value)
@@ -303,19 +314,22 @@ function Funcionarios() {
                     className="botao-ordenar-func"
                     onClick={() => selecionarOrdenacao()}
                   >
-                    <img className="img-seta-cima" src={SetaCima} alt="" /> A-Z
+                    <img className="img-seta-cima" src={SetaCima} alt="seta" /> A-Z
                   </button>
                   <div className="div-buscar-pelo-nome">
                     <input
                       placeholder="Buscar pelo nome..."
                       className="input-pesquisar-func"
                       type="text"
+                      onChange={
+                        (e) => (nomeFunc = e.target.value)
+                      }
                     />
-                    <button className="botao-pesquisar-func">
+                    <button className="botao-pesquisar-func" onClick={buscarFuncionarioPorNome}>
                       <img
                         className="img-lupa-pesquisar-func"
                         src={Lupa}
-                        alt=""
+                        alt="lupa"
                       />
                     </button>
                   </div>
