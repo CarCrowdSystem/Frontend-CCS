@@ -30,7 +30,7 @@ const Formulario = (props) => {
 
         <section className="formulario">
           <form onSubmit={aoSalvar}>
-            <h2>Entre em contato conosco preen  chendo os campos abaixo.</h2>
+            <h2>Entre em contato conosco preenchendo os campos abaixo.</h2>
             <CampoTexto
               obrigatorio={true}
               label="Nome"
