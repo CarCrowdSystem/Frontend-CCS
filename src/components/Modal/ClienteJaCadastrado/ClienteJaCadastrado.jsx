@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import '../ClienteJaCadastrado/ClienteJaCadastrado.css';
 import api from '../../../api';
 import Swal from "sweetalert2";
@@ -6,7 +5,7 @@ import Swal from "sweetalert2";
 var placa = ''
 
 function ClienteJaCadastrado ({idVaga, func}) {
-  const [modalAberto, setModalAberto] = useState(false);
+/*   const [modalAberto, setModalAberto] = useState(false);
 
   const abrirModalCadastrarCliente = () => {
     setModalAberto(true);
@@ -14,7 +13,7 @@ function ClienteJaCadastrado ({idVaga, func}) {
 
   const fecharModalCadastrarCliente = () => {
     setModalAberto(false);
-  };
+  }; */
 
   function realizaCheckin(){
     api
