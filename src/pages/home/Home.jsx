@@ -39,7 +39,7 @@ function Home() {
 
       <a href="https://app.pipefy.com/public/form/xt4fI2ub">
         <div className="suportButton">
-          <img src="/imgs/icons/apoio-suporte.png" />
+          <img src="/imgs/icons/apoio-suporte.png" alt="icone suporte"/>
         </div>
       </a>
 
@@ -47,19 +47,19 @@ function Home() {
         <div className="container">
           <div className="icones">
             <div className="icon">
-              <img src="/imgs/icons/directions_car.png" />
+              <img src="/imgs/icons/directions_car.png" alt="icone1"/>
             </div>
             <div className="icon">
-              <img src="/imgs/icons/sensors.png" />
+              <img src="/imgs/icons/sensors.png" alt="icone2"/>
             </div>
             <div className="icon">
-              <img src="/imgs/icons/account_circle.png" />
+              <img src="/imgs/icons/account_circle.png" alt="icone3"/>
             </div>
             <div className="icon">
-              <img src="/imgs/icons/currency_exchange.png" />
+              <img src="/imgs/icons/currency_exchange.png" alt="icone4"/>
             </div>
             <div className="icon">
-              <img src="/imgs/icons/devices.png" />
+              <img src="/imgs/icons/devices.png" alt="icone5"/>
             </div>
           </div>
           <div className="tituloAoutUs">
@@ -123,7 +123,7 @@ function Home() {
         <div className="card">
           <div className="separa">
             <div className="icon">
-              <img src="/imgs/icons/missao.png" />
+              <img src="/imgs/icons/missao.png" alt="icone missao"/>
             </div>
           </div>
           <div className="separa">
@@ -137,7 +137,7 @@ function Home() {
         <div className="card">
           <div className="separa">
             <div className="icon">
-              <img src="/imgs/icons/visao.png" />
+              <img src="/imgs/icons/visao.png" alt="icone visao"/>
             </div>
           </div>
           <div className="separa">
@@ -151,7 +151,7 @@ function Home() {
         <div className="card">
           <div className="separa">
             <div className="icon">
-              <img src="/imgs/icons/valor.png" />
+              <img src="/imgs/icons/valor.png" alt="icone valores"/>
             </div>
           </div>
           <div className="separa">
@@ -178,10 +178,7 @@ function Home() {
 
           <div className="bloco">
             <div className="imgBloco">
-              <img
-                src="imgs/Group 39.png"
-                style={{ width: 100, height: 100 }}
-              />
+              <img src="imgs/Group 39.png" alt="icone sla" style={{ width: 100, height: 100 }}/>
             </div>
             <p>Copyright© Car Crowd System</p>
           </div>
@@ -197,6 +194,7 @@ function Home() {
             <div className="imgBloco">
               <img
                 src="/imgs/icons/Group 8.png"
+                alt="algum icone"
                 style={{ width: 200, height: 50 }}
               />
             </div>

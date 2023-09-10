@@ -116,11 +116,11 @@ function Login() {
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">
-              <img className="arrowBack" src="/imgs/icons/Vector.png" />
+              <img className="arrowBack" src="/imgs/icons/Vector.png" alt="arrowback" />
             </a>
           </div>
           <div className="div-logo-login">
-            <img className="logo" src="/imgs/Group 39.png" />
+            <img className="logo" src="/imgs/Group 39.png" alt="logo"/>
 
             <h1 className="login-title">Login</h1>
           </div>
@@ -155,7 +155,7 @@ function Login() {
           </div>
         </div>
         <div className="image-cadastro">
-          <img className="sideImageCadastro" src="./imgs/parking.png" />
+          <img className="sideImageCadastro" src="./imgs/parking.png" alt="imageCad"/>
         </div>
       </section>
     </>

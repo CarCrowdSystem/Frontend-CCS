@@ -9,27 +9,32 @@ function NavSideBar() {
         {
             text: "Dashboard",
             icon: "imgs/icons/navIcons/dashBranco.png",
-            href: "/dashboard"
+            href: "/dashboard",
+            alt: "img_dash"
         },
         {
             text: "Histórico",
             icon: "imgs/icons/navIcons/historicoBranco.png",
-            href: "/historico"
+            href: "/historico",
+            alt: "img_historico"
         },
         {
             text: "Estacionamento",
             icon: "imgs/icons/navIcons/estacionamentoBranco.png",
-            href: "/estacionamento"
+            href: "/estacionamento",
+            alt: "img_estacionamento"
         },
         {
             text: "Funcionários",
             icon: "imgs/icons/navIcons/funcionarioBranco.png",
-            href: "/funcionarios"
+            href: "/funcionarios",
+            alt: "img_funcionarios"
         },
         {
             text: "Valores",
             icon: "imgs/icons/navIcons/valoresBranco.png",
-            href: "/valores"
+            href: "/valores",
+            alt: "img_valores"
         },
 
     ]

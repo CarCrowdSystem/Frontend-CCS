@@ -59,7 +59,7 @@ function Cadastro() {
     <LastStep data={data} updateFieldHandler={updateFieldHandler} />,
   ];
 
-  function showData() {
+/*   function showData() {
     const postEmpresa = {
       nomeEmpresa: data.nomeEmpresa,
       cnpjEmpresa: data.cnpjEmpresa,
@@ -74,7 +74,7 @@ function Cadastro() {
       confirmaSenha: data.confirmaSenha,
     };
     console.log(postEmpresa);
-  }
+  } */
 
   const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
     useForm(formCadastro);
@@ -191,11 +191,11 @@ function Cadastro() {
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">
-              <img className="arrowBack" src="/imgs/icons/Vector.png" />
+              <img className="arrowBack" src="/imgs/icons/Vector.png" alt="arrowBack"/>
             </a>
           </div>
           <div className="div-logo">
-            <img className="logo" src="/imgs/Group 39.png" />
+            <img className="logo" src="/imgs/Group 39.png" alt="logo"/>
           </div>
           <Steps currentStep={currentStep} />
           <div className="campo-cadastro">
@@ -233,6 +233,7 @@ function Cadastro() {
           <img
             className="sideImageCadastro"
             src="./imgs/estacionamento_static.png"
+            alt="sla"
           />
         </div>
       </section>
