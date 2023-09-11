@@ -5,7 +5,7 @@ const api = axios.create({
     // URL base para realizar as requisições
     // "Funcional" backENd ccs
     // baseURL: "http://localhost:8080/ccs-dev" 
-    baseURL: "http://44.216.82.196:8080/ccs-dev" 
+    baseURL: "http://35.168.64.196:8080/ccs-dev" 
 
 
     //Teste MockAPI
