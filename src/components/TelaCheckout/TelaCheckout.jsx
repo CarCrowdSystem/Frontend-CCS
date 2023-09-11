@@ -1,4 +1,4 @@
-/* import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import IconVoltarCheckout from "./icone_voltar_tela_checkout.png";
 import InfoClienteCheckout from "./InfoClienteCheckout/InfoClienteCheckout";
 import "./TelaCheckout.css";
@@ -163,4 +163,3 @@ function TelaCheckout(props) {
 }
 
 export default TelaCheckout;
- */
