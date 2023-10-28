@@ -39,7 +39,7 @@ function Dashboard() {
       .then((response) => {
         lista = response.data.momentoVagas;
         console.log(lista)
-        setVagas(response.data.momentoVagas);
+        setVagas(lista);
         const uniqueOptions = Array.from(new Set(lista.map(lista => lista.andar)));
         setOptions(uniqueOptions)
       })

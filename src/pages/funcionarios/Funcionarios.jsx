@@ -41,6 +41,7 @@ function Funcionarios() {
     api
       .get(`/funcionarios/nome/${nomeFunc}`)
       .then((response) => {
+      console.log(response)
         setFuncionarios(response.data);
       })
       .catch((erro) => {
@@ -61,6 +62,7 @@ function Funcionarios() {
     api
       .post(`/funcionarios`, postFuncionario)
       .then((response) => {
+      console.log(response)
         Swal.fire({
           title: "Funcionario adicionado!",
           icon: "success",

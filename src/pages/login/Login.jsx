@@ -17,14 +17,14 @@ function Login() {
       senha: e.target.senhaEmpresa.value,
     };
 
-    // function userHasAccount(userDataList){
-    //   for(var i = 0; i < userDataList.length; i++){
-    //     if(userDataList[i].emailEmpresa === getEmpresa.email && userDataList[i].senhaEmpresa === getEmpresa.senha){
-    //       return true
-    //     }
-    //       return false
-    //   }
-    // }
+//     function userHasAccount(userDataList){
+//       for(var i = 0; i < userDataList.length; i++){
+//         if(userDataList[i].emailEmpresa === getEmpresa.email && userDataList[i].senhaEmpresa === getEmpresa.senha){
+//           return true
+//         }
+//           return false
+//       }
+//     }
 
     api
       //Teste MockAPI
@@ -33,6 +33,7 @@ function Login() {
       //"Funcional" backEnd ccs
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
+      console.log(response)
         Swal.fire({
           position: "top-end",
           icon: "success",
