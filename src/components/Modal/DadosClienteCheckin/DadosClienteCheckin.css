@@ -1,0 +1,89 @@
+.div-title-dados-cliente{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.title-dados-cliente{
+    font-size: 24px;
+}
+
+
+.form-dados-cadastro-checkin{
+    display: flex;
+    justify-content: center;
+    height: 80%;
+}
+
+.div-label-checkin{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.label-checkin{
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.div-inputs-checkin{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.input-checkin{
+    border: 2px solid #FF8000;
+    height: 24px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+.div-pai-checkin-cliente{
+    display: flex;
+    flex-direction: column;
+    width: 522px;
+}
+
+.div-botao-cadastro-cliente-checkin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-cadastrar-checkin{
+    height: 48px;
+    width: 96px;
+    border: 2px solid #FF8000;
+    color: #FF8000;
+    border-radius: 8px;
+    background-color: #F6F6F6;
+}
+
+.button-cadastrar-checkin:hover{
+    color: #F6F6F6;
+    background-color: #FF8000;
+    cursor: pointer;
+    transition: 0.3s;
+}   
+
+.button-salvar-checkin{
+    height: 48px;
+    width: 96px;
+    border: 2px solid #F6F6F6;
+    color: #F6F6F6;
+    border-radius: 8px;
+    background-color: #FF8000;
+    margin-left: 8px;
+}
+
+.button-salvar-checkin:hover{
+    color: #FF8000;
+    background-color: #F6F6F6;
+    cursor: pointer;
+    transition: 0.3s;
+}  

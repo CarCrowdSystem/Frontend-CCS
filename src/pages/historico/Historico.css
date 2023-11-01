@@ -1,0 +1,101 @@
+.div-pai-historico{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-historico{
+    display: flex;
+    justify-content: center;
+    height: 90%;
+}
+
+.div-filho-historico{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    flex-direction: column;
+}
+
+.div-title-historico{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.titulo-historico{
+    font-size: 56px;
+    color: #FF8000;
+}
+
+.div-button-baixar-csv{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.div-csv-download{
+    display: flex;
+    width: 18%;
+    align-items: center;
+}
+
+.button-download-csv{
+    width: 58px;
+    height: 32px;
+    border: none;
+    background-color: #FF8000;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+.button-download-csv:hover{
+    background-color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.img-csv-download{
+    width: 24px;
+}
+
+.container-itens-historico{
+    display: flex;
+    justify-content: space-evenly;
+    height: 80px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    width: 95%
+}
+
+.div-valores-historico{
+    padding: 12px;
+    display: block;
+    height: 56vh;
+    overflow-y: scroll;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.container-itens-historico h2 {
+    margin: 1.5%;
+}
+
+.div-valores-historico::-webkit-scrollbar{
+    background-color: #F6F6F6;
+    width: 8px;
+    border-radius: 8px;
+}
+
+.div-valores-historico::-webkit-scrollbar-track {
+    background-color: #F6F6F6;
+}
+
+.div-valores-historico::-webkit-scrollbar-thumb {
+    background-color: #FF8000;
+    border-radius: 8px;
+}
+
+.div-valores-historico::-webkit-scrollbar-thumb:hover {
+    background-color: black;
+}
