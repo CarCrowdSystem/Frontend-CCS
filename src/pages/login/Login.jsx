@@ -80,7 +80,7 @@ function Login() {
       sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
       const andaresSaida = new Set();
       const andaresEntrada = new Set();
-      
+
       response.data.momentoVagas.forEach(momento => {
         if (momento.statusRegistro === 'Saida') {
           andaresSaida.add(momento.andar);
