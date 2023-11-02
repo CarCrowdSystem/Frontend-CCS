@@ -25,7 +25,11 @@ function ClienteJaCadastrado ({idVaga, func}) {
         confirmButtonColor: "#ff8000",
         cancelButtonColor: "#d33",
         confirmButtonText: "Ok",
-      });
+      }).then((result) => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
       console.log(response)
     })
     .catch((error)=>{
