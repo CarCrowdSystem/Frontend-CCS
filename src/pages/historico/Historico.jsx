@@ -18,7 +18,6 @@ function Historico() {
     api
       .get(`/historicos/dados?id=${sessionIdEstacionamento}`)
       .then((response) => {
-        console.log(response.data);
         setHistoricos(response.data)
       })
       .catch((erro) => {
