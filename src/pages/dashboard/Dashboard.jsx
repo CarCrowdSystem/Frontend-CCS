@@ -28,7 +28,6 @@ function Dashboard() {
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
-    console.log(event.target.value)
   };
 
   var lista = [];
@@ -38,7 +37,6 @@ function Dashboard() {
       .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
       .then((response) => {
         lista = response.data.momentoVagas;
-        console.log(lista)
         setVagas(lista);
         const uniqueOptions = Array.from(new Set(lista.map(lista => lista.andar)));
         setOptions(uniqueOptions)

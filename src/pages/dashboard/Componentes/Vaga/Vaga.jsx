@@ -54,9 +54,9 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
         <div
           onClick={mostrarModal}
           className={
-            !status === "Saida"
-              ? "div-vaga-pai-checkin-indisponivel"
-              : "div-vaga-pai-checkin"
+            status === "Saida"
+              ? "div-vaga-pai-checkin"
+              : "div-vaga-pai-checkin-indisponivel"
           }
         >
           <div className="div-vaga-filho-checkin">
