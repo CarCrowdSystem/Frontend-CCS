@@ -10,7 +10,7 @@ const ChartComponent = ({totalCheckout}) => {
       labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
       datasets: [{
         label: 'Quantidade de carros estacionados',
-        data: [20, 10, 15, 20, totalCheckout, 0, 0],
+        data: [totalCheckout, 10, 15, 20, 40, 20, 10],
         backgroundColor: '#FF8000',
       }]
     };

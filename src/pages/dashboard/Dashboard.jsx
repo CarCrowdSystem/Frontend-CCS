@@ -186,7 +186,7 @@ function Dashboard() {
                   <div className="painel-grande">
                     <div className="titulo-card-painel">
                       <h3 className="title-card">
-                        Dias da semana com maiores picos de carro
+                        Quantidades de checkouts da semana
                       </h3>
                     </div>
                     <div className="div-grafico-dashboard">
