@@ -3,14 +3,14 @@ import { Chart } from 'chart.js/auto';
 
 // var novoCheckout = Number(sessionStorage.getItem("CHECKOUT"))
 
-const ChartComponent = ({totalCheckout}) => {
+const ChartComponent = ({dia1,dia2,dia3,dia4,dia5,dia6,dia7,checkout1,checkout2,checkout3,checkout4,checkout5,checkout6,checkout7}) => {
   const chartRef = useRef(null);
   useEffect(() => {
     const data = {
-      labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+      labels: [dia7, dia6, dia5, dia4, dia3, dia2, dia1],
       datasets: [{
         label: 'Quantidade de carros estacionados',
-        data: [totalCheckout, 10, 15, 20, 40, 20, 10],
+        data: [checkout7, checkout6, checkout5, checkout4, checkout3, checkout2, checkout1],
         backgroundColor: '#FF8000',
       }]
     };
