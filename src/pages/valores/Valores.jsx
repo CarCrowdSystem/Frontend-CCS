@@ -39,10 +39,6 @@ function Valores() {
     };
 
     api
-      // Teste MockAPI
-      // .post(`/teste`)
-
-      // "Funcional" backEnd ccs
       .post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores)
       .then((response) => {
         Swal.fire({
@@ -51,12 +47,20 @@ function Valores() {
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
           confirmButtonText: "Ok",
+        }).then((result) => {
+            api
+               .get(`/valores?id=${sessionIdEstacionamento}`)
+               .then((response) => {
+                 sessionStorage.setItem("VALOR_PRIMEIRA_HORA", response.data.primeiraHora)
+                 sessionStorage.setItem("VALOR_DEMAIS_HORAS", response.data.horaAdicional)
+                 sessionStorage.setItem("VALOR_DIARIA", response.data.diaria)
+                 console.log(response.data);
+               })
+               .catch((erro) => {
+                 console.log(erro);
+               });
+               location.reload();
         });
-
-        sessionStorage.setItem("VALOR_PRIMEIRA_HORA", postValores.primeiraHora);
-        sessionStorage.setItem("VALOR_DEMAIS_HORAS", postValores.horaAdicional);
-        sessionStorage.setItem("VALOR_DIARIA", postValores.diaria);
-        console.log(response);
       })
       .catch((erro) => {
         Swal.fire({

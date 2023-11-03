@@ -4,7 +4,11 @@ import axios from "axios"; // importando a biblioteca "axios"
 const api = axios.create({
     // URL base para realizar as requisições
     // "Funcional" backENd ccs
+<<<<<<< HEAD
     // baseURL: "http://localhost:8080/ccs-dev" 
+=======
+//     baseURL: "http://localhost:8080/ccs-dev"
+>>>>>>> 4c90920031b37e314c77585157158d4e12310e74
     baseURL: "https://ccs-grupo7.ddnsking.com/ccs-dev"
 
 

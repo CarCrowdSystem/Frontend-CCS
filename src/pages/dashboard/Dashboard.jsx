@@ -21,6 +21,21 @@ import { useState } from "react";
   var sessionVagasLivres = parseInt(sessionStorage.getItem("VAGAS_LIVRES"));
   var momentoVagas = sessionStorage.getItem("MOMENTO_VAGAS");
 
+  var dia1 = sessionStorage.getItem("DIA1");
+  var dia2 = sessionStorage.getItem("DIA2");
+  var dia3 = sessionStorage.getItem("DIA3");
+  var dia4 = sessionStorage.getItem("DIA4");
+  var dia5 = sessionStorage.getItem("DIA5");
+  var dia6 = sessionStorage.getItem("DIA6");
+  var dia7 = sessionStorage.getItem("DIA7");
+  var checkout1 = sessionStorage.getItem("CHECKOUT1");
+  var checkout2 = sessionStorage.getItem("CHECKOUT2");
+  var checkout3 = sessionStorage.getItem("CHECKOUT3");
+  var checkout4 = sessionStorage.getItem("CHECKOUT4");
+  var checkout5 = sessionStorage.getItem("CHECKOUT5");
+  var checkout6 = sessionStorage.getItem("CHECKOUT6");
+  var checkout7 = sessionStorage.getItem("CHECKOUT7");
+
 function Dashboard() {
   const [options, setOptions] = useState([]);
   const [vagas, setVagas] = useState([]);
@@ -36,6 +51,7 @@ function Dashboard() {
     api
       .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
       .then((response) => {
+        bla()
       sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
             sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
             const dadosVagas = Object.values(response.data.momentoVagas)
@@ -83,6 +99,26 @@ function Dashboard() {
         console.log(erro);
       });
   }, []);
+
+  function bla(){
+    api
+    .get(`/historicos/total-checkout-semanal?idEstacionamento=${sessionIdEstacionamento}`)
+    .then((response) => {
+      console.log(response)
+      for(var i = 1; i <= 7; i++){
+        if(response.data[i-1]!=null){
+          sessionStorage.setItem(`DIA${i}`, response.data[i-1]["data"])
+          sessionStorage.setItem(`CHECKOUT${i}`, response.data[i-1]["totalCheckouts"])
+        } else {
+          sessionStorage.setItem(`DIA${i}`, "0-0-0000")
+          sessionStorage.setItem(`CHECKOUT${i}`, "8")
+        }
+      }
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
+  }
 
   return (
     <>
@@ -186,13 +222,26 @@ function Dashboard() {
                   <div className="painel-grande">
                     <div className="titulo-card-painel">
                       <h3 className="title-card">
-                        Dias da semana com maiores picos de carro
+                        Quantidades de checkouts da semana
                       </h3>
                     </div>
                     <div className="div-grafico-dashboard">
                       <img className="img-grafico" src={Teste} alt="imgGrafico" />
                       <ChartComponent
-                        totalCheckout={sessionTotalCheckout}
+                        dia1={dia1}
+                        dia2={dia2}
+                        dia3={dia3}
+                        dia4={dia4}
+                        dia5={dia5}
+                        dia6={dia6}
+                        dia7={dia7}checkout
+                        checkout1={checkout1}
+                        checkout2={checkout2}
+                        checkout3={checkout3}
+                        checkout4={checkout4}
+                        checkout5={checkout5}
+                        checkout6={checkout6}
+                        checkout7={checkout7}
                       />
                     </div>
                   </div>
