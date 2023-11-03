@@ -54,14 +54,28 @@ function TelaCheckout(props) {
       sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
       const andaresSaida = new Set();
       const andaresEntrada = new Set();
+      const momentoV = response.data.momentoVagas
 
-      response.data.momentoVagas.forEach(momento => {
-        if (momento.statusRegistro === 'Saida') {
-          andaresSaida.add(momento.andar);
-        } else if (momento.statusRegistro === 'Entrada' && !andaresSaida.has(momento.andar)) {
-          andaresEntrada.add(momento.andar);
-        }
-      });
+        const andaresSeparados = {};
+
+        momentoV.forEach(item => {
+            const andar = item.andar;
+            if (!andaresSeparados[andar]) {
+                andaresSeparados[andar] = [];
+            }
+            andaresSeparados[andar].push(item);
+        });
+          const andaresArray = Object.values(andaresSeparados);
+
+          andaresArray.forEach(status => {
+              if (status.some(item => item.statusRegistro === "Saida")){
+                  console.log("Passei aqui")
+                  andaresSaida.add(status[0].andar);
+              } else {
+                  andaresEntrada.add(status[0].andar);
+              }
+          })
+
       sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
       sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
     })
@@ -92,8 +106,11 @@ function TelaCheckout(props) {
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
           confirmButtonText: "Ok",
-        });
-        console.log(response);
+        }).then((result) => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });;
         pegaCheckouts()
         pegarDadosDash()
       })

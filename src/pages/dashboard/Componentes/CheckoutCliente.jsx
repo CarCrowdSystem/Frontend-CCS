@@ -29,7 +29,11 @@ function CheckoutCliente() {
         Swal.fire({
           icon: 'success',
           text: 'Checkout realizado!',
-        })
+        }).then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
+          });
       })
       .catch((erro) => {
         console.log(erro);

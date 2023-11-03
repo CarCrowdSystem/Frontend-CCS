@@ -36,6 +36,44 @@ function Dashboard() {
     api
       .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
       .then((response) => {
+      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
+            sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
+            const dadosVagas = Object.values(response.data.momentoVagas)
+            sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
+
+            const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
+              if (momento.statusRegistro === 'Saida') {
+                contador++;
+              }
+              return contador;
+            }, 0);
+            sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
+            const andaresSaida = new Set();
+            const andaresEntrada = new Set();
+            const momentoV = response.data.momentoVagas
+
+              const andaresSeparados = {};
+
+              momentoV.forEach(item => {
+                  const andar = item.andar;
+                  if (!andaresSeparados[andar]) {
+                      andaresSeparados[andar] = [];
+                  }
+                  andaresSeparados[andar].push(item);
+              });
+                const andaresArray = Object.values(andaresSeparados);
+
+                andaresArray.forEach(status => {
+                    if (status.some(item => item.statusRegistro === "Saida")){
+                        console.log("Passei aqui")
+                        andaresSaida.add(status[0].andar);
+                    } else {
+                        andaresEntrada.add(status[0].andar);
+                    }
+                })
+
+            sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
+            sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
         lista = response.data.momentoVagas;
         setVagas(lista);
         const uniqueOptions = Array.from(new Set(lista.map(lista => lista.andar)));
@@ -114,7 +152,7 @@ function Dashboard() {
                 <div className="container-painel-grande">
                   <div className="painel-grande">
                   <h4> Andar </h4>
-                    <div className="container-combobox-andares-dash">      
+                    <div className="container-combobox-andares-dash">
                       <select
                         className="combobox-andares-dash"
                         name="selecaoAndares"
@@ -130,8 +168,8 @@ function Dashboard() {
                     <div className="container-vagas-checkin-dash">
                       {vagas.map((vaga, i) => (
                         <React.Fragment key={i}>
-                          <Vaga 
-                            numero={vaga.numero} 
+                          <Vaga
+                            numero={vaga.numero}
                             status={vaga.statusRegistro}
                             andar={vaga.andar}
                             andarSelecionado={selectedOption}
@@ -154,7 +192,7 @@ function Dashboard() {
                     <div className="div-grafico-dashboard">
                       <img className="img-grafico" src={Teste} alt="imgGrafico" />
                       <ChartComponent
-                        totalCheckout={sessionTotalCheckout} 
+                        totalCheckout={sessionTotalCheckout}
                       />
                     </div>
                   </div>
