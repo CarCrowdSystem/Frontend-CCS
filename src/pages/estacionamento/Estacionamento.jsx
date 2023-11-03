@@ -89,7 +89,11 @@ function Estacionamento() {
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
           confirmButtonText: "Ok",
-        });
+        }).then((result) => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });;
         updateList();
       })
       .catch((erro) => {
