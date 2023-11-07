@@ -36,6 +36,12 @@ function NavSideBar() {
             href: "/valores",
             alt: "img_valores"
         },
+        {
+            text: "Agendamentos",
+            icon: "imgs/icons/navIcons/agendamentosBranco.png",
+            href: "/agendamentos",
+            alt: "img_agendamentos"
+        },
 
     ]
     

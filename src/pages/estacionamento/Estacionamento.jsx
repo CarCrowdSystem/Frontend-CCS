@@ -114,6 +114,17 @@ function Estacionamento() {
         <div className="titulo-estacionamento">
           <h1 className="title-estacionamento">Estacionamento</h1>
         </div>
+        <div className="container-foto-estacionamento">
+          <div className="div-foto-estacionamento">
+            <div className="div-inserir-foto-estacionamento">
+            </div>
+          </div>
+          <div className="div-botao-alterar">
+          <button>
+            Inserir foto
+          </button>
+        </div>
+        </div>
         <div className="div-form-estacionamento">
           <form className="form-estacionamento">
             <label>Nome:</label>
