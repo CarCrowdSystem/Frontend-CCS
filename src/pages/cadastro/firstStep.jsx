@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
 import { validateNome2, validateCnpj, validateCep, validateNum, validateTelefone} from './funcoes/funcao'
 // import { Container } from './styles';
+import InputMask from 'react-input-mask';
 
 const FirstStep = ({data, updateFieldHandler}) => {
 
@@ -35,12 +36,11 @@ const FirstStep = ({data, updateFieldHandler}) => {
       /> 
 
       <label>CNPJ</label>
-      <IMaskInput
+      <InputMask
         className={validacao.cnpj ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cnpjEmpresa"
-        maxLength={14}
-        //mask="00.000.000/0000-00"
+        mask="99.999.999/9999-99"
         placeholder="Digite o CNPJ da empresa"
         required
         value={data.cnpjEmpresa || ""}
@@ -49,12 +49,11 @@ const FirstStep = ({data, updateFieldHandler}) => {
       />
 
       <label>CEP</label>
-      <IMaskInput
+      <InputMask
         className={validacao.cep ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cepEmpresa"
-        maxLength={9}
-        // mask="00000-000"
+        mask="99999-999" // Máscara de CEP
         placeholder="Digite o CEP da empresa"
         required
         value={data.cepEmpresa || ""}
@@ -75,17 +74,16 @@ const FirstStep = ({data, updateFieldHandler}) => {
       />
 
       <label>Telefone</label>
-      <IMaskInput
-        className={validacao.telefone ? "campo-texto-correct" : "campo-texto"}
+      <InputMask
+        className={validacao.num ? "campo-texto-correct" : "campo-texto"}
         type="text"
-        name="telefoneEmpresa"
-        maxLength={11}
-        // mask="(00) 00000-0000"
-        placeholder="Digite o número de telefone com DDD"
+        name="numeroCelular"
+        mask="(99) 99999-9999" // Máscara para número de celular
+        placeholder="Digite o número de celular da empresa"
         required
-        value={data.telefoneEmpresa || ""}
-        onChange={(e) => updateFieldHandler("telefoneEmpresa", e.target.value)}
-        onKeyUp={(e) => validateTelefone(e.target.value, atualizarValidacao)}
+        value={data.numeroCelular || ""}
+        onChange={(e) => updateFieldHandler("numeroCelular", e.target.value)}
+        onKeyUp={(e) => validateNum(e.target.value, atualizarValidacao)}
       />
     </>
   );

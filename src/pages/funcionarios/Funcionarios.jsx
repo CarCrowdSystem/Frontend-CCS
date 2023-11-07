@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 
 import { useState } from "react";
 // import { Container } from './styles';
+import InputMask, { ReactInputMask } from 'react-input-mask';
 
 const formTemplate = {
   nomeFuncionario: "",
@@ -223,6 +224,7 @@ function Funcionarios() {
                 <input
                   type="text"
                   name="nomeFuncionario"
+                  placeholder="Digite o nome"
                   value={data.nomeFuncionario || ""}
                   onChange={(e) =>
                     updateFieldHandler("nomeFuncionario", e.target.value)
@@ -244,15 +246,15 @@ function Funcionarios() {
                 <label className="label-info-add-func" htmlFor="">
                   CPF:
                 </label>
-                <input
+                <InputMask
                   className="input-add-func"
                   type="text"
-                  name="cpfFuncionario"
-                  maxLength={11}
-                  value={data.cpfFuncionario || ""}
-                  onChange={(e) =>
-                    updateFieldHandler("cpfFuncionario", e.target.value)
-                  }
+                  name="cpfUsuario"
+                  mask="999.999.999-99"
+                  placeholder="Digite o CPF"
+                  required
+                  value={data.cpfUsuario || ""}
+                  onChange={(e) => updateFieldHandler("cpfUsuario", e.target.value)}
                 />
                 <label className="label-info-add-func" htmlFor="">
                   E-mail:
@@ -261,6 +263,7 @@ function Funcionarios() {
                   className="input-add-func"
                   type="text"
                   name="emailFuncionario"
+                  placeholder="funcionario@gmail.com"
                   value={data.emailFuncionario || ""}
                   onChange={(e) =>
                     updateFieldHandler("emailFuncionario", e.target.value)
@@ -275,6 +278,7 @@ function Funcionarios() {
                   className="input-add-func"
                   type="password"
                   name="senha"
+                  placeholder="********"
                   value={data.senha || ""}
                   onChange={(e) => updateFieldHandler("senha", e.target.value)}
                 />
@@ -285,6 +289,7 @@ function Funcionarios() {
                   className="input-add-func"
                   type="password"
                   name="confirmaSenha"
+                  placeholder="********"
                   value={data.confirmaSenha || ""}
                   onChange={(e) =>
                     updateFieldHandler("confirmaSenha", e.target.value)

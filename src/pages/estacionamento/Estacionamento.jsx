@@ -6,6 +6,7 @@ import api from "../../api";
 import Swal from "sweetalert2";
 
 import { useState } from "react";
+import InputMask, { ReactInputMask } from 'react-input-mask';
 
 var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
@@ -131,11 +132,11 @@ function Estacionamento() {
             />
 
             <label>CEP:</label>
-            <input
+            <InputMask
               className="campo-texto-estacionamento"
               type="text"
               name="cepEmpresa"
-              maxLength={9}
+              mask="99999-999" // Máscara de CEP
               placeholder={dadosEstacionamento.cep}
               required
               value={data.cepEmpresa || ""}
@@ -169,17 +170,15 @@ function Estacionamento() {
             />
 
             <label>Telefone</label>
-            <input
+            <InputMask
               className="campo-texto-estacionamento"
               type="text"
-              name="telefoneEmpresa"
-              maxLength={11}
+              name="numeroCelular"
+              mask="(99) 99999-9999" // Máscara para número de celular
               placeholder={dadosEstacionamento.telefone}
               required
-              value={data.telefoneEmpresa || ""}
-              onChange={(e) =>
-                updateFieldHandler("telefoneEmpresa", e.target.value)
-              }
+              value={data.numeroCelular || ""}
+              onChange={(e) => updateFieldHandler("numeroCelular", e.target.value)}
             />
           </form>
         </div>

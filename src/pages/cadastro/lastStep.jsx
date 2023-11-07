@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
 import { validateNomeUsuario, validateCpf, validateEmail, validateSenha, validateSenha2 } from './funcoes/funcao'
+import InputMask from 'react-input-mask';
 
 // import { Container } from './styles';
 
@@ -36,12 +37,11 @@ const LastStep = ({data, updateFieldHandler}) => {
       />
 
       <label>CPF</label>
-      <IMaskInput
+      <InputMask
         className={validacao.cpf ? "campo-texto-correct" : "campo-texto"}
         type="text"
         name="cpfUsuario"
-        maxLength={11}
-        // mask="000.000.000-00"
+        mask="999.999.999-99"
         placeholder="Digite seu CPF"
         required
         value={data.cpfUsuario || ""}
