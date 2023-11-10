@@ -5,6 +5,15 @@ import "./NavSideBar.css";
 
 function NavSideBar() {
     const [isExpended, setExpendedState] = useState(false);
+
+    const handleLogout = () => {
+        // Limpar o sessionStorage
+        sessionStorage.clear();
+
+        // Redirecionar para a página de login
+        window.location.href = '/login';
+    };
+
     const menuItems = [
         {
             text: "Dashboard",
@@ -87,7 +96,7 @@ function NavSideBar() {
                             </div>
                         </div>
                     )}
-                    <a href="/login"><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconLogout"/>
+                    <a href="/login" onClick={handleLogout}><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconLogout"/>
                     {!isExpended && <div className="tooltip">Sair</div>}</a>
                 </div>
             </div>
