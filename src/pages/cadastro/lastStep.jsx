@@ -21,6 +21,10 @@ const LastStep = ({data, updateFieldHandler}) => {
     setValidacao(novaValidacao);
   }
 
+  const removeNonNumericChars = (value) => {
+    return value.replace(/\D/g, '');
+  };
+
   return (
     <>
       <label>Nome completo</label>
@@ -45,7 +49,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         placeholder="Digite seu CPF"
         required
         value={data.cpfUsuario || ""}
-        onChange={(e) => updateFieldHandler("cpfUsuario", e.target.value)}
+        onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
         onKeyUp={(e) => validateCpf(e.target.value, atualizarValidacao)}
       />
 

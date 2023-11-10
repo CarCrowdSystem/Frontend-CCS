@@ -18,6 +18,10 @@ const formTemplate = {
   telefoneEmpresa: "",
 };
 
+const removeNonNumericChars = (value) => {
+  return value.replace(/\D/g, '');
+};
+
 var dadosEstacionamento = {};
 var logradouro = {};
 
@@ -140,7 +144,7 @@ function Estacionamento() {
               placeholder={dadosEstacionamento.cep}
               required
               value={data.cepEmpresa || ""}
-              onChange={(e) => updateFieldHandler("cepEmpresa", e.target.value)}
+              onChange={(e) => updateFieldHandler("cepEmpresa", removeNonNumericChars(e.target.value))}
             />
 
             <label>Rua: </label>
@@ -178,7 +182,7 @@ function Estacionamento() {
               placeholder={dadosEstacionamento.telefone}
               required
               value={data.numeroCelular || ""}
-              onChange={(e) => updateFieldHandler("numeroCelular", e.target.value)}
+              onChange={(e) => updateFieldHandler("numeroCelular", removeNonNumericChars(e.target.value))}
             />
           </form>
         </div>

@@ -20,6 +20,10 @@ const FirstStep = ({data, updateFieldHandler}) => {
     setValidacao(novaValidacao);
   }
 
+  const removeNonNumericChars = (value) => {
+    return value.replace(/\D/g, '');
+  };
+
   return (
     <>
       <label>Nome fantasia</label>
@@ -44,7 +48,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         placeholder="Digite o CNPJ da empresa"
         required
         value={data.cnpjEmpresa || ""}
-        onChange={(e) => updateFieldHandler("cnpjEmpresa", e.target.value)}
+        onChange={(e) => updateFieldHandler("cnpjEmpresa", removeNonNumericChars(e.target.value))}
         onKeyUp={(e) => validateCnpj(e.target.value, atualizarValidacao)}
       />
 
@@ -57,7 +61,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         placeholder="Digite o CEP da empresa"
         required
         value={data.cepEmpresa || ""}
-        onChange={(e) => updateFieldHandler("cepEmpresa", e.target.value)}
+        onChange={(e) => updateFieldHandler("cepEmpresa", removeNonNumericChars(e.target.value))}
         onKeyUp={(e) => validateCep(e.target.value, atualizarValidacao)}
       />
 
@@ -77,12 +81,12 @@ const FirstStep = ({data, updateFieldHandler}) => {
       <InputMask
         className={validacao.num ? "campo-texto-correct" : "campo-texto"}
         type="text"
-        name="numeroCelular"
+        name="telefoneEmpresa"
         mask="(99) 99999-9999" // Máscara para número de celular
         placeholder="Digite o número de celular da empresa"
         required
-        value={data.numeroCelular || ""}
-        onChange={(e) => updateFieldHandler("numeroCelular", e.target.value)}
+        value={data.telefoneEmpresa || ""}
+        onChange={(e) => updateFieldHandler("telefoneEmpresa", removeNonNumericChars(e.target.value))}
         onKeyUp={(e) => validateNum(e.target.value, atualizarValidacao)}
       />
     </>
