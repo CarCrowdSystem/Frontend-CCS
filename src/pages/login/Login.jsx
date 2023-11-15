@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import React, {useState} from "react";
 import "./Login.css";
 import "../../components/Inputs/input.css";
 import Button from "./Componentes/Botao/index";
@@ -8,6 +9,7 @@ import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
 
   function loginEmpresa(e) {
     e.preventDefault();
@@ -16,6 +18,8 @@ function Login() {
       email: e.target.emailEmpresa.value,
       senha: e.target.senhaEmpresa.value,
     };
+
+    setLoading(true);
 
 //     function userHasAccount(userDataList){
 //       for(var i = 0; i < userDataList.length; i++){
@@ -39,7 +43,7 @@ function Login() {
           icon: "success",
           title: "Login efetuado com sucesso!",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 4000,
         });
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
@@ -51,9 +55,13 @@ function Login() {
           icon: "error",
           title: "Oops...",
           text: "Email ou senha inválidos!",
+          timer: 4000,
         });
         console.log("Error");
         console.log(erro);
+      })
+      .finally(() =>{
+        setLoading(false);
       });
 
     console.log(getEmpresa);
@@ -105,7 +113,7 @@ function Login() {
       sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
       sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
 
-      setTimeout(() => navigate("/dashboard"), 3000)
+      setTimeout(() => navigate("/dashboard"), 1000)
     })
     .catch((erro) => {
         console.log("Deu b.o", erro)
@@ -127,7 +135,8 @@ function Login() {
      }
 
   return (
-    <>
+    <>            
+
       <section className="view-login">
         <div className="div-all-fields">
           <div className="div-arrow-back">
@@ -141,6 +150,8 @@ function Login() {
             <h1 className="login-title">Login</h1>
           </div>
           <div className="campo-cadastro">
+          {loading && <div className="fundoloader"><img className="gif" src="/gif/loading-gif-png-5.gif" alt="logo"/></div>}
+          {!loading &&(
             <form onSubmit={loginEmpresa}>
               <label>E-mail</label>
               <input
@@ -160,7 +171,7 @@ function Login() {
               />
 
               <Button type="submit">Entrar</Button>
-            </form>
+            </form>)}
 
             <div className="footer-login">
               <h2>Não possui cadastro?</h2>
@@ -174,6 +185,7 @@ function Login() {
           <img className="sideImageCadastro" src="./imgs/parking.png" alt="imageCad"/>
         </div>
       </section>
+      
     </>
   );
 }
