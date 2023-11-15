@@ -149,9 +149,10 @@ function Login() {
 
             <h1 className="login-title">Login</h1>
           </div>
-          <div className="campo-cadastro">
           {loading && <div className="fundoloader"><img className="gif" src="/gif/loading-gif-png-5.gif" alt="logo"/></div>}
           {!loading &&(
+          <div className="campo-cadastro">
+          
             <form onSubmit={loginEmpresa}>
               <label>E-mail</label>
               <input
@@ -171,7 +172,7 @@ function Login() {
               />
 
               <Button type="submit">Entrar</Button>
-            </form>)}
+            </form>
 
             <div className="footer-login">
               <h2>Não possui cadastro?</h2>
@@ -180,6 +181,7 @@ function Login() {
               </button>
             </div>
           </div>
+          )}
         </div>
         <div className="image-cadastro">
           <img className="sideImageCadastro" src="./imgs/parking.png" alt="imageCad"/>
