@@ -40,6 +40,7 @@ function Dashboard() {
   const [options, setOptions] = useState([]);
   const [vagas, setVagas] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
+  const [loading, setLoading] = useState(false)
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -52,7 +53,12 @@ function Dashboard() {
       .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
       .then((response) => {
         bla()
-      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
+
+        if(response.data.totalFaturamento == null || response.data.totalFaturamento === "") {
+          response.data.totalFaturamento = 0;
+        }
+
+            sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
             sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
             const dadosVagas = Object.values(response.data.momentoVagas)
             sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
@@ -111,7 +117,7 @@ function Dashboard() {
           sessionStorage.setItem(`CHECKOUT${i}`, response.data[i-1]["totalCheckouts"])
         } else {
           sessionStorage.setItem(`DIA${i}`, "0-0-0000")
-          sessionStorage.setItem(`CHECKOUT${i}`, "8")
+          sessionStorage.setItem(`CHECKOUT${i}`, "0")
         }
       }
     })
