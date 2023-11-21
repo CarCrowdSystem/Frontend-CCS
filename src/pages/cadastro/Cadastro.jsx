@@ -17,6 +17,7 @@ const formTemplate = {
   nomeEmpresa: "",
   cnpjEmpresa: "",
   cepEmpresa: "",
+  telefoneEmpresa: "",
   enderecoEmpresa: "",
   emailEmpresa: "",
   andar: "",

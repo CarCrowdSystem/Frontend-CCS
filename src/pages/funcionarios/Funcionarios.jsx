@@ -21,6 +21,10 @@ const formTemplate = {
   confirmaSenha: "",
 };
 
+const removeNonNumericChars = (value) => {
+  return value.replace(/\D/g, '');
+};
+
 var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
 var contador = 0;
@@ -254,7 +258,7 @@ function Funcionarios() {
                   placeholder="Digite o CPF"
                   required
                   value={data.cpfUsuario || ""}
-                  onChange={(e) => updateFieldHandler("cpfUsuario", e.target.value)}
+                  onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
                 />
                 <label className="label-info-add-func" htmlFor="">
                   E-mail:
