@@ -187,7 +187,8 @@ function Dashboard() {
               <div className="container-painel-filho">
                 <div className="container-painel-grande">
                   <div className="painel-grande">
-                  <h4> Andar </h4>
+                  <div className="container-andares-dash">
+                    <h4 className="titulo-andares-dash"> Andar </h4>
                     <div className="container-combobox-andares-dash">
                       <select
                         className="combobox-andares-dash"
@@ -201,6 +202,7 @@ function Dashboard() {
                         ))}
                       </select>
                     </div>
+                  </div>
                     <div className="container-vagas-checkin-dash">
                       {vagas.map((vaga, i) => (
                         <React.Fragment key={i}>
