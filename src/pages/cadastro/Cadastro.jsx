@@ -192,7 +192,7 @@ function Cadastro() {
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">
-              <img className="arrowBack" src="/imgs/icons/Vector.png" alt="arrowBack"/>
+              <img className="arrowBack" src="/imgs/icons/navIcons/botao-home (1).png" alt="arrowBack"/>
             </a>
           </div>
           <div className="div-logo">

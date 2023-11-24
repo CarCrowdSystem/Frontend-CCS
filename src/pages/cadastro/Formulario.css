@@ -5,11 +5,16 @@
 
 .divArrowBack{
     margin-top: 2%;
-    width: 95%;
+    width: 100%;
 }
 
 .arrowBack{
-    width: 5%;
+    width: 6%;
+    cursor: pointer;
+}
+
+.arrowBack:hover{
+    transform: scale(1.3);
 }
 
 .divLogo{
