@@ -141,7 +141,7 @@ function Login() {
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">
-              <img className="arrowBack" src="/imgs/icons/Vector.png" alt="arrowback" />
+              <img className="arrowBack" src="/imgs/icons/navIcons/botao-home (1).png" alt="arrowback" />
             </a>
           </div>
           <div className="div-logo-login">
@@ -176,9 +176,9 @@ function Login() {
 
             <div className="footer-login">
               <h2>Não possui cadastro?</h2>
-              <button className="button-cadastra">
-                <a href="/cadastro">Cadastre-se</a>
-              </button>
+              <a  href="/cadastro" className="button-cadastra">
+                Cadastre-se
+              </a>
             </div>
           </div>
           )}

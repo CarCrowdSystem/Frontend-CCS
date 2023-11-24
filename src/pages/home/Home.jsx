@@ -168,22 +168,22 @@ function Home() {
 
       <footer>
         <div className="separaFooter">
-          <div className="bloco">
+{/*           <div className="bloco">
             <p>Sobre</p>
             <p>Serviços</p>
             <p>Informações</p>
             <p>FAQ</p>
             <p>Jurídico</p>
-          </div>
+          </div> */}
 
           <div className="bloco">
             <div className="imgBloco">
               <img src="imgs/Group 39.png" alt="icone sla" style={{ width: 100, height: 100 }}/>
             </div>
-            <p>Copyright© Car Crowd System</p>
+            <p>Copyright© 2023 Car Crowd System</p>
           </div>
 
-          <div
+{/*           <div
             className="bloco"
             style={{
               display: "flex",
@@ -198,7 +198,7 @@ function Home() {
                 style={{ width: 200, height: 50 }}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </footer>
     </>

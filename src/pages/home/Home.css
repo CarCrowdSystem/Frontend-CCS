@@ -54,7 +54,7 @@ nav a {
   list-style: none;
 }
 
-nav li {
+nav a {
   text-decoration: none;
   list-style: none;
   color: #fff;
@@ -73,7 +73,7 @@ nav li {
   z-index: 1;
 }
 
-nav li:after {
+nav a:after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -83,7 +83,7 @@ nav li:after {
   z-index: -2;
 }
 
-nav li:before {
+nav a:before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -95,7 +95,7 @@ nav li:before {
   z-index: -1;
 }
 
-nav li:hover {
+nav a:hover {
   color: #ff8000;
   cursor: pointer;
   font-weight: bold;
@@ -103,7 +103,7 @@ nav li:hover {
   color: #fff;
 }
 
-nav li:hover:before {
+nav a:hover:before {
   width: 100%;
 }
 
@@ -188,10 +188,6 @@ header p {
 
 .aboutUs h1 {
   font-size: 48px;
-}
-
-.textoAboutUs {
-  margin-bottom: 3vh;
 }
 
 .aboutUs p {
@@ -365,12 +361,11 @@ footer {
   height: 100%;
   margin-left: 10%;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .bloco {
-  width: 250px;
+  width: 290px;
   height: 25vh;
   margin: 3px 0;
   display: flex;
