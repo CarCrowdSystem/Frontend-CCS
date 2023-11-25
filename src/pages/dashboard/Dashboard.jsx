@@ -34,7 +34,7 @@ import { useState } from "react";
   var checkout4 = sessionStorage.getItem("CHECKOUT4");
   var checkout5 = sessionStorage.getItem("CHECKOUT5");
   var checkout6 = sessionStorage.getItem("CHECKOUT6");
-  var checkout7 = sessionStorage.getItem("CHECKOUT7");
+  var checkout7 = sessionStorage.getItem("CHECKOUT7");  
 
 function Dashboard() {
   const [options, setOptions] = useState([]);
@@ -141,7 +141,7 @@ function Dashboard() {
                       <h3 className="title-card">Vagas disponíveis</h3>
                     </div>
                     <div className="valor-painel">
-                      <p className="valor-dashboard">{sessionVagasLivres}</p>
+                      <p className="valor-dashboard">{sessionVagasLivres || 'Carregando...'}</p>
                     </div>
                   </div>
                   <div className="painel-pequeno">
@@ -150,8 +150,7 @@ function Dashboard() {
                     </div>
                     <div className="valor-painel">
                       <p className="valor-dashboard">
-                        {sessionAndaresSaida} |{" "}
-                        {sessionAndaresEntrada + sessionAndaresSaida}
+                        {(sessionAndaresSaida && sessionAndaresEntrada) ? `${sessionAndaresSaida} | ${sessionAndaresEntrada + sessionAndaresSaida}` : 'Carregando...'}
                       </p>
                     </div>
                   </div>
@@ -168,7 +167,7 @@ function Dashboard() {
                     <div className="valor-painel">
                       <p className="valor-monetario-dashboard">R$</p>
                       <p className="valor-monetario-dashboard">
-                        {sessionTotalFaturamento}
+                        {sessionTotalFaturamento || '...'}
                       </p>
                     </div>
                   </div>
@@ -177,7 +176,7 @@ function Dashboard() {
                       <h3 className="title-card">Total de checkout's diário</h3>
                     </div>
                     <div className="valor-painel">
-                      <p className="valor-dashboard">{sessionTotalCheckout}</p>
+                      <p className="valor-dashboard">{sessionTotalCheckout || 'Carregando...'}</p>
                     </div>
                   </div>
                 </div>
@@ -196,7 +195,7 @@ function Dashboard() {
                         value={selectedOption}
                         onChange={handleSelectChange}
                       >
-                        <option value="">Selecione um andar</option>
+                        <option value="">Nº</option>
                         {options.map((option, i) => (
                           <option key={i}>{option}</option>
                         ))}
