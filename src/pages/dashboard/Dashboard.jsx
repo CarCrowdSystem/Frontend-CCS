@@ -34,13 +34,12 @@ import { useState } from "react";
   var checkout4 = sessionStorage.getItem("CHECKOUT4");
   var checkout5 = sessionStorage.getItem("CHECKOUT5");
   var checkout6 = sessionStorage.getItem("CHECKOUT6");
-  var checkout7 = sessionStorage.getItem("CHECKOUT7");
+  var checkout7 = sessionStorage.getItem("CHECKOUT7");  
 
 function Dashboard() {
   const [options, setOptions] = useState([]);
   const [vagas, setVagas] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
-  const [loading, setLoading] = useState(false)
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -53,13 +52,8 @@ function Dashboard() {
       .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
       .then((response) => {
         bla()
-
-        if(response.data.totalFaturamento == null || response.data.totalFaturamento === "") {
-          response.data.totalFaturamento = 0;
-        }
-
-            sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
-            sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
+      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario || "0");
+            sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento || "0.0" );
             const dadosVagas = Object.values(response.data.momentoVagas)
             sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
 
@@ -100,6 +94,10 @@ function Dashboard() {
         setVagas(lista);
         const uniqueOptions = Array.from(new Set(lista.map(lista => lista.andar)));
         setOptions(uniqueOptions)
+
+        if (uniqueOptions.length > 0) {
+          setSelectedOption(uniqueOptions[0]);
+        }
       })
       .catch((erro) => {
         console.log(erro);
@@ -117,7 +115,7 @@ function Dashboard() {
           sessionStorage.setItem(`CHECKOUT${i}`, response.data[i-1]["totalCheckouts"])
         } else {
           sessionStorage.setItem(`DIA${i}`, "0-0-0000")
-          sessionStorage.setItem(`CHECKOUT${i}`, "0")
+          sessionStorage.setItem(`CHECKOUT${i}`, "8")
         }
       }
     })
@@ -147,7 +145,7 @@ function Dashboard() {
                       <h3 className="title-card">Vagas disponíveis</h3>
                     </div>
                     <div className="valor-painel">
-                      <p className="valor-dashboard">{sessionVagasLivres}</p>
+                      <p className="valor-dashboard">{sessionVagasLivres || '...'}</p>
                     </div>
                   </div>
                   <div className="painel-pequeno">
@@ -156,8 +154,7 @@ function Dashboard() {
                     </div>
                     <div className="valor-painel">
                       <p className="valor-dashboard">
-                        {sessionAndaresSaida} |{" "}
-                        {sessionAndaresEntrada + sessionAndaresSaida}
+                        {(sessionAndaresSaida && sessionAndaresEntrada) ? `${sessionAndaresSaida} | ${sessionAndaresEntrada + sessionAndaresSaida}` : '...'}
                       </p>
                     </div>
                   </div>
@@ -174,7 +171,7 @@ function Dashboard() {
                     <div className="valor-painel">
                       <p className="valor-monetario-dashboard">R$</p>
                       <p className="valor-monetario-dashboard">
-                        {sessionTotalFaturamento}
+                        {sessionTotalFaturamento || '...'}
                       </p>
                     </div>
                   </div>
@@ -183,7 +180,7 @@ function Dashboard() {
                       <h3 className="title-card">Total de checkout's diário</h3>
                     </div>
                     <div className="valor-painel">
-                      <p className="valor-dashboard">{sessionTotalCheckout}</p>
+                      <p className="valor-dashboard">{sessionTotalCheckout || '...'}</p>
                     </div>
                   </div>
                 </div>
@@ -193,7 +190,8 @@ function Dashboard() {
               <div className="container-painel-filho">
                 <div className="container-painel-grande">
                   <div className="painel-grande">
-                  <h4> Andar </h4>
+                  <div className="container-andares-dash">
+                    <h4 className="titulo-andares-dash"> Andar </h4>
                     <div className="container-combobox-andares-dash">
                       <select
                         className="combobox-andares-dash"
@@ -201,12 +199,13 @@ function Dashboard() {
                         value={selectedOption}
                         onChange={handleSelectChange}
                       >
-                        <option value="">Selecione um andar</option>
+                        <option value="">Nº</option>
                         {options.map((option, i) => (
                           <option key={i}>{option}</option>
                         ))}
                       </select>
                     </div>
+                  </div>
                     <div className="container-vagas-checkin-dash">
                       {vagas.map((vaga, i) => (
                         <React.Fragment key={i}>
