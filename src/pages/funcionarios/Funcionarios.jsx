@@ -43,15 +43,21 @@ function Funcionarios() {
   };
 
   function buscarFuncionarioPorNome() {
-    api
-      .get(`/funcionarios/nome/${nomeFunc}`)
-      .then((response) => {
-      console.log(response)
-        setFuncionarios(response.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
+    let apiEndpoint = `/funcionarios/${sessionIdEstacionamento}`;
+
+  if (nomeFunc !== null && nomeFunc !== "") {
+    apiEndpoint = `/funcionarios/nome/${nomeFunc}`;
+  }
+
+  api
+    .get(apiEndpoint)
+    .then((response) => {
+      console.log(response.data);
+      setFuncionarios(response.data);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
   }
 
   function cadastrarFuncionario() {
