@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "./NavSideBar.css";
 import Swal from "sweetalert2";
 
 function NavSideBar() {
