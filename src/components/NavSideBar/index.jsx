@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./NavSideBar.css";
+import Swal from "sweetalert2";
 
 // import { Container } from './styles';
 
@@ -11,8 +12,29 @@ function NavSideBar() {
         sessionStorage.clear();
 
         // Redirecionar para a página de login
-        window.location.href = '/login';
+        window.location.href = '/login'; 
     };
+
+    const confirmarLogout = () => {
+        Swal.fire({
+            title: "Deseja realmente sair?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#ff8000",
+            cancelButtonColor: "#1b1b1b",
+            confirmButtonText: "Sim, sair!",    
+            cancelButtonText: "Não, cancelar"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              handleLogout()
+            }
+          });
+    }
 
     const menuItems = [
         {
@@ -96,8 +118,11 @@ function NavSideBar() {
                             </div>
                         </div>
                     )}
-                    <a href="/login" onClick={handleLogout}><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconLogout"/>
+                    <a onClick={confirmarLogout}><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconLogout"/>
                     {!isExpended && <div className="tooltip">Sair</div>}</a>
+                    
+                    
+
                 </div>
             </div>
         </>
