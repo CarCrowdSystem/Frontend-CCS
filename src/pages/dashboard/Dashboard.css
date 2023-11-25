@@ -171,6 +171,16 @@ body{
     margin-top: 1%;
 }
 
+.titulo-andares-dash{
+    padding-top: 6px;
+    padding-right: 10px;
+}
+
+.container-andares-dash{
+    display: flex;
+    flex-direction: row;
+}   
+
 .container-combobox-andares-dash{
     display: flex;
     width: 80%;
@@ -179,11 +189,10 @@ body{
 }
 
 .combobox-andares-dash{
-    border: 2px solid #FF8000;
-    background-color: #F6F6F6;
-    border-radius: 15px;
-    width: 40%;
-    text-align: center;
+    border: 2px solid #ff8000;
+    padding: 5%;
+    margin-bottom: 40px;
+    border-radius: 8px;
 }
 
 .combobox-andares-dash:hover{
