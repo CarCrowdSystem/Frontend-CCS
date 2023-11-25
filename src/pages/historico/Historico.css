@@ -64,7 +64,24 @@
     height: 80px;
     align-items: flex-end;
     margin-bottom: 10px;
-    width: 95%
+    padding-left: 10px;
+    width: 95%;
+}
+
+.div-historico-titulo{
+    width: 90px;
+}
+
+.div-historico-tituloP{
+    width: 60px;
+}
+
+.div-historico{
+    width: 95px;
+}
+
+.div-historicoP{
+    width: 70px;
 }
 
 .div-valores-historico{

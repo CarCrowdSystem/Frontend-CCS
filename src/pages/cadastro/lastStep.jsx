@@ -1,25 +1,11 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
-import { validateNomeUsuario, validateCpf, validateEmail, validateSenha, validateSenha2 } from './funcoes/funcao'
 import InputMask from 'react-input-mask';
 
 // import { Container } from './styles';
 
 const LastStep = ({data, updateFieldHandler}) => {
 
-  const [validacao, setValidacao] = useState({
-    "nomeUsuario": false,
-    "cpf": false,
-    "email": false,
-    "senha": false,
-    "senha2": false,
-  });
-
-  function atualizarValidacao(campo, valido) {
-    const novaValidacao = { ...validacao };
-    novaValidacao[campo] = valido;
-    setValidacao(novaValidacao);
-  }
 
   const removeNonNumericChars = (value) => {
     return value.replace(/\D/g, '');
@@ -30,19 +16,18 @@ const LastStep = ({data, updateFieldHandler}) => {
       <label>Nome completo</label>
       <input
         id="name-field"
-        className={validacao.nomeUsuario ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="nomeUsuario"
         placeholder="Digite seu nome completo"
         required
         value={data.nomeUsuario || ""}
         onChange={(e) => updateFieldHandler("nomeUsuario", e.target.value)}
-        onKeyUp={(e) => validateNomeUsuario(e.target.value, atualizarValidacao)}
       />
 
       <label>CPF</label>
       <InputMask
-        className={validacao.cpf ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="cpfUsuario"
         mask="999.999.999-99"
@@ -50,24 +35,22 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.cpfUsuario || ""}
         onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
-        onKeyUp={(e) => validateCpf(e.target.value, atualizarValidacao)}
       />
 
       <label>Email</label>
       <input
-        className={validacao.email ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="email"
         name="emailUsuario"
         placeholder="empresa@gmail.com"
         required
         value={data.emailUsuario || ""}
         onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
-        onKeyUp={(e) => validateEmail(e.target.value, atualizarValidacao)}
       />
 
       <label>Senha</label>
       <input
-        className={validacao.senha ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="password"
         name="senha"
         minLength={8}
@@ -75,19 +58,17 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.senha || ""}
         onChange={(e) => updateFieldHandler("senha", e.target.value)}
-        onKeyUp={(e) => validateSenha(e.target.value, atualizarValidacao)}
       />
 
       <label>Confirmar senha</label>
       <input
-        className={validacao.senha2 ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="password"
         name="confirmaSenha"
         placeholder="Confirmar senha"
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}
-        onKeyUp={(e) => validateSenha2(e.target.value, atualizarValidacao)}
       />
     </>
   );

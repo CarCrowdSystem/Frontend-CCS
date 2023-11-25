@@ -55,7 +55,7 @@
     width: 75%;
     font-size: 16px;
     padding: 16px;
-    margin: 2%;
+    margin: 0 2% 2% 2%;
     box-sizing: border-box;
     border-radius: 10px;
     border: 3px solid #FF8000;
@@ -68,7 +68,7 @@
     width: 75%;
     font-size: 16px;
     padding: 16px;
-    margin: 2%;
+    margin: 0 2% 2% 2%;
     box-sizing: border-box;
     border-radius: 10px;
     border: 3px solid green;
