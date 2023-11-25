@@ -7,16 +7,16 @@ const InfoHistorico = ({nomeCliente, modeloCarro, placa, andar, vaga, telefone, 
   return (
     <>
         <div className='valores-historico-cliente'>
-            <span>{nomeCliente}</span>
-            <span>{modeloCarro}</span>
-            <span>{placa}</span>
-            <span>{andar}</span>
-            <span>{vaga}</span>
-            <span>{telefone}</span>
-            <span>{data}</span>
-            <span>{hora}</span>
-            <span>{status}</span>
-            <span>{valor}</span>
+            <div className='div-historico'><span>{nomeCliente}</span></div>
+            <div className='div-historico'><span>{modeloCarro}</span></div>
+            <div className='div-historico'><span>{placa}</span></div>
+            <div className='div-historicoP'><span>{andar}</span></div>
+            <div className='div-historicoP'><span>{vaga}</span></div>
+            <div className='div-historico'><span>{telefone}</span></div>
+            <div className='div-historico'><span>{data}</span></div>
+            <div className='div-historico'><span>{hora}</span></div>
+            <div className='div-historico'><span>{status}</span></div>
+            <div className='div-historico'><span>{valor}</span></div>
         </div>
     </>
   );

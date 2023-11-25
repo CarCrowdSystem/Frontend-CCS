@@ -1,24 +1,8 @@
 import React, { useState } from "react";
 import { IMaskInput } from "react-imask";
-import { validateNome2, validateCnpj, validateCep, validateNum, validateTelefone} from './funcoes/funcao'
-// import { Container } from './styles';
 import InputMask from 'react-input-mask';
 
 const FirstStep = ({data, updateFieldHandler}) => {
-
-  const [validacao, setValidacao] = useState({
-    "nome": false,
-    "cnpj": false,
-    "cep": false,
-    "num": false,
-    "telefone": false
-  });
-
-  function atualizarValidacao(campo, valido) {
-    const novaValidacao = { ...validacao };
-    novaValidacao[campo] = valido;
-    setValidacao(novaValidacao);
-  }
 
   const removeNonNumericChars = (value) => {
     return value.replace(/\D/g, '');
@@ -28,7 +12,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
     <>
       <label>Nome fantasia</label>
       <input
-        className={validacao.nome ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="nomeEmpresa"
         placeholder="Digite o nome da empresa"
@@ -36,12 +20,12 @@ const FirstStep = ({data, updateFieldHandler}) => {
        // ref = { register ({ pattern: /^[A-Za-z]+$/i }) }
         value={data.nomeEmpresa}
         onChange={(e) => updateFieldHandler("nomeEmpresa", e.target.value)}
-        onKeyUp={(e) => validateNome2(e.target.value, atualizarValidacao)}
+
       /> 
 
       <label>CNPJ</label>
       <InputMask
-        className={validacao.cnpj ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="cnpjEmpresa"
         mask="99.999.999/9999-99"
@@ -49,12 +33,12 @@ const FirstStep = ({data, updateFieldHandler}) => {
         required
         value={data.cnpjEmpresa || ""}
         onChange={(e) => updateFieldHandler("cnpjEmpresa", removeNonNumericChars(e.target.value))}
-        onKeyUp={(e) => validateCnpj(e.target.value, atualizarValidacao)}
+
       />
 
       <label>CEP</label>
       <InputMask
-        className={validacao.cep ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="cepEmpresa"
         mask="99999-999" // Máscara de CEP
@@ -62,24 +46,24 @@ const FirstStep = ({data, updateFieldHandler}) => {
         required
         value={data.cepEmpresa || ""}
         onChange={(e) => updateFieldHandler("cepEmpresa", removeNonNumericChars(e.target.value))}
-        onKeyUp={(e) => validateCep(e.target.value, atualizarValidacao)}
+
       />
 
       <label>Número</label>
       <input
-        className={validacao.num ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="enderecoEmpresa"
         placeholder="Digite o número de endereço da empresa"
         required
         value={data.enderecoEmpresa || ""}
         onChange={(e) => updateFieldHandler("enderecoEmpresa", e.target.value)}
-        onKeyUp={(e) => validateNum(e.target.value, atualizarValidacao)}
+
       />
 
       <label>Telefone</label>
       <InputMask
-        className={validacao.num ? "campo-texto-correct" : "campo-texto"}
+        className="campo-texto"
         type="text"
         name="telefoneEmpresa"
         mask="(99) 99999-9999" // Máscara para número de celular
@@ -87,7 +71,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         required
         value={data.telefoneEmpresa || ""}
         onChange={(e) => updateFieldHandler("telefoneEmpresa", removeNonNumericChars(e.target.value))}
-        onKeyUp={(e) => validateNum(e.target.value, atualizarValidacao)}
+
       />
     </>
   );

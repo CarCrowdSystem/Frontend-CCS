@@ -35,7 +35,7 @@ function Historico() {
         <div className="container-historico">
           <div className="div-filho-historico">
             <div className="div-title-historico">
-              <h1 className="titulo-historico">Histórico</h1>
+              <h1 className="titulo-historico">HistÃ³rico</h1>
             </div>
             <div className="div-button-baixar-csv">
               <div className="div-csv-download">
@@ -43,16 +43,16 @@ function Historico() {
               </div>
             </div>
             <div className="container-itens-historico">
-              <h2 className="elements-checkout">Cliente</h2>
-              <h2 className="elements-checkout">Modelo</h2>
-              <h2 className="elements-checkout">Placa</h2>
-              <h2 className="elements-checkout">Andar</h2>
-              <h2 className="elements-checkout">Vaga</h2>
-              <h2 className="elements-checkout">Telefone</h2>
-              <h2 className="elements-checkout">Data</h2>
-              <h2 className="elements-checkout">Hora</h2>
-              <h2 className="elements-checkout">Status</h2>
-              <h2 className="elements-checkout">Valor</h2>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Cliente</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Modelo</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Placa</h2></div>
+              <div className="div-historico-tituloP"><h2 className="elements-checkout">Andar</h2></div>
+              <div className="div-historico-tituloP"><h2 className="elements-checkout">Vaga</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Telefone</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Data</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Hora</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Status</h2></div>
+              <div className="div-historico-titulo"><h2 className="elements-checkout">Valor</h2></div>
             </div>
             <div className="div-valores-historico">
                 {historicos.map((historico, i) => (
