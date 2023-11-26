@@ -35,7 +35,7 @@ function Historico() {
         <div className="container-historico">
           <div className="div-filho-historico">
             <div className="div-title-historico">
-              <h1 className="titulo-historico">HistÃ³rico</h1>
+              <h1 className="titulo-historico">Histórico</h1>
             </div>
             <div className="div-button-baixar-csv">
               <div className="div-csv-download">
