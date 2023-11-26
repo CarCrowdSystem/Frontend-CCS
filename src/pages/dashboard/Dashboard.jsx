@@ -9,120 +9,99 @@ import NomeEstacionamento from "./Componentes/NomeEstacionamento";
 import api from "../../api.js";
 import { useState } from "react";
 
-// import { Container } from './styles';
-  var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
-  var sessionNomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
-  var sessionTotalCheckout = sessionStorage.getItem("TOTAL_CHECKOUT_DIARIO");
-  var sessionTotalFaturamento = sessionStorage.getItem("TOTAL_FATURAMENTO");
-  var sessionAndaresSaida = parseInt(sessionStorage.getItem("ANDARES_SAIDA"));
-  var sessionAndaresEntrada = parseInt(
-    sessionStorage.getItem("ANDARES_ENTRADA")
-  );
-  var sessionVagasLivres = parseInt(sessionStorage.getItem("VAGAS_LIVRES"));
-  var momentoVagas = sessionStorage.getItem("MOMENTO_VAGAS");
-
-  var dia1 = sessionStorage.getItem("DIA1");
-  var dia2 = sessionStorage.getItem("DIA2");
-  var dia3 = sessionStorage.getItem("DIA3");
-  var dia4 = sessionStorage.getItem("DIA4");
-  var dia5 = sessionStorage.getItem("DIA5");
-  var dia6 = sessionStorage.getItem("DIA6");
-  var dia7 = sessionStorage.getItem("DIA7");
-  var checkout1 = sessionStorage.getItem("CHECKOUT1");
-  var checkout2 = sessionStorage.getItem("CHECKOUT2");
-  var checkout3 = sessionStorage.getItem("CHECKOUT3");
-  var checkout4 = sessionStorage.getItem("CHECKOUT4");
-  var checkout5 = sessionStorage.getItem("CHECKOUT5");
-  var checkout6 = sessionStorage.getItem("CHECKOUT6");
-  var checkout7 = sessionStorage.getItem("CHECKOUT7");  
-
 function Dashboard() {
   const [options, setOptions] = useState([]);
   const [vagas, setVagas] = useState([]);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
+  const [lastDataChange, setLastDataChange] = useState(0);
+  const [estacionamentoInfo, setEstacionamentoInfo] = useState({
+    id: null,
+    nome: null,
+    totalCheckout: null,
+    totalFaturamento: null,
+    andaresSaida: null,
+    andaresEntrada: null,
+    vagasLivres: null,
+    momentoVagas: null,
+    dias: [{"data": "0-0-0000", "totalCheckouts": 0}],
+  });
+
+  useEffect (() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Este useEffect é executado sempre que estacionamentoInfo.dias muda
+    setLastDataChange(Date.now());
+  }, [estacionamentoInfo.dias]);
+
+  const fetchData = async () => {
+    try {
+      const idEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+      const nomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
+      const responseDados = await api.get(`/historicos/pegar-dados-dash?id=${idEstacionamento}`);
+      const responseTotalCheckout = await api.get(`/historicos/total-checkout-semanal?idEstacionamento=${idEstacionamento}`);
+      const data = responseDados.data;
+      const totalCheckoutData = responseTotalCheckout.data;
+
+      let lista = data.momentoVagas;
+
+      setVagas(lista);
+      const uniqueOptions = Array.from(new Set(lista.map((item) => item.andar)));
+      setOptions(uniqueOptions);
+
+      if (uniqueOptions.length > 0) {
+        setSelectedOption(uniqueOptions[0]);
+      }
+
+      const andaresSeparados = {};
+      const andaresSaida = new Set();
+      const andaresEntrada = new Set();
+
+      lista.forEach(item => {
+        const andar = item.andar;
+        if (!andaresSeparados[andar]) {
+          andaresSeparados[andar] = [];
+        }
+        andaresSeparados[andar].push(item);
+      });
+
+      const andaresArray = Object.values(andaresSeparados);
+
+      andaresArray.forEach(status => {
+        if (status.some(item => item.statusRegistro === "Saida")) {
+          andaresSaida.add(status[0].andar);
+        } else {
+          andaresEntrada.add(status[0].andar);
+        }
+      })
+
+      const diasMapeados = totalCheckoutData.map(item => ({
+        data: item["data"] || "",
+        checkout: item["totalCheckouts"] || "0",
+      }));
+
+      console.log(diasMapeados)
+
+      setEstacionamentoInfo({
+        id: idEstacionamento,
+        nome: nomeEstacionamento,
+        totalCheckout: data.totalCheckoutDiario || "0",
+        totalFaturamento: data.totalFaturamento || "0.0",
+        andaresSaida: andaresSaida.size || 0,
+        andaresEntrada: andaresEntrada.size || 0,
+        vagasLivres: lista.filter((momento) => momento.statusRegistro === 'Saida').length,
+        momentoVagas: lista || [],
+        dias: diasMapeados,
+      });
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
+    }
+  };
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   };
-
-  var lista = [];
-
-  useEffect(() => {
-    api
-      .get(`/historicos/pegar-dados-dash?id=${sessionIdEstacionamento}`)
-      .then((response) => {
-        bla()
-      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario || "0");
-            sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento || "0.0" );
-            const dadosVagas = Object.values(response.data.momentoVagas)
-            sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
-
-            const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
-              if (momento.statusRegistro === 'Saida') {
-                contador++;
-              }
-              return contador;
-            }, 0);
-            sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
-            const andaresSaida = new Set();
-            const andaresEntrada = new Set();
-            const momentoV = response.data.momentoVagas
-
-              const andaresSeparados = {};
-
-              momentoV.forEach(item => {
-                  const andar = item.andar;
-                  if (!andaresSeparados[andar]) {
-                      andaresSeparados[andar] = [];
-                  }
-                  andaresSeparados[andar].push(item);
-              });
-                const andaresArray = Object.values(andaresSeparados);
-
-                andaresArray.forEach(status => {
-                    if (status.some(item => item.statusRegistro === "Saida")){
-                        console.log("Passei aqui")
-                        andaresSaida.add(status[0].andar);
-                    } else {
-                        andaresEntrada.add(status[0].andar);
-                    }
-                })
-
-            sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
-            sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
-        lista = response.data.momentoVagas;
-        setVagas(lista);
-        const uniqueOptions = Array.from(new Set(lista.map(lista => lista.andar)));
-        setOptions(uniqueOptions)
-
-        if (uniqueOptions.length > 0) {
-          setSelectedOption(uniqueOptions[0]);
-        }
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }, []);
-
-  function bla(){
-    api
-    .get(`/historicos/total-checkout-semanal?idEstacionamento=${sessionIdEstacionamento}`)
-    .then((response) => {
-      console.log(response)
-      for(var i = 1; i <= 7; i++){
-        if(response.data[i-1]!=null){
-          sessionStorage.setItem(`DIA${i}`, response.data[i-1]["data"])
-          sessionStorage.setItem(`CHECKOUT${i}`, response.data[i-1]["totalCheckouts"])
-        } else {
-          sessionStorage.setItem(`DIA${i}`, "0-0-0000")
-          sessionStorage.setItem(`CHECKOUT${i}`, "8")
-        }
-      }
-    })
-    .catch((erro) => {
-      console.log(erro);
-    });
-  }
 
   return (
     <>
@@ -136,7 +115,7 @@ function Dashboard() {
             <div className="titulo-dashboard">
               <h1 className="title-dash">Dashboard</h1>
             </div>
-            <NomeEstacionamento nome={sessionNomeEstacionamento} />
+            <NomeEstacionamento nome={estacionamentoInfo.nome} />
             <div className="container-painel-pai">
               <div className="container-painel-filho">
                 <div className="container-painel-pequeno">
@@ -145,7 +124,7 @@ function Dashboard() {
                       <h3 className="title-card">Vagas disponíveis</h3>
                     </div>
                     <div className="valor-painel">
-                      <p className="valor-dashboard">{sessionVagasLivres || '...'}</p>
+                      <p className="valor-dashboard">{estacionamentoInfo.vagasLivres || '...'}</p>
                     </div>
                   </div>
                   <div className="painel-pequeno">
@@ -154,7 +133,8 @@ function Dashboard() {
                     </div>
                     <div className="valor-painel">
                       <p className="valor-dashboard">
-                        {(sessionAndaresSaida && sessionAndaresEntrada) ? `${sessionAndaresSaida} | ${sessionAndaresEntrada + sessionAndaresSaida}` : '...'}
+                        {(estacionamentoInfo.andaresSaida != null && estacionamentoInfo.andaresEntrada != null) ? 
+                        `${estacionamentoInfo.andaresSaida} | ${estacionamentoInfo.andaresEntrada + estacionamentoInfo.andaresSaida}` : '...'}
                       </p>
                     </div>
                   </div>
@@ -171,7 +151,7 @@ function Dashboard() {
                     <div className="valor-painel">
                       <p className="valor-monetario-dashboard">R$</p>
                       <p className="valor-monetario-dashboard">
-                        {sessionTotalFaturamento || '...'}
+                        {estacionamentoInfo.totalFaturamento || '...'}
                       </p>
                     </div>
                   </div>
@@ -180,7 +160,7 @@ function Dashboard() {
                       <h3 className="title-card">Total de checkout's diário</h3>
                     </div>
                     <div className="valor-painel">
-                      <p className="valor-dashboard">{sessionTotalCheckout || '...'}</p>
+                      <p className="valor-dashboard">{estacionamentoInfo.totalCheckout || '...'}</p>
                     </div>
                   </div>
                 </div>
@@ -190,22 +170,22 @@ function Dashboard() {
               <div className="container-painel-filho">
                 <div className="container-painel-grande">
                   <div className="painel-grande">
-                  <div className="container-andares-dash">
-                    <h4 className="titulo-andares-dash"> Andar </h4>
-                    <div className="container-combobox-andares-dash">
-                      <select
-                        className="combobox-andares-dash"
-                        name="selecaoAndares"
-                        value={selectedOption}
-                        onChange={handleSelectChange}
-                      >
-                        <option value="">Nº</option>
-                        {options.map((option, i) => (
-                          <option key={i}>{option}</option>
-                        ))}
-                      </select>
+                    <div className="container-andares-dash">
+                      <h4 className="titulo-andares-dash"> Andar </h4>
+                      <div className="container-combobox-andares-dash">
+                        <select
+                          className="combobox-andares-dash"
+                          name="selecaoAndares"
+                          value={selectedOption}
+                          onChange={handleSelectChange}
+                        >
+                          <option value="">Nº</option>
+                          {options.map((option, i) => (
+                            <option key={i}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
-                  </div>
                     <div className="container-vagas-checkin-dash">
                       {vagas.map((vaga, i) => (
                         <React.Fragment key={i}>
@@ -233,20 +213,21 @@ function Dashboard() {
                     <div className="div-grafico-dashboard">
                       <img className="img-grafico" src={Teste} alt="imgGrafico" />
                       <ChartComponent
-                        dia1={dia1}
-                        dia2={dia2}
-                        dia3={dia3}
-                        dia4={dia4}
-                        dia5={dia5}
-                        dia6={dia6}
-                        dia7={dia7}checkout
-                        checkout1={checkout1}
-                        checkout2={checkout2}
-                        checkout3={checkout3}
-                        checkout4={checkout4}
-                        checkout5={checkout5}
-                        checkout6={checkout6}
-                        checkout7={checkout7}
+                        dia1={(estacionamentoInfo.dias[0] != null)? estacionamentoInfo.dias[0]["data"] : 0}
+                        dia2={(estacionamentoInfo.dias[1] != null)? estacionamentoInfo.dias[1]["data"] : 0}
+                        dia3={(estacionamentoInfo.dias[2] != null)? estacionamentoInfo.dias[2]["data"] : 0}
+                        dia4={(estacionamentoInfo.dias[3] != null)? estacionamentoInfo.dias[3]["data"] : 0}
+                        dia5={(estacionamentoInfo.dias[4] != null)? estacionamentoInfo.dias[4]["data"] : 0}
+                        dia6={(estacionamentoInfo.dias[5] != null)? estacionamentoInfo.dias[5]["data"] : 0}
+                        dia7={(estacionamentoInfo.dias[6] != null)? estacionamentoInfo.dias[6]["data"] : 0} 
+                        checkout1={(estacionamentoInfo.dias[0] != null)? estacionamentoInfo.dias[0]["checkout"] : "0-0-0000"}
+                        checkout2={(estacionamentoInfo.dias[1] != null)? estacionamentoInfo.dias[1]["checkout"] : "0-0-0000"}
+                        checkout3={(estacionamentoInfo.dias[2] != null)? estacionamentoInfo.dias[2]["checkout"] : "0-0-0000"}
+                        checkout4={(estacionamentoInfo.dias[3] != null)? estacionamentoInfo.dias[3]["checkout"] : "0-0-0000"}
+                        checkout5={(estacionamentoInfo.dias[4] != null)? estacionamentoInfo.dias[4]["checkout"] : "0-0-0000"}
+                        checkout6={(estacionamentoInfo.dias[5] != null)? estacionamentoInfo.dias[5]["checkout"] : "0-0-0000"}
+                        checkout7={(estacionamentoInfo.dias[6] != null)? estacionamentoInfo.dias[6]["checkout"] : "0-0-0000"}
+                        key={lastDataChange}
                       />
                     </div>
                   </div>

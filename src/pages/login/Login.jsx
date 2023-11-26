@@ -21,33 +21,31 @@ function Login() {
 
     setLoading(true);
 
-//     function userHasAccount(userDataList){
-//       for(var i = 0; i < userDataList.length; i++){
-//         if(userDataList[i].emailEmpresa === getEmpresa.email && userDataList[i].senhaEmpresa === getEmpresa.senha){
-//           return true
-//         }
-//           return false
-//       }
-//     }
-
     api
-      //Teste MockAPI
-      /*.get(`/login`, getEmpresa) */
-
-      //"Funcional" backEnd ccs
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
       console.log(response)
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login efetuado com sucesso!",
-          showConfirmButton: false,
-          timer: 4000,
-        });
+      let timerInterval;
+      Swal.fire({
+        title: "Carregando dados",
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
-        pegarDadosDash(response.data.idEstacionamento);
+        navigate("/dashboard")
         pegarValores(response.data.idEstacionamento)
       })
       .catch((erro) => {
@@ -65,59 +63,6 @@ function Login() {
       });
 
     console.log(getEmpresa);
-  }
-
-  function pegarDadosDash(idE){
-    api
-    .get(`/historicos/pegar-dados-dash?id=${idE}`)
-    .then((response) => {
-        console.log(response.data)
-      sessionStorage.setItem("TOTAL_CHECKOUT_DIARIO", response.data.totalCheckoutDiario);
-      sessionStorage.setItem("TOTAL_FATURAMENTO", response.data.totalFaturamento);
-      const dadosVagas = Object.values(response.data.momentoVagas)
-      sessionStorage.setItem("MOMENTO_VAGAS", dadosVagas);
-
-      const qtdVagasLivres = response.data.momentoVagas.reduce((contador, momento) => {
-        if (momento.statusRegistro === 'Saida') {
-          contador++;
-        }
-        return contador;
-      }, 0);
-
-      console.log(response.data.momentoVagas)
-      sessionStorage.setItem("VAGAS_LIVRES", qtdVagasLivres)
-      const andaresSaida = new Set();
-      const andaresEntrada = new Set();
-      const momentoV = response.data.momentoVagas
-
-      const andaresSeparados = {};
-
-      momentoV.forEach(item => {
-          const andar = item.andar;
-          if (!andaresSeparados[andar]) {
-              andaresSeparados[andar] = [];
-          }
-          andaresSeparados[andar].push(item);
-      });
-        const andaresArray = Object.values(andaresSeparados);
-
-        andaresArray.forEach(status => {
-            if (status.some(item => item.statusRegistro === "Saida")){
-                console.log("Passei aqui")
-                andaresSaida.add(status[0].andar);
-            } else {
-                andaresEntrada.add(status[0].andar);
-            }
-        })
-
-      sessionStorage.setItem("ANDARES_SAIDA", andaresSaida.size);
-      sessionStorage.setItem("ANDARES_ENTRADA", andaresEntrada.size);
-
-      setTimeout(() => navigate("/dashboard"), 1000)
-    })
-    .catch((erro) => {
-        console.log("Deu b.o", erro)
-    })
   }
 
   function pegarValores(idEstacionamento){
