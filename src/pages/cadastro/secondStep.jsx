@@ -5,6 +5,9 @@ import { useState } from "react";
 
 // import { Container } from './styles';
 
+const removeNonNumericChars = (value) => {
+  return value.replace(/\D/g, '');
+};
 
 const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
 
@@ -13,14 +16,27 @@ const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
   const [andarVaga, setAndarVaga] = useState(-5);
 
   function adicionarVaga() {
-    const vaga = {
-      qtdVagas: parseInt(qtdVagas),
-      andarVaga: parseInt(andarVaga)
+    const quantidadeVagasInt = parseInt(qtdVagas);
+    const andarVagaInt = parseInt(andarVaga);
+  
+    if (quantidadeVagasInt >= 1) {
+      // Verifica se o andar já existe na lista
+      const andarExistente = listaVagas.some(vaga => vaga.andarVaga === andarVagaInt);
+  
+      if (!andarExistente) {
+        const vaga = {
+          qtdVagas: quantidadeVagasInt,
+          andarVaga: andarVagaInt,
+        };
+  
+        setListaVagas([...listaVagas, vaga]);
+        funcaoRetornoVagas(vaga);
+      } else {
+        alert("O andar já foi adicionado. Escolha outro andar.");
+      }
+    } else {
+      alert("Quantidade de vagas inválida");
     }
-
-    setListaVagas([...listaVagas, vaga])
-
-    funcaoRetornoVagas(vaga);
   }
 
   return (
@@ -29,6 +45,7 @@ const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
       <select 
         name="andar" 
         className="select-field"
+        required
         value={andarVaga || ""}
         onChange={(e) => setAndarVaga(e.target.value)}>
         <option value="-5">SubSolo -5</option>
@@ -49,10 +66,11 @@ const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
         id="quantidade-vagas"
         className="campo-texto"
         type="text"
+        required
         name="quantidadeVagas"
         placeholder="Digite a quantidade de vagas que há no andar"
         value={qtdVagas || ""}
-        onChange={(e) => setQtdVagas(e.target.value.trim())}
+        onChange={(e) => setQtdVagas(removeNonNumericChars(e.target.value.trim()))}
       />
 
       <button onClick={adicionarVaga} type="button" className="button-add"> Adicionar </button>
