@@ -2,6 +2,7 @@ import React from "react";
 import "./Cadastro.css";
 import FloorDataComponent from "./Componentes/labelFloor/FloorsDates"
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 // import { Container } from './styles';
 
@@ -32,10 +33,24 @@ const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
         setListaVagas([...listaVagas, vaga]);
         funcaoRetornoVagas(vaga);
       } else {
-        alert("O andar já foi adicionado. Escolha outro andar.");
+        /* alert("O andar já foi adicionado. Escolha outro andar."); */
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          confirmButtonColor: "#ff8000",
+          text: "O andar já foi adicionado. Escolha outro andar.",
+          timer: 3000,
+        });
       }
     } else {
-      alert("Quantidade de vagas inválida");
+      /* alert("Quantidade de vagas inválida"); */
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        confirmButtonColor: "#ff8000",
+        text: "Quantidade de vagas inválida",
+        timer: 3000,
+      });
     }
   }
 
