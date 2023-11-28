@@ -97,7 +97,26 @@ button:hover {
     padding: 2%;
     display: flex;
     justify-content: space-between;
-}
+    position: relative;
+  }
+  
+  .botao-icone-exluir-func {
+    opacity: 0;  /* Initially hide the delete button */
+  }
+
+  .div-lavel-data-floor:hover{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .div-lavel-data-floor:hover .botao-icone-exluir-func {
+    opacity: 1;
+  }
+
+  .div-lavel-data-floor:hover h3 {
+    display: none;
+  }
+  
 
 /* Steps ------------------- */
 
