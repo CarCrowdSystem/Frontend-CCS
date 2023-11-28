@@ -1,19 +1,57 @@
 import React, { useState } from "react";
-import { IMaskInput } from "react-imask";
 import InputMask from 'react-input-mask';
-
-// import { Container } from './styles';
 
 const LastStep = ({data, updateFieldHandler}) => {
 
+  const [errorMessages, setErrorMessages] = useState({
+    nomeUsuario: "",
+    cpfUsuario: "",
+    emailUsuario: "",
+    senha: "",
+    confirmaSenha: "",
+  });
 
   const removeNonNumericChars = (value) => {
     return value.replace(/\D/g, '');
   };
 
+  const validateLastStep = () => {
+
+    const errors = {};
+
+    if (!data.nomeUsuario || data.nomeUsuario.length <= 2) {
+      errors.nomeUsuario = "Por favor, preencha o nome completo.";
+
+    }
+  
+    if (!data.cpfUsuario || removeNonNumericChars(data.cpfUsuario).length !== 11) {
+      errors.cpfUsuario = "Por favor, insira um CPF válido.";
+
+    }
+  
+    if (!data.emailUsuario || data.emailUsuario.indexOf("@") == -1) {
+      errors.emailUsuario = "Por favor, insira um e-mail válido.";
+
+    }
+  
+    if (!data.senha || data.senha.length < 8) {
+      errors.senha = "A senha deve ter pelo menos 8 caracteres.";
+
+    }
+  
+    if (data.senha !== data.confirmaSenha) {
+      errors.confirmaSenha = "As senhas não coincidem.";
+    }
+
+    setErrorMessages(errors);
+
+    return Object.keys(errors).length === 0;
+  
+  };
+  
   return (
     <>
-      <label>Nome completo</label>
+      <label>Nome completo<span className="error-message">{errorMessages.nomeUsuario}</span></label>
       <input
         id="name-field"
         className="campo-texto"
@@ -23,9 +61,10 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.nomeUsuario || ""}
         onChange={(e) => updateFieldHandler("nomeUsuario", e.target.value)}
+        onKeyUp={validateLastStep}
       />
 
-      <label>CPF</label>
+      <label>CPF<span className="error-message">{errorMessages.cpfUsuario}</span></label>
       <InputMask
         className="campo-texto"
         type="text"
@@ -35,9 +74,10 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.cpfUsuario || ""}
         onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
+        onKeyUp={validateLastStep}
       />
 
-      <label>Email</label>
+      <label>Email<span className="error-message">{errorMessages.emailUsuario}</span></label>
       <input
         className="campo-texto"
         type="email"
@@ -46,9 +86,10 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.emailUsuario || ""}
         onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
+        onKeyUp={validateLastStep}
       />
 
-      <label>Senha</label>
+      <label>Senha<span className="error-message">{errorMessages.senha}</span></label>
       <input
         className="campo-texto"
         type="password"
@@ -58,9 +99,10 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.senha || ""}
         onChange={(e) => updateFieldHandler("senha", e.target.value)}
+        onKeyUp={validateLastStep}
       />
 
-      <label>Confirmar senha</label>
+      <label>Confirmar senha<span className="error-message">{errorMessages.confirmaSenha}</span></label>
       <input
         className="campo-texto"
         type="password"
@@ -69,6 +111,7 @@ const LastStep = ({data, updateFieldHandler}) => {
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}
+        onKeyUp={validateLastStep}
       />
     </>
   );

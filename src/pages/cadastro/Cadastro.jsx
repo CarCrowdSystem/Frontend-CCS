@@ -56,8 +56,7 @@ function Cadastro() {
     <LastStep data={data} updateFieldHandler={updateFieldHandler} />,
   ];
 
-  const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
-    useForm(formCadastro);
+  const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } = useForm(formCadastro);
 
   var id_estacionamento = 0;
 
@@ -71,10 +70,6 @@ function Cadastro() {
     };
 
     api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
-
-      // "Funcional" backEnd ccs
       .post(`/estacionamentos`, postEmpresa)
       .then((response) => {
         console.log(response)
@@ -96,10 +91,6 @@ function Cadastro() {
     };
 
     api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
-
-      // "Funcional" backEnd ccs
       .post(`/vagas/${id_estacionamento}`, postEmpresa2)
       .then((response) => {
         console.log(response);
@@ -123,10 +114,6 @@ function Cadastro() {
     };
 
     api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
-
-      // "Funcional" backEnd ccs
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
         Swal.fire({
@@ -157,14 +144,6 @@ function Cadastro() {
 
     console.log(postEmpresa3);
   }
-
-  // function testeAlert(){
-  //   Swal.fire({
-  //     icon: 'error',
-  //     title: 'Houve um erro no cadastro!',
-  //     text: 'Verifique se os campos estão correntamente preenchidos'
-  //   })
-  // }
 
   return (
     <>
@@ -205,7 +184,6 @@ function Cadastro() {
                     Enviar
                   </button>
                 )}
-                {/* <button onClick={() => testeAlert()}>teste alert</button> */}
               </div>
             </form>
           </div>
