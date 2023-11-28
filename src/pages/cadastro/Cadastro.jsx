@@ -151,8 +151,8 @@ function Cadastro() {
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
         Swal.fire({
-          title: 'Cadastro realizado!',
-          text: "Você será direcionado para login!",
+          title: 'Cadastro realizado com sucesso!',
+          text: "Você será direcionado para o login!",
           icon: 'success',
           confirmButtonColor: '#ff8000',
           cancelButtonColor: '#d33',
@@ -169,7 +169,7 @@ function Cadastro() {
         Swal.fire({
           icon: 'error',
           title: 'Houve um erro no cadastro!',
-          text: 'Verifique se os campos estão correntamente preenchidos'
+          text: 'Verifique se os campos estão corretamente preenchidos.'
         })
         console.log("Error");
         console.log(erro);

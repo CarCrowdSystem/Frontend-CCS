@@ -27,7 +27,7 @@ function Login() {
       console.log(response)
       let timerInterval;
       Swal.fire({
-        title: "Carregando dados",
+        title: "Carregando dados...",
         timer: 3000,
         timerProgressBar: true,
         didOpen: () => {
@@ -51,8 +51,8 @@ function Login() {
       .catch((erro) => {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Email ou senha inválidos!",
+          title: "Ops...",
+          text: "E-mail ou senha inválidos!",
           timer: 4000,
         });
         console.log("Error");
@@ -105,7 +105,7 @@ function Login() {
                 className="campo-texto"
                 type="text"
                 name="emailEmpresa"
-                placeholder="Digite seu email"
+                placeholder="Digite seu e-mail"
               />
 
               <label>Senha</label>
@@ -116,7 +116,7 @@ function Login() {
                 placeholder="Digite sua senha"
               />
 
-              <Button type="submit">Entrar</Button>
+              <button className="btn-entrar-login" type="submit">Entrar</button>
             </form>
 
             <div className="footer-login">

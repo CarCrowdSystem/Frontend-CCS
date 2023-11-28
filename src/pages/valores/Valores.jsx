@@ -98,7 +98,7 @@ function Valores() {
         <div className="contValores">
           <h1 className="titleValores">Alteração de valores</h1>
           <form className="form-valores">
-            <label>Primeira hora:</label>
+            <label>Primeira hora</label>
             <input
               className="campo-texto"
               type="number"
@@ -111,7 +111,7 @@ function Valores() {
               }
             />
 
-            <label>Demais horas:</label>
+            <label>Demais horas</label>
             <input
               className="campo-texto"
               type="number"
@@ -123,7 +123,7 @@ function Valores() {
                 updateFieldHandler("demaisHoras", e.target.value)
               }
             />
-            <label>Diaria:</label>
+            <label>Diária</label>
             <input
               className="campo-texto"
               type="number"

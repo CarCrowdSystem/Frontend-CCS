@@ -23,7 +23,7 @@ function NavSideBar() {
             confirmButtonColor: "#ff8000",
             cancelButtonColor: "#1b1b1b",
             confirmButtonText: "Sim, sair!",    
-            cancelButtonText: "Não, cancelar"
+            cancelButtonText: "Não, cancelar."
           }).then((result) => {
             if (result.isConfirmed) {
               handleLogout()
@@ -79,7 +79,7 @@ function NavSideBar() {
                         {isExpended && (<div className="nav-brand">
                             <img src="imgs/Group 39.png" alt="logo CCS"
                                 className={isExpended ? "logo-img" : "logo-img1"} />
-                            <h2 className={isExpended ? "h2-nav" : "h2-nav1"}> Car Crowd System</h2>
+                            <h2 className={isExpended ? "h2-nav" : "h2-nav1"}>Car Crowd System</h2>
                         </div>
                         )}
                         <button className={

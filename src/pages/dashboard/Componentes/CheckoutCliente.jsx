@@ -28,7 +28,7 @@ function CheckoutCliente() {
         console.log(response)
         Swal.fire({
           icon: 'success',
-          text: 'Checkout realizado!',
+          text: 'Check-out realizado!',
         }).then((result) => {
             if (result.isConfirmed) {
               location.reload();
@@ -39,8 +39,8 @@ function CheckoutCliente() {
         console.log(erro);
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Erro ao realizar checkout!'
+          title: 'Ops...',
+          text: 'Erro ao realizar check-out!'
         })
       });
   }
@@ -53,10 +53,10 @@ function CheckoutCliente() {
             <img className="imagem-css-mobile" src={img} alt="logo" />
           </div>
           <div className="body-mobile">
-            <h3>Digite sua placa para confirmar o checkout:</h3>
+            <h3>Digite sua placa para confirmar o check-out: </h3>
             <input
               className="input-checkout-mobile"
-              placeholder="CCS-9999:"
+              placeholder="CCS-9999"
               type="text"
               maxLength={7}
               minLength={7}
@@ -68,7 +68,7 @@ function CheckoutCliente() {
               onClick={() => executarCheckcout()}
               className="button-checkout-mobile"
             >
-              Fazer checkout
+              Fazer check-out
             </button>
           </div>
         </div>

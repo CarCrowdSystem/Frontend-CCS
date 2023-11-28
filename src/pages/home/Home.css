@@ -157,6 +157,9 @@ header p {
 
 .suportButton:hover {
   transform: scale(1.05);
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }
 
 .suportButton img {
@@ -299,7 +302,7 @@ header p {
 .MVV {
   width: 100%;
   height: fit-content;
-  padding: 4vh 0;
+  padding: 6vh 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

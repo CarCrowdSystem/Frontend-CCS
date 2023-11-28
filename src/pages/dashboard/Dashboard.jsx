@@ -157,7 +157,7 @@ function Dashboard() {
                   </div>
                   <div className="painel-pequeno">
                     <div className="titulo-card-painel">
-                      <h3 className="title-card">Total de checkout's diário</h3>
+                      <h3 className="title-card">Total de check-outs diário</h3>
                     </div>
                     <div className="valor-painel">
                       <p className="valor-dashboard">{estacionamentoInfo.totalCheckout || '...'}</p>
@@ -207,7 +207,7 @@ function Dashboard() {
                   <div className="painel-grande">
                     <div className="titulo-card-painel">
                       <h3 className="title-card">
-                        Quantidades de checkouts da semana
+                        Quantidade de check-outs da semana
                       </h3>
                     </div>
                     <div className="div-grafico-dashboard">

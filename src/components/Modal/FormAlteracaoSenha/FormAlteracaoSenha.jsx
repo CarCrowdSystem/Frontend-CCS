@@ -12,9 +12,9 @@ function FormAlteracaoSenha() {
             </div>
             <div className='form-dados-alteracao-senha'>
                 <div className='div-label-alteracao-senha'>
-                    <label className='label-alteracao-senha' htmlFor="">E-mail:</label>
-                    <label className='label-alteracao-senha' htmlFor="">Nova senha:</label>
-                    <label className='label-alteracao-senha' htmlFor="">Confirmar senha:</label>
+                    <label className='label-alteracao-senha' htmlFor="">E-mail: </label>
+                    <label className='label-alteracao-senha' htmlFor="">Nova senha: </label>
+                    <label className='label-alteracao-senha' htmlFor="">Confirmar senha: </label>
                 </div>
                 <div className='div-inputs-alteracao-senha'>
                     <input className='input-alteracao-senha' type="text" />

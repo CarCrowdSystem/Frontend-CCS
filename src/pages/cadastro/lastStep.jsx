@@ -13,13 +13,13 @@ const LastStep = ({data, updateFieldHandler}) => {
 
   return (
     <>
-      <label>Nome completo</label>
+      <label>Nome Completo</label>
       <input
         id="name-field"
         className="campo-texto"
         type="text"
         name="nomeUsuario"
-        placeholder="Digite seu nome completo"
+        placeholder="Digite o seu nome completo"
         required
         value={data.nomeUsuario || ""}
         onChange={(e) => updateFieldHandler("nomeUsuario", e.target.value)}
@@ -31,18 +31,18 @@ const LastStep = ({data, updateFieldHandler}) => {
         type="text"
         name="cpfUsuario"
         mask="999.999.999-99"
-        placeholder="Digite seu CPF"
+        placeholder="Digite o seu CPF"
         required
         value={data.cpfUsuario || ""}
         onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
       />
 
-      <label>Email</label>
+      <label>E-mail</label>
       <input
         className="campo-texto"
         type="email"
         name="emailUsuario"
-        placeholder="empresa@gmail.com"
+        placeholder="usuario@gmail.com"
         required
         value={data.emailUsuario || ""}
         onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
@@ -60,12 +60,12 @@ const LastStep = ({data, updateFieldHandler}) => {
         onChange={(e) => updateFieldHandler("senha", e.target.value)}
       />
 
-      <label>Confirmar senha</label>
+      <label>Confirmar Senha</label>
       <input
         className="campo-texto"
         type="password"
         name="confirmaSenha"
-        placeholder="Confirmar senha"
+        placeholder="Confirme a sua senha"
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}

@@ -6,7 +6,7 @@ import api from "../../api.js";
 import Swal from "sweetalert2";
 
 const formTemplate = {
-  nome: "Sem checkouts",
+  nome: "Sem check-outs",
   telefone: " ",
   andar: " ",
   vaga: " ",
@@ -142,7 +142,7 @@ function TelaCheckout(props) {
             />
           </div>
           <div className="titulo-checkout">
-            <h1 className="title-checkout">Check-Out</h1>
+            <h1 className="title-checkout">Check-out</h1>
           </div>
           <div className="container-itens-checkout-pai">
             <div className="container-itens-checkout-filho">

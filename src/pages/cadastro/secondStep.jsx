@@ -31,11 +31,11 @@ const SecondStep = ({vagas, funcaoRetornoVagas}) =>{
         className="select-field"
         value={andarVaga || ""}
         onChange={(e) => setAndarVaga(e.target.value)}>
-        <option value="-5">SubSolo -5</option>
-        <option value="-4">SubSolo -4</option>
-        <option value="-3">SubSolo -3</option>
-        <option value="-2">SubSolo -2</option>
-        <option value="-1">SubSolo -1</option>
+        <option value="-5">Subsolo -5</option>
+        <option value="-4">Subsolo -4</option>
+        <option value="-3">Subsolo -3</option>
+        <option value="-2">Subsolo -2</option>
+        <option value="-1">Subsolo -1</option>
         <option value="0">Térreo</option>
         <option value="1">Andar 1</option>
         <option value="2">Andar 2</option>

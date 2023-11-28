@@ -41,21 +41,21 @@ const Formulario = (props) => {
             <CampoTexto
               obrigatorio={true}
               label="Nome da empresa"
-              placeholder="Digite o nome de sua empresa"
+              placeholder="Digite o nome da sua empresa"
               valor={empresa}
               aoAlterado={(valor) => setEmpresa(valor)}
             />
             <CampoTexto
               obrigatorio={true}
-              label="Email"
-              placeholder="seuemail@email.com"
+              label="E-mail"
+              placeholder="seuemail@gmail.com"
               valor={email}
               aoAlterado={(valor) => setEmail(valor)}
             />
             <CampoTexto
               obrigatorio={true}
               label="Mensagem"
-              placeholder=""
+              placeholder="Escreva uma breve mensagem"
               valor={mensagem}
               aoAlterado={(valor) => setMensagem(valor)}
               style={{ backgroundColor: "blue" }}

@@ -1,9 +1,6 @@
 .botao-checkout{
     border: none;
     background: none;
-}
-
-.botao-checkout{
     cursor: pointer;
 }
 
@@ -17,5 +14,5 @@
 .aparecer {
     transform: translateX(0%);
     transition: transform 0.3s ease-in-out;
-  }
+}
 
