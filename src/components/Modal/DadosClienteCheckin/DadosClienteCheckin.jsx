@@ -6,10 +6,12 @@ import Swal from "sweetalert2";
 // import { Container } from './styles';
 
 const formTemplate = {
-    placa: "",
-    modelo: "",
     nomeCliente: "",
-    telefoneCliente: ""
+    email: "",
+    senha: "",
+    marca: "",
+    modelo: "",
+    placa: "",
 }
 
 function DadosClienteCheckin() {
@@ -23,10 +25,12 @@ const postteFieldHandler = (key, value) => {
 
     function realizarCadastroVeiculo(){
         const postVeiculo = {
-            placa: data.placa,
-            modelo: data.modelo,
             nomeCliente: data.nomeCliente,
-            telefoneCliente: data.telefoneCliente,
+            email: data.email,
+            senha: data.senha,
+            marca: data.marca,
+            modelo: data.modelo,
+            placa: data.placa,
           };
         api
         .post(`/veiculo`, postVeiculo)
@@ -65,9 +69,11 @@ const postteFieldHandler = (key, value) => {
             <div className='form-dados-cadastro-checkin'>
                 <div className='div-label-checkin'>
                     <label className='label-checkin' htmlFor="">Nome:</label>
-                    <label className='label-checkin' htmlFor="">Telefone:</label>
-                    <label className='label-checkin' htmlFor="">Placa:</label>
+                    <label className='label-checkin' htmlFor="">Email:</label>
+                    <label className='label-checkin' htmlFor="">Senha:</label>
+                    <label className='label-checkin' htmlFor="">Marca:</label>
                     <label className='label-checkin' htmlFor="">Modelo:</label>
+                    <label className='label-checkin' htmlFor="">Placa:</label>
                 </div>
                 <div className='div-inputs-checkin'>
                     <input className="input-checkin"
@@ -78,22 +84,29 @@ const postteFieldHandler = (key, value) => {
                         onChange={(e) =>
                         postteFieldHandler("nomeCliente", e.target.value)
                     }/>
-                    <input className='input-checkin'
+                    <input className="input-checkin"
                         type="text"
-                        name="telefoneCliente"
-                        maxLength={11}
+                        name="email"
                         required
-                        value={data.telefoneCliente || ""}
+                        value={data.email || ""}
                         onChange={(e) =>
-                        postteFieldHandler("telefoneCliente", e.target.value)
+                        postteFieldHandler("email", e.target.value)
                     }/>
-                    <input className='input-checkin'
+                    <input className="input-checkin"
                         type="text"
-                        name="paca"
+                        name="senha"
                         required
-                        value={data.placa || ""}
+                        value={data.senha || ""}
                         onChange={(e) =>
-                        postteFieldHandler("placa", e.target.value)
+                        postteFieldHandler("senha", e.target.value)
+                    }/>
+                    <input className="input-checkin"
+                        type="text"
+                        name="marca"
+                        required
+                        value={data.marca || ""}
+                        onChange={(e) =>
+                        postteFieldHandler("marca", e.target.value)
                     }/>
                     <input className='input-checkin'
                         type="text"
@@ -102,6 +115,14 @@ const postteFieldHandler = (key, value) => {
                         value={data.modelo || ""}
                         onChange={(e) =>
                         postteFieldHandler("modelo", e.target.value)
+                    }/>
+                    <input className='input-checkin'
+                        type="text"
+                        name="placa"
+                        required
+                        value={data.placa || ""}
+                        onChange={(e) =>
+                        postteFieldHandler("placa", e.target.value)
                     }/>
                 </div>
             </div>
