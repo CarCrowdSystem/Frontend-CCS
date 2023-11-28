@@ -100,8 +100,17 @@ button:hover {
     position: relative;
   }
   
-  .botao-icone-exluir-func {
-    opacity: 0;  /* Initially hide the delete button */
+  .botao-icone-exluir {
+    opacity: 0; 
+    border: none;
+    background: none;
+    filter: opacity(50%);
+  }
+
+  .botao-icone-exluir:hover {
+    cursor: pointer;
+    transition: 0.25s;
+    filter: opacity(100%);
   }
 
   .div-lavel-data-floor:hover{
@@ -109,7 +118,7 @@ button:hover {
     justify-content: center;
   }
   
-  .div-lavel-data-floor:hover .botao-icone-exluir-func {
+  .div-lavel-data-floor:hover .botao-icone-exluir {
     opacity: 1;
   }
 

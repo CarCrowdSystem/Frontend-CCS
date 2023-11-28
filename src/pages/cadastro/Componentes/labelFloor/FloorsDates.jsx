@@ -49,7 +49,7 @@ const FloorData = ({ floor, parkingSpot, onExcluir }) => {
           {parkingSpot}
         </h3>
 
-        <button className="botao-icone-exluir-func" onClick={() => onExcluir()}>
+        <button className="botao-icone-exluir" onClick={() => onExcluir()}>
           <img src={IconeLixeira} alt="icone-lixeira" />
         </button>
 
