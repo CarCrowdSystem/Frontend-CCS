@@ -25,20 +25,6 @@ function Login() {
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
       console.log(response)
-      let timerInterval;
-      Swal.fire({
-        title: "Carregando dados",
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading();
-          const timer = Swal.getPopup().querySelector("b");
-        },
-        willClose: () => {
-          clearInterval(timerInterval);
-        }
-      }).then((result) => {
-      });
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
         navigate("/dashboard")

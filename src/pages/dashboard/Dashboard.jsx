@@ -8,6 +8,7 @@ import NavSideBar from "../../components/NavSideBar/index";
 import NomeEstacionamento from "./Componentes/NomeEstacionamento";
 import api from "../../api.js";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 function Dashboard() {
   const [options, setOptions] = useState([]);
@@ -16,7 +17,9 @@ function Dashboard() {
   const [lastDataChange, setLastDataChange] = useState(0);
   const [checkGrafico, setCheckGrafico] = useState(true);
   const [divVisivel, setDivVisivel] = useState(true);
-  const [isTrue, setIsTrue] = useState(false);
+  const [temPedidoCheckout, setTemPedidoCheckout] = useState(false);
+  const [temNovaReserva, setTemNovaReserva] = useState(false);
+  const [qtdReserva, setQtdReserva] = useState(0);
   const [estacionamentoInfo, setEstacionamentoInfo] = useState({
     id: null,
     nome: null,
@@ -40,6 +43,22 @@ function Dashboard() {
 
   useEffect(() => {
     fetchData();
+    let timerInterval;
+      Swal.fire({
+        title: "Carregando dados",
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      })
+      setInterval(() => {
+        fetchData(); // Chama a função fetchData a cada 1 minuto
+      }, 30000);
   }, []);
 
   useEffect(() => {
@@ -50,7 +69,15 @@ function Dashboard() {
   useEffect(() => {
     // Este useEffect é executado sempre que estacionamentoInfo.dias muda
     setLastDataChange(Date.now());
-    console.log(reservaInfo[0])
+  }, [reservaInfo]);
+
+  useEffect(() => {
+    // Este useEffect é executado sempre que estacionamentoInfo.dias muda
+    setLastDataChange(Date.now());
+    if(reservaInfo.length>=0 && checkGrafico && qtdReserva<reservaInfo.length) {
+      setTemNovaReserva(true)
+      setQtdReserva(reservaInfo.length)
+    }
   }, [reservaInfo]);
 
   const fetchData = async () => {
@@ -59,17 +86,14 @@ function Dashboard() {
       const nomeEstacionamento = sessionStorage.getItem("NOME_ESTACIONAMENTO");
       const responseDados = await api.get(`/historicos/pegar-dados-dash?id=${idEstacionamento}`);
       const responseTotalCheckout = await api.get(`/historicos/total-checkout-semanal?idEstacionamento=${idEstacionamento}`);
-      const responseReserva = await api.get(`/historicos/reserva?idEstacionamento=${idEstacionamento}`);
+      const responseReserva = await api.get(`/historicos/reserva-hoje?idEstacionamento=${idEstacionamento}`);
       const responseCheckouts = await api.get(`/historicos/pegar-checkouts?id=${idEstacionamento}`);
       const checkoutsData = responseCheckouts.data;
       const data = responseDados.data;
       const totalCheckoutData = responseTotalCheckout.data;
       const reservaData = responseReserva.data
 
-      console.log(reservaData)
-      console.log(checkoutsData.length)
-      setIsTrue((checkoutsData.length > 0) ? true : false)
-
+      setTemPedidoCheckout((checkoutsData.length > 0) ? true : false)
 
       let lista = data.momentoVagas;
 
@@ -108,8 +132,6 @@ function Dashboard() {
         checkout: item["totalCheckouts"] || "0",
       }));
 
-      console.log(diasMapeados)
-
       setEstacionamentoInfo({
         id: idEstacionamento,
         nome: nomeEstacionamento,
@@ -130,6 +152,7 @@ function Dashboard() {
   function trocar() {
     setCheckGrafico(!checkGrafico)
     setDivVisivel(!divVisivel)
+    setTemNovaReserva(false)
   }
 
   const handleSelectChange = (event) => {
@@ -142,7 +165,7 @@ function Dashboard() {
       <div className="container-dashboard-pai">
         <div className="espaco-icone">
           <BotaoCheckout 
-            isTrue = {isTrue}
+            temPedidoCheckout = {temPedidoCheckout}
           />
         </div>
         <div className="container-dashboard-filho">
@@ -311,14 +334,14 @@ function Dashboard() {
                   </div>
                 </div>
                 <div id="check-box-dash">
-                  <div class="checkbox-wrapper-56">
-                    <div class="align-checkbox" onClick={trocar}>
+                  <div className="checkbox-wrapper-56">
+                    <div className="align-checkbox" onClick={trocar}>
                       <input checked={checkGrafico ? "checkbox" : ""} type="checkbox" id="check-grafico" />
-                      <div class="checkmark">Checkouts</div>
+                      <div className="checkmark">Checkouts</div>
                     </div>
-                    <div class="align-checkbox" onClick={trocar}>
-                      <input checked={checkGrafico ? "" : "checkbox"} type="checkbox" id="check-reserva" />
-                      <div class="checkmark">Reservas</div>
+                    <div className={(temNovaReserva) ? "checkout-piscar align-checkbox" : "align-checkbox"} onClick={trocar}>
+                      <input checked={checkGrafico ? "" : "checkbox"} type="checkbox" id="check-reserva"/>
+                      <div className="checkmark">Reservas</div>
                     </div>
                   </div>
                 </div>
