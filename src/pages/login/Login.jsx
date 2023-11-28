@@ -52,6 +52,7 @@ function Login() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
+          confirmButtonColor: "#ff8000",
           text: "Email ou senha inválidos!",
           timer: 4000,
         });
