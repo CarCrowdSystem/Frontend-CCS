@@ -36,6 +36,8 @@ function Cadastro() {
 
   const [listaVagas, setListaVagas] = useState([]);
 
+  const [loading, setLoading] = useState(false)
+
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
       return { ...prev, [key]: value };
@@ -68,6 +70,8 @@ function Cadastro() {
       enderecoEmpresa: data.enderecoEmpresa,
       telefoneEmpresa: data.telefoneEmpresa,
     };
+
+
 
     api
       .post(`/estacionamentos`, postEmpresa)
@@ -113,6 +117,8 @@ function Cadastro() {
       idEstacionamento: id_estacionamento,
     };
 
+    setLoading(true);
+
     api
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
@@ -124,7 +130,7 @@ function Cadastro() {
           cancelButtonColor: '#d33',
           confirmButtonText: 'Ok'
         }).then((result) => {
-          if (result.isConfirmed) { 
+          if (result.isConfirmed) {
             navigate("/login")
           }
         })
@@ -140,6 +146,9 @@ function Cadastro() {
         })
         console.log("Error");
         console.log(erro);
+      })
+      .finally(() => {
+        setLoading(false);
       });
 
     console.log(postEmpresa3);
@@ -151,42 +160,45 @@ function Cadastro() {
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">
-              <img className="arrowBack" src="/imgs/icons/navIcons/botao-home (1).png" alt="arrowBack"/>
+              <img className="arrowBack" src="/imgs/icons/navIcons/botao-home (1).png" alt="arrowBack" />
             </a>
           </div>
           <div className="div-logo">
-            <img className="logo" src="/imgs/Group 39.png" alt="logo"/>
+            <img className="logo" src="/imgs/Group 39.png" alt="logo" />
           </div>
+          
           <Steps currentStep={currentStep} />
-          <div className="campo-cadastro">
-            <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
-              {currentComponent}
-              <div
-                className={
-                  !isFirstStep ? "div-buttons-cadastro" : "div-button-cadastro"
-                }
-              >
-                {!isFirstStep ? (
-                  <button
-                    type="button"
-                    onClick={() => changeStep(currentStep - 1)}
-                  >
-                    Voltar
-                  </button>
-                ) : (
-                  <span></span>
-                )}
+          {loading && <div className="fundoloader"><img className="gif" src="/gif/loading-gif-png-5.gif" alt="logo" /></div>}
+          {!loading && (
+            <div className="campo-cadastro">
+              <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
+                {currentComponent}
+                <div
+                  className={
+                    !isFirstStep ? "div-buttons-cadastro" : "div-button-cadastro"
+                  }
+                >
+                  {!isFirstStep ? (
+                    <button
+                      type="button"
+                      onClick={() => changeStep(currentStep - 1)}
+                    >
+                      Voltar
+                    </button>
+                  ) : (
+                    <span></span>
+                  )}
 
-                {!isLastStep ? (
-                  <button type="submit">Avançar</button>
-                ) : (
-                  <button onClick={() => cadastrarEmpresa()} type="submit">
-                    Enviar
-                  </button>
-                )}
-              </div>
-            </form>
-          </div>
+                  {!isLastStep ? (
+                    <button type="submit">Avançar</button>
+                  ) : (
+                    <button onClick={() => cadastrarEmpresa()} type="submit">
+                      Enviar
+                    </button>
+                  )}
+                </div>
+              </form>
+            </div>)}
         </div>
         <div className="image-cadastro">
           <img
