@@ -25,9 +25,8 @@
 
 .btnContratar:hover {
     cursor: pointer;
-    background-color: #ff8000;
-    color: white;
-    box-shadow: 2px 2px 10px #949494;
+    background-color: #ffffff;
+    color: #ff8000;
     transition: 0.5s;
 }
 
