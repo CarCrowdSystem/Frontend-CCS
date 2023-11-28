@@ -16,6 +16,7 @@ function Dashboard() {
   const [lastDataChange, setLastDataChange] = useState(0);
   const [checkGrafico, setCheckGrafico] = useState(true);
   const [divVisivel, setDivVisivel] = useState(true);
+  const [isTrue, setIsTrue] = useState(false);
   const [estacionamentoInfo, setEstacionamentoInfo] = useState({
     id: null,
     nome: null,
@@ -59,11 +60,16 @@ function Dashboard() {
       const responseDados = await api.get(`/historicos/pegar-dados-dash?id=${idEstacionamento}`);
       const responseTotalCheckout = await api.get(`/historicos/total-checkout-semanal?idEstacionamento=${idEstacionamento}`);
       const responseReserva = await api.get(`/historicos/reserva?idEstacionamento=${idEstacionamento}`);
+      const responseCheckouts = await api.get(`/historicos/pegar-checkouts?id=${idEstacionamento}`);
+      const checkoutsData = responseCheckouts.data;
       const data = responseDados.data;
       const totalCheckoutData = responseTotalCheckout.data;
       const reservaData = responseReserva.data
 
       console.log(reservaData)
+      console.log(checkoutsData.length)
+      setIsTrue((checkoutsData.length > 0) ? true : false)
+
 
       let lista = data.momentoVagas;
 
@@ -135,7 +141,9 @@ function Dashboard() {
       <NavSideBar />
       <div className="container-dashboard-pai">
         <div className="espaco-icone">
-          <BotaoCheckout />
+          <BotaoCheckout 
+            isTrue = {isTrue}
+          />
         </div>
         <div className="container-dashboard-filho">
           <div className="container-dashboard">
