@@ -41,6 +41,7 @@ function Login() {
       });
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
+        sessionStorage.setItem("IS_ADMIN", 0);
         navigate("/dashboard")
         pegarValores(response.data.idEstacionamento)
       })

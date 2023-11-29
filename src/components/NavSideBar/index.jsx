@@ -64,6 +64,12 @@ function NavSideBar() {
         },
 
     ]
+
+    const filteredMenuItems = menuItems.filter(item => {
+        // Remover os itens se IS_ADMIN for igual a 0
+        return sessionStorage.getItem("IS_ADMIN") !== "0" || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
+      });
+      
     
     return (
         <>
@@ -87,7 +93,7 @@ function NavSideBar() {
                         </button>
                     </div>
                     <div className="nav-menu">
-                        {menuItems.map(({ text, icon, href }) => (
+                        {filteredMenuItems.map(({ text, icon, href, alt }) => (
                             <a
                                 href={href}
                                 className={isExpended ? "menu-item" : "menu-item menu-item-NX"}
@@ -109,9 +115,6 @@ function NavSideBar() {
                     )}
                     <a onClick={confirmarLogout}><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconLogout"/>
                     {!isExpended && <div className="tooltip">Sair</div>}</a>
-                    
-                    
-
                 </div>
             </div>
         </>
