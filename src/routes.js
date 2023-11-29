@@ -14,9 +14,11 @@ import CheckoutCliente from "./pages/dashboard/Componentes/CheckoutCliente";
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    Navigate
 } from "react-router-dom";
 
+const isSessionStorageEmpty = !sessionStorage.getItem("ID_ESTACIONAMENTO");
 
 function Rotas(){
     return(
@@ -26,12 +28,12 @@ function Rotas(){
                 <Route path="*" element={<NotFound />}/>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/estacionamento" element={<Estacionamento />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/estacionamento" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Estacionamento />} />
+                <Route path="/dashboard" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Dashboard />} />
                 <Route path="/checkin" element={<Checkin />} />
-                <Route path="/valores" element={<Valores />} />
-                <Route path="/historico" element={<Historico />} />
-                <Route path="/funcionarios" element={<Funcionarios />} />
+                <Route path="/valores" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Valores />} />
+                <Route path="/historico" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Historico />}/>
+                <Route path="/funcionarios" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Funcionarios />} />
                 <Route path="/checkout-cliente" element={<CheckoutCliente />} />
             </Routes>
         </BrowserRouter>
