@@ -25,6 +25,7 @@ function Login() {
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
       console.log(response)
+      sessionStorage.setItem("IS_ADMIN", response.data.adm);
       let timerInterval;
       Swal.fire({
         title: "Carregando dados",
@@ -41,7 +42,7 @@ function Login() {
       });
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
-        sessionStorage.setItem("IS_ADMIN", 0);
+        console.log(response.data)
         navigate("/dashboard")
         pegarValores(response.data.idEstacionamento)
       })
