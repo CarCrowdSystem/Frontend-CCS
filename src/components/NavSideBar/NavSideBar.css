@@ -5,7 +5,7 @@
     position: fixed;
     color: var(--light);
     float: left;
-    z-index: 1000;
+    z-index: 1000;  
     transition: 0.4s;
 }
 
@@ -35,6 +35,11 @@
 .logo-img {
     width: 80px;
     padding: 0 10px;
+    transition: filter 0.4s; 
+}
+
+.menu-item:hover img {
+    filter: brightness(0); /* Deixa o ícone branco quando o mouse passa sobre o item */
 }
 
 .logo-img1 {
