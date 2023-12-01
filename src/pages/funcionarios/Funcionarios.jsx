@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import BotaoCheckout from "../../components/Botoes/BotaoCheckout";
+/* import BotaoCheckout from "../../components/Botoes/BotaoCheckout"; */
 import "./Funcionarios.css";
 import Lupa from "./lupa-pesquisar-func.png";
 import SetaCima from "./arrow_up.png";
@@ -219,7 +219,7 @@ function Funcionarios() {
       <NavSideBar />
       <div className="container-funcionarios-pai">
         <div className="espaco-icone">
-          <BotaoCheckout />
+          {/* <BotaoCheckout /> */}
         </div>
         <div className="container-funcionarios-filho">
           <div className="container-adicionar-funcionarios">
