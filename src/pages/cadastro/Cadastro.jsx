@@ -36,6 +36,8 @@ function Cadastro() {
 
   const [listaVagas, setListaVagas] = useState([]);
 
+  const [loading, setLoading] = useState(false)
+
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
       return { ...prev, [key]: value };
@@ -56,8 +58,7 @@ function Cadastro() {
     <LastStep data={data} updateFieldHandler={updateFieldHandler} />,
   ];
 
-  const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
-    useForm(formCadastro);
+  const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } = useForm(formCadastro);
 
   var id_estacionamento = 0;
 
@@ -70,11 +71,9 @@ function Cadastro() {
       telefoneEmpresa: data.telefoneEmpresa,
     };
 
-    api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
 
-      // "Funcional" backEnd ccs
+
+    api
       .post(`/estacionamentos`, postEmpresa)
       .then((response) => {
         console.log(response)
@@ -96,10 +95,6 @@ function Cadastro() {
     };
 
     api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
-
-      // "Funcional" backEnd ccs
       .post(`/vagas/${id_estacionamento}`, postEmpresa2)
       .then((response) => {
         console.log(response);
@@ -122,11 +117,9 @@ function Cadastro() {
       idEstacionamento: id_estacionamento,
     };
 
-    api
-      // Teste MockAPI
-      // .post(`/teste`, postEmpresa)
+    setLoading(true);
 
-      // "Funcional" backEnd ccs
+    api
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
         Swal.fire({
@@ -137,7 +130,7 @@ function Cadastro() {
           cancelButtonColor: '#d33',
           confirmButtonText: 'Ok'
         }).then((result) => {
-          if (result.isConfirmed) { 
+          if (result.isConfirmed) {
             navigate("/login")
           }
         })
@@ -153,18 +146,13 @@ function Cadastro() {
         })
         console.log("Error");
         console.log(erro);
+      })
+      .finally(() => {
+        setLoading(false);
       });
 
     console.log(postEmpresa3);
   }
-
-  // function testeAlert(){
-  //   Swal.fire({
-  //     icon: 'error',
-  //     title: 'Houve um erro no cadastro!',
-  //     text: 'Verifique se os campos estão correntamente preenchidos'
-  //   })
-  // }
 
   return (
     <>
@@ -172,43 +160,45 @@ function Cadastro() {
         <div className="div-all-fields">
           <div className="div-arrow-back">
             <a href="/">
-              <img className="arrowBack" src="/imgs/icons/navIcons/botao-home (1).png" alt="arrowBack"/>
+              <img className="arrowBack" src="/imgs/icons/navIcons/botao-home (1).png" alt="arrowBack" />
             </a>
           </div>
           <div className="div-logo">
-            <img className="logo" src="/imgs/Group 39.png" alt="logo"/>
+            <img className="logo" src="/imgs/Group 39.png" alt="logo" />
           </div>
+          
           <Steps currentStep={currentStep} />
-          <div className="campo-cadastro">
-            <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
-              {currentComponent}
-              <div
-                className={
-                  !isFirstStep ? "div-buttons-cadastro" : "div-button-cadastro"
-                }
-              >
-                {!isFirstStep ? (
-                  <button
-                    type="button"
-                    onClick={() => changeStep(currentStep - 1)}
-                  >
-                    Voltar
-                  </button>
-                ) : (
-                  <span></span>
-                )}
+          {loading && <div className="fundoloader"><img className="gif" src="/gif/loading-gif-png-5.gif" alt="logo" /></div>}
+          {!loading && (
+            <div className="campo-cadastro">
+              <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
+                {currentComponent}
+                <div
+                  className={
+                    !isFirstStep ? "div-buttons-cadastro" : "div-button-cadastro"
+                  }
+                >
+                  {!isFirstStep ? (
+                    <button
+                      type="button"
+                      onClick={() => changeStep(currentStep - 1)}
+                    >
+                      Voltar
+                    </button>
+                  ) : (
+                    <span></span>
+                  )}
 
-                {!isLastStep ? (
-                  <button type="submit">Avançar</button>
-                ) : (
-                  <button onClick={() => cadastrarEmpresa()} type="submit">
-                    Enviar
-                  </button>
-                )}
-                {/* <button onClick={() => testeAlert()}>teste alert</button> */}
-              </div>
-            </form>
-          </div>
+                  {!isLastStep ? (
+                    <button type="submit">Avançar</button>
+                  ) : (
+                    <button onClick={() => cadastrarEmpresa()} type="submit">
+                      Enviar
+                    </button>
+                  )}
+                </div>
+              </form>
+            </div>)}
         </div>
         <div className="image-cadastro">
           <img
