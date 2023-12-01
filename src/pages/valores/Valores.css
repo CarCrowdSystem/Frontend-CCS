@@ -35,12 +35,17 @@
 }
 
 .button-salvar-valores{
-    border-radius: 8px;
-  background-color: #ffffff;
-  border-color: #ff8000;
-  border-style: solid;
-  color: #ff8000;
-  margin-top: 32px;
+  background-color: #ff8000;
+  color: white;
+  border: none;
+  font-weight: bolder;
+  border-radius: 8px;
   padding: 18px;
   font-size: larger;
+}
+
+.button-salvar-valores:hover {
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }

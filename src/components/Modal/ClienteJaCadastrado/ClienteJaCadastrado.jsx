@@ -20,7 +20,7 @@ function ClienteJaCadastrado ({idVaga, func}) {
     .post(`/historicos/checkin-placa?placa=${placa}&idVaga=${idVaga}`)
     .then((response)=>{
       Swal.fire({
-        title: "Checkin feito com sucesso!",
+        title: "Check-in feito com sucesso!",
         icon: "success",
         confirmButtonColor: "#ff8000",
         cancelButtonColor: "#d33",
@@ -30,7 +30,7 @@ function ClienteJaCadastrado ({idVaga, func}) {
     .catch((error)=>{
       console.log(error.response.data.message)
       Swal.fire({
-        title: "Erro ao fazer checkin!",
+        title: "Erro ao fazer check-in!",
         text: (error.response.data.message)?error.response.data.message : error.response.data ,
         icon: "error",
         confirmButtonColor: "#ff8000",
@@ -45,11 +45,11 @@ function ClienteJaCadastrado ({idVaga, func}) {
     <>
       <div className='div-pai-checkin-cliente'>
         <div className='div-title-dados-cliente'>
-          <h1 className='title-dados-cliente'>Checkin</h1>
+          <h1 className='title-dados-cliente'>Check-in</h1>
         </div>
         <div className='form-dados-cliente-checkin'>
           <div className='div-label-checkin'>
-            <label className='label-checkin' htmlFor=''>Placa:</label>
+            <label className='label-checkin' htmlFor=''>Placa: </label>
           </div>
           <div className='div-inputs-checkin'>
             <input className='input-checkin' type='text'

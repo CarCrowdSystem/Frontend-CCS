@@ -43,15 +43,21 @@ function Funcionarios() {
   };
 
   function buscarFuncionarioPorNome() {
-    api
-      .get(`/funcionarios/nome/${nomeFunc}`)
-      .then((response) => {
-      console.log(response)
-        setFuncionarios(response.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
+    let apiEndpoint = `/funcionarios/${sessionIdEstacionamento}`;
+
+  if (nomeFunc !== null && nomeFunc !== "") {
+    apiEndpoint = `/funcionarios/nome/${nomeFunc}`;
+  }
+
+  api
+    .get(apiEndpoint)
+    .then((response) => {
+      console.log(response.data);
+      setFuncionarios(response.data);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
   }
 
   function cadastrarFuncionario() {
@@ -69,7 +75,7 @@ function Funcionarios() {
       .then((response) => {
       console.log(response)
         Swal.fire({
-          title: "Funcionario adicionado!",
+          title: "Funcionário adicionado!",
           icon: "success",
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
@@ -80,7 +86,7 @@ function Funcionarios() {
       })
       .catch((erro) => {
         Swal.fire({
-          title: "Erro ao adicionar o funcionario!",
+          title: "Erro ao adicionar funcionário!",
           text: "Verifique os campos!",
           icon: "error",
           confirmButtonColor: "#ff8000",
@@ -125,7 +131,7 @@ function Funcionarios() {
       .then(() => {
         funcionarios.filter((funcionario) => funcionario.idFuncionario !== id);
         Swal.fire({
-          title: "Funcionario deletado com sucesso!",
+          title: "Funcionário deletado!",
           icon: "success",
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
@@ -135,7 +141,7 @@ function Funcionarios() {
       })
       .catch((erro) => {
         Swal.fire({
-          title: "Erro ao deletar funcionario!",
+          title: "Erro ao deletar funcionário!",
           icon: "error",
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
@@ -153,7 +159,7 @@ function Funcionarios() {
           funcionarios.filter((funcionario) => funcionario.id !== id)
         );
         Swal.fire({
-          title: "Funcionario deletado com sucesso!",
+          title: "Funcionário deletado!",
           icon: "success",
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
@@ -163,7 +169,7 @@ function Funcionarios() {
       })
       .catch(() => {
         Swal.fire({
-          title: "Erro ao deletar funcionario!",
+          title: "Erro ao deletar funcionário!",
           icon: "error",
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
@@ -223,7 +229,7 @@ function Funcionarios() {
             <div className="div-formulario-adicionar-funcionario">
               <div className="form-adicionar-funcionarios">
                 <label className="label-info-add-func" htmlFor="">
-                  Nome:
+                  Nome
                 </label>
                 <input
                   type="text"
@@ -234,6 +240,7 @@ function Funcionarios() {
                     updateFieldHandler("nomeFuncionario", e.target.value)
                   }
                 />
+                <p>Cargo</p>
                 <select
                   className="combobox-cargo-add-func"
                   name="cargoFuncionario"
@@ -248,7 +255,7 @@ function Funcionarios() {
               </div>
               <div className="form-adicionar-funcionarios">
                 <label className="label-info-add-func" htmlFor="">
-                  CPF:
+                  CPF
                 </label>
                 <InputMask
                   className="input-add-func"
@@ -261,7 +268,7 @@ function Funcionarios() {
                   onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
                 />
                 <label className="label-info-add-func" htmlFor="">
-                  E-mail:
+                  E-mail
                 </label>
                 <input
                   className="input-add-func"
@@ -276,7 +283,7 @@ function Funcionarios() {
               </div>
               <div className="form-adicionar-funcionarios">
                 <label className="label-info-add-func" htmlFor="">
-                  Senha:
+                  Senha
                 </label>
                 <input
                   className="input-add-func"
@@ -287,7 +294,7 @@ function Funcionarios() {
                   onChange={(e) => updateFieldHandler("senha", e.target.value)}
                 />
                 <label className="label-info-add-func" htmlFor="">
-                  Confirmar senha:
+                  Confirmar senha
                 </label>
                 <input
                   className="input-add-func"
@@ -325,7 +332,7 @@ function Funcionarios() {
                     className="botao-ordenar-func"
                     onClick={() => selecionarOrdenacao()}
                   >
-                    <img className="img-seta-cima" src={SetaCima} alt="seta" /> A-Z
+                    <img className="img-seta-cima" src={SetaCima} alt="seta" />A - Z
                   </button>
                   <div className="div-buscar-pelo-nome">
                     <input

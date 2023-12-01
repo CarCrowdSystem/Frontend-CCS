@@ -23,7 +23,7 @@ function NavSideBar() {
             confirmButtonColor: "#ff8000",
             cancelButtonColor: "#1b1b1b",
             confirmButtonText: "Sim, sair!",    
-            cancelButtonText: "Não, cancelar"
+            cancelButtonText: "Não, cancelar."
           }).then((result) => {
             if (result.isConfirmed) {
               handleLogout()
@@ -64,6 +64,12 @@ function NavSideBar() {
         },
 
     ]
+
+    const filteredMenuItems = menuItems.filter(item => {
+        // Remover os itens se IS_ADMIN for igual a 0
+        return sessionStorage.getItem("IS_ADMIN") !== true || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
+      });
+      
     
     return (
         <>
@@ -73,7 +79,7 @@ function NavSideBar() {
                         {isExpended && (<div className="nav-brand">
                             <img src="imgs/Group 39.png" alt="logo CCS"
                                 className={isExpended ? "logo-img" : "logo-img1"} />
-                            <h2 className={isExpended ? "h2-nav" : "h2-nav1"}> Car Crowd System</h2>
+                            <h2 className={isExpended ? "h2-nav" : "h2-nav1"}>Car Crowd System</h2>
                         </div>
                         )}
                         <button className={
@@ -87,7 +93,7 @@ function NavSideBar() {
                         </button>
                     </div>
                     <div className="nav-menu">
-                        {menuItems.map(({ text, icon, href }) => (
+                        {filteredMenuItems.map(({ text, icon, href, alt }) => (
                             <a
                                 href={href}
                                 className={isExpended ? "menu-item" : "menu-item menu-item-NX"}
@@ -109,9 +115,6 @@ function NavSideBar() {
                     )}
                     <a onClick={confirmarLogout}><img className='logout-icon' src="imgs/icons/navIcons/logout.png" alt="iconLogout"/>
                     {!isExpended && <div className="tooltip">Sair</div>}</a>
-                    
-                    
-
                 </div>
             </div>
         </>

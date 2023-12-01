@@ -48,7 +48,7 @@ function Checkin() {
                     <div className='container-combobox-andares-dash'>
                           <select className='combobox-andares-dash' name="selecaoAndares" id="teste">
                               <option value="">Térreo</option>
-                              <option value="">1° Subsolo</option> 
+                              <option value="">1º Subsolo</option> 
                           </select>
                       </div>
                     <div className='container-vagas-checkin-dash'>

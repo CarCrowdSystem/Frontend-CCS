@@ -50,7 +50,7 @@
 }
 
 .botao-icon-voltar-chekcout:hover{
-    cursor: pointer;;
+    cursor: pointer;
 }
 
 .icon-voltar-chekcout{
@@ -107,14 +107,14 @@
 
 .container-botao-checkout{
     height: 90%;
-    width: 10%;
+    width: 11%;
     display: flex;
     justify-content: center;
 }
 
 .botao-checkout-tela-checkout{
     height: 8%;
-    width: 8vw;
+    width: 100%;
     margin-left: 8px;
     border-radius: 8px;
     background-color: #FF8000;

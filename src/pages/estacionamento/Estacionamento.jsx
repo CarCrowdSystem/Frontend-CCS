@@ -124,7 +124,7 @@ function Estacionamento() {
         </div>
         <div className="div-form-estacionamento">
           <form className="form-estacionamento">
-            <label>Nome:</label>
+            <label>Nome</label>
             <input
               id="name-field"
               className="campo-texto-estacionamento"
@@ -138,7 +138,7 @@ function Estacionamento() {
               }
             />
 
-            <label>CEP:</label>
+            <label>CEP</label>
             <InputMask
               className="campo-texto-estacionamento"
               type="text"
@@ -150,7 +150,7 @@ function Estacionamento() {
               onChange={(e) => updateFieldHandler("cepEmpresa", removeNonNumericChars(e.target.value))}
             />
 
-            <label>Rua: </label>
+            <label>Rua</label>
             <input
               className="campo-texto-estacionamento"
               type="text"
@@ -190,7 +190,7 @@ function Estacionamento() {
           </form>
         </div>
         <div className="div-botao-alterar">
-          <button onClick={() => atualizarEmpresa()} type="submit">
+          <button className="btn-alterar-estacionamento" onClick={() => atualizarEmpresa()} type="submit">
             Alterar
           </button>
         </div>

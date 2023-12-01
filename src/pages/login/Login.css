@@ -59,20 +59,38 @@
 }
 
 .button-cadastra {
-  border-radius: 8px;
-  background-color: #454e4d;
-  color: #ffffff;
+  background-color: black;
+  color: white;
   border: none;
+  font-weight: bolder;
+  font-size: 16px;
+  border-radius: 8px;
   padding: 12px;
-}
-
-.button-cadastra {
-  color: #ffffff;
   text-decoration: none;
 }
 
 .button-cadastra:hover {
   transform: scale(1.1);
+  cursor: pointer;
+  background-color: #ff8000;
+  transition: 0.5s;
+}
+
+.btn-entrar-login {
+  background-color: #ff8000;
+  color: white;
+  border: none;
+  width: 30%;
+  font-weight: bolder;
+  border-radius: 8px;
+  padding: 25px;
+  font-size: larger;
+}
+
+.btn-entrar-login:hover {
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }
 
 .componentesLogin {

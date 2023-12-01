@@ -12,12 +12,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
+
+.NovoCeckout{
+    width: 35%;
+}
 
 .aparecer {
     transform: translateX(0%);
     transition: transform 0.3s ease-in-out;
-}
+  }
 
 @keyframes blink {
     0% {
@@ -35,10 +39,8 @@
 
 .imgIconCheckout {
     animation: blink 1s infinite;
-    background-color: rgba(96, 87, 87, 0.444);
     border-radius: 40px;
     padding: 3px;
     margin-right: 5px;
     margin-top: 5px;
-    /* Altere a duração conforme necessário */
 }
