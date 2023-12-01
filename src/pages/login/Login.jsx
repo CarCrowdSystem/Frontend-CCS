@@ -33,9 +33,9 @@ function Login() {
       .catch((erro) => {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "Ops...",
           confirmButtonColor: "#ff8000",
-          text: "Email ou senha inválidos!",
+          text: "E-mail ou senha inválidos!",
           timer: 4000,
         });
         console.log("Error");
@@ -88,7 +88,7 @@ function Login() {
                 className="campo-texto"
                 type="text"
                 name="emailEmpresa"
-                placeholder="Digite seu email"
+                placeholder="Digite seu e-mail"
               />
 
               <label>Senha</label>
@@ -99,7 +99,7 @@ function Login() {
                 placeholder="Digite sua senha"
               />
 
-              <Button type="submit">Entrar</Button>
+              <button className="btn-entrar-login" type="submit">Entrar</button>
             </form>
 
             <div className="footer-login">

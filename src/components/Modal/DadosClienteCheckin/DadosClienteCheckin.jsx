@@ -42,7 +42,7 @@ const postteFieldHandler = (key, value) => {
         .catch((error)=>{
             console.log(error.response)
             Swal.fire({
-                title: "Erro ao fazer checkin!",
+                title: "Erro ao fazer check-in!",
                 text: (error.response.data.message)?error.response.data.message : error.response.data ,
                 icon: "error",
                 confirmButtonColor: "#ff8000",
@@ -64,10 +64,10 @@ const postteFieldHandler = (key, value) => {
             </div>
             <div className='form-dados-cadastro-checkin'>
                 <div className='div-label-checkin'>
-                    <label className='label-checkin' htmlFor="">Nome:</label>
-                    <label className='label-checkin' htmlFor="">Telefone:</label>
-                    <label className='label-checkin' htmlFor="">Placa:</label>
-                    <label className='label-checkin' htmlFor="">Modelo:</label>
+                    <label className='label-checkin' htmlFor="">Nome: </label>
+                    <label className='label-checkin' htmlFor="">Telefone: </label>
+                    <label className='label-checkin' htmlFor="">Placa: </label>
+                    <label className='label-checkin' htmlFor="">Modelo: </label>
                 </div>
                 <div className='div-inputs-checkin'>
                     <input className="input-checkin"

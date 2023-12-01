@@ -4,7 +4,7 @@ import "./Cadastro.css";
 // import { Container } from './styles';
 
 const Steps = ({ currentStep }) => {
-  const stepsNames = ["Cadastro de empresa", "Cadastro de vagas", "Cadastro Pessoal"]
+  const stepsNames = ["Cadastro de empresa", "Cadastro de vagas", "Cadastro pessoal"]
   return (
     <>
       <div className="steps-names">

@@ -12,12 +12,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .aparecer {
     transform: translateX(0%);
     transition: transform 0.3s ease-in-out;
-}
+  }
 
 @keyframes blink {
     0% {

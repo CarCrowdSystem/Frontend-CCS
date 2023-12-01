@@ -44,9 +44,9 @@
 }
 
 .button-checkout-mobile {
-  border: none;
   background-color: #ff8000;
-  color: #f6f6f6;
+  color: white;
+  border: none;
   width: 132px;
   height: 48px;
   font-size: 16px;
@@ -57,4 +57,10 @@
 .button-checkout-cliente-mobile:focus {
   background-color: black;
   border: black;
+}
+
+.button-checkout-mobile:hover {
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }

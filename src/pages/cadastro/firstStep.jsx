@@ -10,7 +10,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
 
   return (
     <>
-      <label>Nome fantasia</label>
+      <label>Nome Fantasia</label>
       <input
         className="campo-texto"
         type="text"
@@ -54,7 +54,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         className="campo-texto"
         type="text"
         name="enderecoEmpresa"
-        placeholder="Digite o número de endereço da empresa"
+        placeholder="Digite o número do endereço da empresa"
         required
         value={data.enderecoEmpresa || ""}
         onChange={(e) => updateFieldHandler("enderecoEmpresa", e.target.value)}
@@ -67,7 +67,7 @@ const FirstStep = ({data, updateFieldHandler}) => {
         type="text"
         name="telefoneEmpresa"
         mask="(99) 99999-9999" // Máscara para número de celular
-        placeholder="Digite o número de celular da empresa"
+        placeholder="Digite o número de telefone da empresa"
         required
         value={data.telefoneEmpresa || ""}
         onChange={(e) => updateFieldHandler("telefoneEmpresa", removeNonNumericChars(e.target.value))}

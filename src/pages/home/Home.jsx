@@ -70,7 +70,7 @@ function Home() {
               Somos uma empresa focada em melhorar a gestão dos estacionamentos.
               Trabalhamos com o objetivo de melhorar a eficiência dos
               funcionários, trazendo a inovação do ticket virtual, gerenciamento
-              de funcionários e muito mais. Venha conhecer o nosso sistema!!!
+              de funcionários e muito mais. Venha conhecer o nosso sistema!
             </p>
           </div>
         </div>
@@ -131,7 +131,7 @@ function Home() {
           </div>
           <p>
             Oferecer soluções inovadoras e de alta qualidade para os nossos
-            clientes, buscando sempre superar suas expectativas
+            clientes, buscando sempre superar suas expectativas.
           </p>
         </div>
         <div className="card">
@@ -145,7 +145,7 @@ function Home() {
           </div>
           <p>
             Ser uma referência no mercado de tecnologia, destacando-se pela
-            excelência dos nossos produtos e serviços, pela constante inovação
+            excelência dos nossos produtos e serviços, pela constante inovação.
           </p>
         </div>
         <div className="card">
@@ -158,8 +158,8 @@ function Home() {
             <h1>VALORES</h1>
           </div>
           <p>
-            Compromisso com a qualidade, ética, inovação, colaboração,
-            responsabilidade
+            Compromisso com a qualidade, ética, inovação, colaboração e
+            responsabilidade.
           </p>
         </div>
       </div>

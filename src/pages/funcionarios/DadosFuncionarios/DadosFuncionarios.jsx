@@ -13,10 +13,10 @@ const DadosFuncionarios = ({ idFunc, nome, cargo, email, cpf, funDelete }) => {
           <div className="info-funcionarios">
             <div className="div-label-inf-funcionarios">
               <label className="label-inf-funcionarios" htmlFor="">
-                Nome:
+                Nome: 
               </label>
               <label className="label-inf-funcionarios" htmlFor="">
-                CPF:
+                CPF: 
               </label>
             </div>
             <div className="div-dados-info-funcionario">
@@ -27,10 +27,10 @@ const DadosFuncionarios = ({ idFunc, nome, cargo, email, cpf, funDelete }) => {
           <div className="info-funcionarios">
             <div className="div-label-inf-funcionarios">
               <label className="label-inf-funcionarios" htmlFor="">
-                Cargo:
+                Cargo: 
               </label>
               <label className="label-inf-funcionarios" htmlFor="">
-                E-mail:
+                E-mail: 
               </label>
             </div>
             <div className="div-dados-info-funcionario">

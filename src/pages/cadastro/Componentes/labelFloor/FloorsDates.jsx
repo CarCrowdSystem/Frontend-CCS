@@ -10,19 +10,19 @@ const FloorData = ({ floor, parkingSpot, onExcluir }) => {
       parkingSpot = "Térreo"
       break;
     case -1:
-      parkingSpot = "SubSolo -1"
+      parkingSpot = "Subsolo -1"
       break;
     case -2:
-      parkingSpot = "SubSolo -2"
+      parkingSpot = "Subsolo -2"
       break;
     case -3:
-      parkingSpot = "SubSolo -3"
+      parkingSpot = "Subsolo -3"
       break;
     case -4:
-      parkingSpot = "SubSolo -4"
+      parkingSpot = "Subsolo -4"
       break;
     case -5:
-      parkingSpot = "SubSolo -5"
+      parkingSpot = "Subsolo -5"
       break;
     case 1:
       parkingSpot = "Andar 1"

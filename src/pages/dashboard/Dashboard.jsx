@@ -164,7 +164,7 @@ function Dashboard() {
       <NavSideBar />
       <div className="container-dashboard-pai">
         <div className="espaco-icone">
-          <BotaoCheckout 
+          <BotaoCheckout
             temPedidoCheckout = {temPedidoCheckout}
           />
         </div>
@@ -215,7 +215,7 @@ function Dashboard() {
                   </div>
                   <div className="painel-pequeno">
                     <div className="titulo-card-painel">
-                      <h3 className="title-card">Total de checkout's diário</h3>
+                      <h3 className="title-card">Total de checkouts diário</h3>
                     </div>
                     <div className="valor-painel">
                       <p className="valor-dashboard">{estacionamentoInfo.totalCheckout || '...'}</p>
