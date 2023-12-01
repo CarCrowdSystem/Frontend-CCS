@@ -90,8 +90,7 @@ function NavSideBar() {
     ]
 
     const filteredMenuItems = menuItems.filter(item => {
-        // Remover os itens se IS_ADMIN for igual a 0
-        return sessionStorage.getItem("IS_ADMIN") !== true || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
+        return sessionStorage.getItem("IS_ADMIN") === 0 || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
       });
       
     

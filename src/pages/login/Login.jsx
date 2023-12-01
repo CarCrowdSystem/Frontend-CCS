@@ -37,7 +37,7 @@ function Login() {
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
         console.log(response)
-        sessionStorage.setItem("IS_ADMIN", response.data.adm);
+        sessionStorage.setItem("IS_ADMIN", (response.data.adm) ? 1 : 0);
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
         Swal.close();
