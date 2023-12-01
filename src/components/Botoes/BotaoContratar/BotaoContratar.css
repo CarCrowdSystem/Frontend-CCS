@@ -6,46 +6,28 @@
 }
 
 .btnContratar {
+    background-color: #ff8000;
+    color: white;
+    border: none;
     width: fit-content;
-    border-radius: 10px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    margin-left: 10px;
     font-weight: 700;
     font-size: 30px;
     padding: 25px;
-    border: none;
     cursor: pointer;
-    color: #FFF;
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
 
-.btnContratar:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #FF8000;
-    z-index: -2;
-}
-
-.btnContratar:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background-color: #FFFFFF;
-    transition: all 0.3s;
-    z-index: -1;
-}
-
 .btnContratar:hover {
-    color: #FF8000;
     cursor: pointer;
+    background-color: #ffffff;
+    color: #ff8000;
+    transition: 0.5s;
 }
 
 .btnContratar:hover:before {

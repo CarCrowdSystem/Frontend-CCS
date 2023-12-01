@@ -23,22 +23,22 @@ const LastStep = ({data, updateFieldHandler}) => {
       errors.nomeUsuario = "Por favor, preencha o nome completo.";
 
     }
-  
+
     if (!data.cpfUsuario || removeNonNumericChars(data.cpfUsuario).length !== 11) {
       errors.cpfUsuario = "Por favor, insira um CPF válido.";
 
     }
-  
+
     if (!data.emailUsuario || data.emailUsuario.indexOf("@") == -1) {
       errors.emailUsuario = "Por favor, insira um e-mail válido.";
 
     }
-  
+
     if (!data.senha || data.senha.length < 8) {
       errors.senha = "A senha deve ter pelo menos 8 caracteres.";
 
     }
-  
+
     if (data.senha !== data.confirmaSenha) {
       errors.confirmaSenha = "As senhas não coincidem.";
     }
@@ -46,12 +46,12 @@ const LastStep = ({data, updateFieldHandler}) => {
     setErrorMessages(errors);
 
     return Object.keys(errors).length === 0;
-  
+
   };
-  
+
   return (
     <>
-      <label>Nome completo<span className="error-message">{errorMessages.nomeUsuario}</span></label>
+      <label>Nome Completo<span className="error-message">{errorMessages.nomeUsuario}</span></label>
       <input
         id="name-field"
         className="campo-texto"
@@ -77,12 +77,12 @@ const LastStep = ({data, updateFieldHandler}) => {
         onKeyUp={validateLastStep}
       />
 
-      <label>Email<span className="error-message">{errorMessages.emailUsuario}</span></label>
+      <label>E-mail<span className="error-message">{errorMessages.emailUsuario}</span></label>
       <input
         className="campo-texto"
         type="email"
         name="emailUsuario"
-        placeholder="empresa@gmail.com"
+        placeholder="usuario@gmail.com"
         required
         value={data.emailUsuario || ""}
         onChange={(e) => updateFieldHandler("emailUsuario", e.target.value)}
@@ -102,12 +102,12 @@ const LastStep = ({data, updateFieldHandler}) => {
         onKeyUp={validateLastStep}
       />
 
-      <label>Confirmar senha<span className="error-message">{errorMessages.confirmaSenha}</span></label>
+      <label>Confirmar Senha<span className="error-message">{errorMessages.confirmaSenha}</span></label>
       <input
         className="campo-texto"
         type="password"
         name="confirmaSenha"
-        placeholder="Confirmar senha"
+        placeholder="Confirme a sua senha"
         required
         value={data.confirmaSenha || ""}
         onChange={(e) => updateFieldHandler("confirmaSenha", e.target.value)}

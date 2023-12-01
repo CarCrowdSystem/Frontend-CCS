@@ -4,7 +4,7 @@ import Exclamação from './icon_exclamacao_checkout.png';
 import './BotaoCheckout.css';
 import TelaCheckout from '../../TelaCheckout/TelaCheckout';
 
-const BotaoCheckout = ({isTrue}) =>  {
+const BotaoCheckout = ({temPedidoCheckout}) =>  {
   const [showDiv, setShowDiv] = useState(false);
 
   const toggleDiv = () => {
@@ -15,7 +15,7 @@ const BotaoCheckout = ({isTrue}) =>  {
   return (
     <>
       {showDiv ? <TelaCheckout onClose={toggleDiv} /> : null}
-      <div className='icon-checkout'>
+      <div className={(temPedidoCheckout) ? 'icon-checkout imgIconCheckout' : 'icon-checkout'}>
         <img className='NovoCeckout' src={Exclamação} alt='NovoCeckout'/>
         <button onClick={toggleDiv} className='botao-checkout'>
           <img src={Botao} alt='Checkout' />

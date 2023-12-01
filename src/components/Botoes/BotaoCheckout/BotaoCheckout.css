@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .NovoCeckout{
     width: 35%;
@@ -21,7 +21,7 @@
 .aparecer {
     transform: translateX(0%);
     transition: transform 0.3s ease-in-out;
-}
+  }
 
 @keyframes blink {
     0% {

@@ -173,7 +173,7 @@ body{
 }
 
 .titulo-andares-dash{
-    padding-top: 6px;
+    padding-top: 2px;
     padding-right: 10px;
 }
 
@@ -279,3 +279,25 @@ body{
 .style-tabela tbody tr td .editar  { color:#00d549; font-size:1.2em; font-weight:bold; display:inline; text-decoration:none;} 
 .style-tabela tbody tr td .deletar { color:#bf303c; font-size:1.2em; font-weight:bold; display:inline; text-decoration:none; }
 .style-tabela tbody tr.mensagemAlerta { background-color:#fdeeef; color:#bf303c;}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.checkout-piscar {
+    animation: blink 1s infinite;
+    background-color: rgba(96, 87, 87, 0.444);
+    border-radius: 40px;
+    padding: 3px;
+    /* Altere a duração conforme necessário */
+}

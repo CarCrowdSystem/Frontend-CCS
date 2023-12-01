@@ -24,34 +24,19 @@ function Login() {
     api
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
-      console.log(response)
-      sessionStorage.setItem("IS_ADMIN", response.data.adm);
-      let timerInterval;
-      Swal.fire({
-        title: "Carregando dados",
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading();
-          const timer = Swal.getPopup().querySelector("b");
-        },
-        willClose: () => {
-          clearInterval(timerInterval);
-        }
-      }).then((result) => {
-      });
+        console.log(response)
+        sessionStorage.setItem("IS_ADMIN", response.data.adm);
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
-        console.log(response.data)
         navigate("/dashboard")
         pegarValores(response.data.idEstacionamento)
       })
       .catch((erro) => {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "Ops...",
           confirmButtonColor: "#ff8000",
-          text: "Email ou senha inválidos!",
+          text: "E-mail ou senha inválidos!",
           timer: 4000,
         });
         console.log("Error");
@@ -104,7 +89,7 @@ function Login() {
                 className="campo-texto"
                 type="text"
                 name="emailEmpresa"
-                placeholder="Digite seu email"
+                placeholder="Digite seu e-mail"
               />
 
               <label>Senha</label>
@@ -115,7 +100,7 @@ function Login() {
                 placeholder="Digite sua senha"
               />
 
-              <Button type="submit">Entrar</Button>
+              <button className="btn-entrar-login" type="submit">Entrar</button>
             </form>
 
             <div className="footer-login">
