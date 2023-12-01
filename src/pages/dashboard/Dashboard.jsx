@@ -164,10 +164,7 @@ function Dashboard() {
       <NavSideBar />
       <div className="container-dashboard-pai">
         <div className="espaco-icone">
-          <BotaoCheckout
-            temPedidoCheckout = {temPedidoCheckout}
-            fetchData = {fetchData}
-          />
+        <BotaoCheckout temPedidoCheckout={temPedidoCheckout} fetchData={fetchData} />
         </div>
         <div className="container-dashboard-filho">
           <div className="container-dashboard">
@@ -254,6 +251,7 @@ function Dashboard() {
                             andar={vaga.andar}
                             andarSelecionado={selectedOption}
                             idVaga={vaga.idVaga}
+                            fetchData={fetchData}
                           />
                         </React.Fragment>
                       ))}

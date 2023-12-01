@@ -4,21 +4,29 @@ import Swal from "sweetalert2";
 
 var placa = ''
 
-function ClienteJaCadastrado ({idVaga, func}) {
-/*   const [modalAberto, setModalAberto] = useState(false);
-
-  const abrirModalCadastrarCliente = () => {
-    setModalAberto(true);
-  };
-
-  const fecharModalCadastrarCliente = () => {
-    setModalAberto(false);
-  }; */
+function ClienteJaCadastrado ({idVaga, func, fetchData, fecharModal}) {
 
   function realizaCheckin(){
+    Swal.fire({
+      title: "Realizando checkin",
+      timerProgressBar: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        const swalContainer = document.querySelector('.custom-swal-container');
+        if (swalContainer) {
+          swalContainer.style.zIndex = '10000';
+        }
+      },
+    });
     api
     .post(`/historicos/checkin-placa?placa=${placa}&idVaga=${idVaga}`)
     .then((response)=>{
+      fetchData();
+      Swal.close()
       Swal.fire({
         title: "Check-in feito com sucesso!",
         icon: "success",
@@ -26,9 +34,11 @@ function ClienteJaCadastrado ({idVaga, func}) {
         cancelButtonColor: "#d33",
         confirmButtonText: "Ok",
       })
+      fecharModal();
     })
     .catch((error)=>{
       console.log(error.response.data.message)
+      Swal.close()
       Swal.fire({
         title: "Erro ao fazer check-in!",
         text: (error.response.data.message)?error.response.data.message : error.response.data ,
