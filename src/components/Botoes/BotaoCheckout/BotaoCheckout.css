@@ -41,4 +41,6 @@
     animation: blink 1s infinite;
     border-radius: 40px;
     padding: 3px;
+    margin-right: 5px;
+    margin-top: 5px;
 }
