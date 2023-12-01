@@ -3,7 +3,7 @@ import Botao from './icone_carro_checkout.png';
 import './BotaoCheckout.css';
 import TelaCheckout from '../../TelaCheckout/TelaCheckout';
 
-function BotaoCheckout() {
+const BotaoCheckout = ({temPedidoCheckout}) =>  {
   const [showDiv, setShowDiv] = useState(false);
 
   const toggleDiv = () => {
@@ -14,7 +14,7 @@ function BotaoCheckout() {
   return (
     <>
       {showDiv ? <TelaCheckout onClose={toggleDiv} /> : null}
-      <div className='icon-checkout'>
+      <div className={(temPedidoCheckout) ? 'icon-checkout imgIconCheckout' : 'icon-checkout'}>
         <button onClick={toggleDiv} className='botao-checkout'>
           <img src={Botao} alt='Checkout' />
         </button>

@@ -31,62 +31,63 @@ function Valores() {
     });
   };
 
-  function atualizarValores() {
-    const postValores = {
-      primeiraHora: data.primeiraHora,
-      horaAdicional: data.demaisHoras,
-      diaria: data.diaria,
-    };
+  const atualizarValores = async () => {
+    try {
+      const sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
+      const postValores = {
+        primeiraHora: data.primeiraHora,
+        horaAdicional: data.demaisHoras,
+        diaria: data.diaria,
+      };
 
-    api
-      .post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores)
-      .then((response) => {
-        Swal.fire({
-          title: "Valores atualizados!",
-          icon: "success",
-          confirmButtonColor: "#ff8000",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ok",
-        }).then((result) => {
-            api
-               .get(`/valores?id=${sessionIdEstacionamento}`)
-               .then((response) => {
-                 sessionStorage.setItem("VALOR_PRIMEIRA_HORA", response.data.primeiraHora)
-                 sessionStorage.setItem("VALOR_DEMAIS_HORAS", response.data.horaAdicional)
-                 sessionStorage.setItem("VALOR_DIARIA", response.data.diaria)
-                 console.log(response.data);
-               })
-               .catch((erro) => {
-                 console.log(erro);
-               });
-               location.reload();
-        });
-      })
-      .catch((erro) => {
-        Swal.fire({
-          title: "Erro ao atualizar os valores!",
-          text: "Tente novamente mais tarde!",
-          icon: "error",
-          confirmButtonColor: "#ff8000",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ok",
-        });
-        console.log("Error");
-        console.log(erro);
+      await api.post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores);
+
+      Swal.fire({
+        title: "Valores atualizados!",
+        icon: "success",
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        fetchData();
       });
+    } catch (error) {
+      console.error("Erro ao atualizar os valores:", error);
+      Swal.fire({
+        title: "Erro ao atualizar os valores!",
+        text: "Tente novamente mais tarde!",
+        icon: "error",
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok",
+      });
+    }
+  };
 
-    console.log(postValores);
-  }
+  const fetchData = async () => {
+    try {
+      const sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
-  // function testeAlert(){
-  //   Swal.fire({
-  //     title: 'Valores atualizados!',
-  //     icon: 'success',
-  //     confirmButtonColor: '#ff8000',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Ok'
-  //   })
-  // }
+      const response = await api.get(`/valores?id=${sessionIdEstacionamento}`);
+      const { primeiraHora, horaAdicional, diaria } = response.data;
+
+      sessionStorage.setItem("VALOR_PRIMEIRA_HORA", primeiraHora);
+      sessionStorage.setItem("VALOR_DEMAIS_HORAS", horaAdicional);
+      sessionStorage.setItem("VALOR_DIARIA", diaria);
+
+      setData({
+        primeiraHora: primeiraHora,
+        demaisHoras: horaAdicional,
+        diaria: diaria,
+      });
+    } catch (error) {
+      console.error("Erro ao buscar dados de valores:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>

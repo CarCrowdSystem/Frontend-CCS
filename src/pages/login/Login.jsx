@@ -25,24 +25,6 @@ function Login() {
       .post(`/funcionarios/login`, getEmpresa)
       .then((response) => {
       console.log(response)
-      let timerInterval;
-      Swal.fire({
-        title: "Carregando dados...",
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading();
-          const timer = Swal.getPopup().querySelector("b");
-        },
-        willClose: () => {
-          clearInterval(timerInterval);
-        }
-      }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log("I was closed by the timer");
-        }
-      });
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
         navigate("/dashboard")
@@ -52,6 +34,7 @@ function Login() {
         Swal.fire({
           icon: "error",
           title: "Ops...",
+          confirmButtonColor: "#ff8000",
           text: "E-mail ou senha inválidos!",
           timer: 4000,
         });

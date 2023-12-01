@@ -34,8 +34,6 @@ function Cadastro() {
 
   const [data, setData] = useState(formTemplate);
 
- // const [postEmpresa, setPostEmpresa] = useState({});
-
   const [listaVagas, setListaVagas] = useState([]);
 
   const updateFieldHandler = (key, value) => {
@@ -44,10 +42,8 @@ function Cadastro() {
     });
   };
 
-  function retornoVagas(vaga) {
-    console.log(vaga);
-
-    setListaVagas([...listaVagas, vaga]);
+  function retornoVagas(listaVagas) {
+    setListaVagas(listaVagas);
   }
 
   const formCadastro = [
@@ -59,23 +55,6 @@ function Cadastro() {
     />,
     <LastStep data={data} updateFieldHandler={updateFieldHandler} />,
   ];
-
-/*   function showData() {
-    const postEmpresa = {
-      nomeEmpresa: data.nomeEmpresa,
-      cnpjEmpresa: data.cnpjEmpresa,
-      cepEmpresa: data.cepEmpresa,
-      enderecoEmpresa: data.enderecoEmpresa,
-      emailEmpresa: data.emailEmpresa,
-      vagas: listaVagas,
-      nomeUsuario: data.nomeUsuario,
-      cpfUsuario: data.cpfUsuario,
-      emailUsuario: data.emailUsuario,
-      senha: data.senha,
-      confirmaSenha: data.confirmaSenha,
-    };
-    console.log(postEmpresa);
-  } */
 
   const { currentStep, currentComponent, changeStep, isFirstStep, isLastStep } =
     useForm(formCadastro);
@@ -169,6 +148,7 @@ function Cadastro() {
         Swal.fire({
           icon: 'error',
           title: 'Houve um erro no cadastro!',
+          confirmButtonColor: '#ff8000',
           text: 'Verifique se os campos estão corretamente preenchidos.'
         })
         console.log("Error");
