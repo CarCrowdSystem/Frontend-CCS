@@ -9,17 +9,29 @@ import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
 
   function loginEmpresa(e) {
     e.preventDefault();
-
+    Swal.fire({
+      title: "Fazendo login",
+      timerProgressBar: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        const swalContainer = document.querySelector('.custom-swal-container');
+        if (swalContainer) {
+          swalContainer.style.zIndex = '10000';
+        }
+      },
+    });
     const getEmpresa = {
       email: e.target.emailEmpresa.value,
       senha: e.target.senhaEmpresa.value,
     };
 
-    setLoading(true);
 
     api
       .post(`/funcionarios/login`, getEmpresa)
@@ -28,6 +40,7 @@ function Login() {
         sessionStorage.setItem("IS_ADMIN", response.data.adm);
         sessionStorage.setItem("ID_ESTACIONAMENTO", response.data.idEstacionamento);
         sessionStorage.setItem("NOME_ESTACIONAMENTO", response.data.nomeEstacionamento);
+        Swal.close();
         navigate("/dashboard")
         pegarValores(response.data.idEstacionamento)
       })
@@ -42,9 +55,6 @@ function Login() {
         console.log("Error");
         console.log(erro);
       })
-      .finally(() =>{
-        setLoading(false);
-      });
 
     console.log(getEmpresa);
   }
@@ -78,8 +88,7 @@ function Login() {
 
             <h1 className="login-title">Login</h1>
           </div>
-          {loading && <div className="fundoloader"><img className="gif" src="/gif/loading-gif-png-5.gif" alt="logo"/></div>}
-          {!loading &&(
+          {(
           <div className="campo-cadastro">
           
             <form onSubmit={loginEmpresa}>

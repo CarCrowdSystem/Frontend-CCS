@@ -88,6 +88,7 @@ function TelaCheckout(props) {
         pegaCheckouts()
       })
       .catch((erro) => {
+        Swal.close();
         console.log(erro);
       });
   }

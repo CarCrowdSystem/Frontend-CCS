@@ -1,14 +1,14 @@
 .div-pai-modal {
     position: absolute;
     z-index: 500;
-    width: 30%;
-    height: 80vh;
+    width: 25%;
+    height: 50vh;
     background-color: #F6F6F6;
     display: flex;
     justify-content: center;
     border-radius: 15px;
     right: 37.5%;
-    top: 10%;
+    top: 25%;
     box-shadow: -2px 2px 20px black;
 }
 

@@ -46,8 +46,10 @@ function Funcionarios() {
     let apiEndpoint = `/funcionarios/${sessionIdEstacionamento}`;
 
   if (nomeFunc !== null && nomeFunc !== "") {
-    apiEndpoint = `/funcionarios/nome/${nomeFunc}`;
+    apiEndpoint = `/funcionarios/nome/${nomeFunc}/${sessionIdEstacionamento}`;
   }
+
+  console.log(apiEndpoint)
 
   api
     .get(apiEndpoint)
@@ -64,7 +66,7 @@ function Funcionarios() {
     const postFuncionario = {
       idEstacionamento: sessionIdEstacionamento,
       nomeUsuario: data.nomeFuncionario,
-      cpfUsuario: data.cpfFuncionario,
+      cpfUsuario: data.cpfUsuario,
       emailUsuario: data.emailFuncionario,
       adm: data.cargoFuncionario,
       senha: data.senha,

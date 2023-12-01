@@ -36,8 +36,6 @@ function Cadastro() {
 
   const [listaVagas, setListaVagas] = useState([]);
 
-  const [loading, setLoading] = useState(false)
-
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
       return { ...prev, [key]: value };
@@ -70,9 +68,21 @@ function Cadastro() {
       enderecoEmpresa: data.enderecoEmpresa,
       telefoneEmpresa: data.telefoneEmpresa,
     };
-
-
-
+    Swal.fire({
+      title: "Fazendo cadastro",
+      timerProgressBar: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        const swalContainer = document.querySelector('.custom-swal-container');
+        if (swalContainer) {
+          swalContainer.style.zIndex = '10000';
+        }
+      },
+    });
     api
       .post(`/estacionamentos`, postEmpresa)
       .then((response) => {
@@ -117,11 +127,10 @@ function Cadastro() {
       idEstacionamento: id_estacionamento,
     };
 
-    setLoading(true);
-
     api
       .post(`/funcionarios`, postEmpresa3)
       .then((response) => {
+        Swal.close();
         Swal.fire({
           title: 'Cadastro realizado com sucesso!',
           text: "Você será direcionado para o login!",
@@ -138,6 +147,7 @@ function Cadastro() {
         console.log(response);
       })
       .catch((erro) => {
+        Swal.close();
         Swal.fire({
           icon: 'error',
           title: 'Houve um erro no cadastro!',
@@ -147,9 +157,6 @@ function Cadastro() {
         console.log("Error");
         console.log(erro);
       })
-      .finally(() => {
-        setLoading(false);
-      });
 
     console.log(postEmpresa3);
   }
@@ -168,8 +175,7 @@ function Cadastro() {
           </div>
           
           <Steps currentStep={currentStep} />
-          {loading && <div className="fundoloader"><img className="gif" src="/gif/loading-gif-png-5.gif" alt="logo" /></div>}
-          {!loading && (
+          {(
             <div className="campo-cadastro">
               <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
                 {currentComponent}

@@ -166,6 +166,7 @@ function Dashboard() {
         <div className="espaco-icone">
           <BotaoCheckout
             temPedidoCheckout = {temPedidoCheckout}
+            fetchData = {fetchData}
           />
         </div>
         <div className="container-dashboard-filho">
