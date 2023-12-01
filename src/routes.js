@@ -29,7 +29,7 @@ function Rotas(){
                 <Route path="/login" element={<Login />}/>
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/estacionamento" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Estacionamento />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Dashboard />} />
                 <Route path="/checkin" element={<Checkin />} />
                 <Route path="/valores" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Valores />} />
                 <Route path="/historico" element={isSessionStorageEmpty ? <Navigate to="/login" replace /> : <Historico />}/>
