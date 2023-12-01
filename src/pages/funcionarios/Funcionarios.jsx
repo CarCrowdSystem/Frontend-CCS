@@ -317,12 +317,12 @@ function Funcionarios() {
               >
                 Adicionar
               </button>
-              <button
+{/*               <button
                 className="botao-adicionar-funcionario"
                 onClick={() => defazerUltimoCadastro()}
               >
                 Desfazer
-              </button>
+              </button> */}
             </div>
             <div className="div-title-exibir-funcionarios">
               <h1 className="titulo-adicionar-funcionarios">Funcionários</h1>
