@@ -15,8 +15,8 @@ const BotaoCheckout = ({temPedidoCheckout}) =>  {
   return (
     <>
       {showDiv ? <TelaCheckout onClose={toggleDiv} /> : null}
-      <div className={(temPedidoCheckout) ? 'icon-checkout imgIconCheckout' : 'icon-checkout'}>
-        <img className='NovoCeckout' src={Exclamação} alt='NovoCeckout'/>
+      <div className='icon-checkout'>
+        <img className={(temPedidoCheckout) ? 'NovoCeckout imgIconCheckout' : 'NovoCeckout'} style={{display: (temPedidoCheckout) ? 'flex' : 'none'}} src={Exclamação} alt='NovoCeckout'/>
         <button onClick={toggleDiv} className='botao-checkout'>
           <img src={Botao} alt='Checkout' />
         </button>
