@@ -142,9 +142,11 @@ function TelaCheckout(props) {
               ))}
             </div>
             <div className="container-botao-checkout">
+            {checkouts.length > 0 && (
               <button className="botao-checkout-tela-checkout" onClick={() => fazCheckout()}>
                 Check-out
               </button>
+            )}
             </div>
           </div>
         </div>

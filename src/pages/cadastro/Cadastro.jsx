@@ -69,7 +69,7 @@ function Cadastro() {
       telefoneEmpresa: data.telefoneEmpresa,
     };
     Swal.fire({
-      title: "Fazendo cadastro",
+      title: "Verificando cadastro",
       timerProgressBar: true,
       customClass: {
         container: 'custom-swal-container',
