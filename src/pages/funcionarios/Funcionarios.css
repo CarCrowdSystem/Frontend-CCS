@@ -60,6 +60,20 @@
   border-radius: 8px;
 }
 
+.form-adicionar-funcionarios label {
+  display: flex;
+  justify-content: space-between;
+  width: 16vw;
+  align-items: flex-end;
+}
+
+.form-adicionar-funcionarios label span {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
 .label-info-add-func {
   margin-bottom: 10px;
 }
