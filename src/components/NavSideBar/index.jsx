@@ -90,7 +90,7 @@ function NavSideBar() {
     ]
 
     const filteredMenuItems = menuItems.filter(item => {
-        return sessionStorage.getItem("IS_ADMIN") === 0 || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
+        return sessionStorage.getItem("IS_ADMIN") !== "0" || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
       });
       
     
