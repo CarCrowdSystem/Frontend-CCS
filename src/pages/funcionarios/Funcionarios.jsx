@@ -45,24 +45,99 @@ function Funcionarios() {
   function buscarFuncionarioPorNome() {
     let apiEndpoint = `/funcionarios/${sessionIdEstacionamento}`;
 
-  if (nomeFunc !== null && nomeFunc !== "") {
-    apiEndpoint = `/funcionarios/nome/${nomeFunc}/${sessionIdEstacionamento}`;
+    if (nomeFunc !== null && nomeFunc !== "") {
+      apiEndpoint = `/funcionarios/nome/${nomeFunc}/${sessionIdEstacionamento}`;
+    }
+
+    console.log(apiEndpoint)
+
+    api
+      .get(apiEndpoint)
+      .then((response) => {
+        console.log(response.data);
+        setFuncionarios(response.data);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
   }
 
-  console.log(apiEndpoint)
+  const [errorMessages, setErrorMessages] = useState({
+    nomeError: "",
+    cpfError: "",
+    emailError: "",
+    senhaError: "",
+    confirmaSenhaError: "",
+  });
 
-  api
-    .get(apiEndpoint)
-    .then((response) => {
-      console.log(response.data);
-      setFuncionarios(response.data);
-    })
-    .catch((erro) => {
-      console.log(erro);
-    });
+  const validateFun = () => {
+    const errors = {};
+
+    if (!data.nomeFuncionario || data.nomeFuncionario.length <= 2) {
+      errors.nomeError = "Por favor, preencha o nome completo.";
+    }
+
+    if (!data.cpfUsuario || removeNonNumericChars(data.cpfUsuario).length !== 11) {
+      errors.cpfError = "Por favor, insira um CPF válido.";
+
+    }
+
+    if (!data.emailFuncionario || data.emailFuncionario.indexOf("@") == -1) {
+      errors.emailError = "Por favor, insira um e-mail válido.";
+
+    }
+
+    if (!data.senha || data.senha.length < 8) {
+      errors.senhaError = "A senha deve ter pelo menos 8 caracteres.";
+
+    }
+
+    if (data.senha !== data.confirmaSenha) {
+      errors.confirmaSenhaError = "As senhas não coincidem.";
+    }
+
+    setErrorMessages(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+
+  function validarCampos() {
+    const { nomeFuncionario, cpfUsuario, emailFuncionario, senha, confirmaSenha } = data;
+
+    if (!nomeFuncionario || !cpfUsuario || !emailFuncionario || !senha || !confirmaSenha) {
+      Swal.fire({
+        title: "Campos obrigatórios não preenchidos!",
+        icon: "error",
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok",
+      });
+      console.log("Campos obrigatórios não preenchidos!");
+      return false;
+    } else if (data.nomeFuncionario.length <= 2) {
+      console.log("Nome inválido!");
+      return false;
+    } else if (removeNonNumericChars(data.cpfUsuario).length !== 11) {
+      console.log("CPF inválido!");
+      return false;
+    } else if (data.emailFuncionario.indexOf("@") == -1) {
+      console.log("Email inválido!");
+      return false;
+    } else if (!data.senha || data.senha.length < 8) {
+      console.log("Senha inválida!");
+      return false;
+    } else if (senha !== confirmaSenha) {
+      console.log("Senhas não coincidem!")
+      return false;
+    } else {
+      return true;
+    }
   }
 
   function cadastrarFuncionario() {
+
+    console.log("Valor retornado de validarCampos:", validarCampos());
+
     const postFuncionario = {
       idEstacionamento: sessionIdEstacionamento,
       nomeUsuario: data.nomeFuncionario,
@@ -72,34 +147,45 @@ function Funcionarios() {
       senha: data.senha,
     };
 
-    api
-      .post(`/funcionarios`, postFuncionario)
-      .then((response) => {
-      console.log(response)
-        Swal.fire({
-          title: "Funcionário adicionado!",
-          icon: "success",
-          confirmButtonColor: "#ff8000",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ok",
+    if (validarCampos()) {
+      api
+        .post(`/funcionarios`, postFuncionario)
+        .then((response) => {
+          console.log(response)
+          Swal.fire({
+            title: "Funcionário adicionado!",
+            icon: "success",
+            confirmButtonColor: "#ff8000",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ok",
+          });
+          console.log(response.data);
+          updateList();
+        })
+        .catch((erro) => {
+          Swal.fire({
+            icon: "error",
+            title: "Erro ao cadastrar!",
+            text: "Verifique se os campos foram preenchidos corretamente",
+            confirmButtonColor: "#ff8000",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ok",
+          });
+          console.log("Error");
+          console.log(erro);
         });
-        console.log(response.data);
-        updateList();
-      })
-      .catch((erro) => {
-        Swal.fire({
-          title: "Erro ao adicionar funcionário!",
-          text: "Verifique os campos!",
-          icon: "error",
-          confirmButtonColor: "#ff8000",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ok",
-        });
-        console.log("Error");
-        console.log(erro);
-      });
 
-    console.log(postFuncionario);
+      console.log(postFuncionario);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao cadastrar!",
+        text: "Verifique se os campos foram preenchidos corretamente",
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok",
+      });
+    }
   }
 
   useEffect(() => {
@@ -121,34 +207,6 @@ function Funcionarios() {
         setFuncionarios(response.data);
       })
       .catch((erro) => {
-        console.log(erro);
-      });
-  }
-
-  function defazerUltimoCadastro() {
-    var id = funcionarios[funcionarios.length - 1].idFuncionario
-    console.log(id)
-    api
-      .delete(`/funcionarios/${id}`)
-      .then(() => {
-        funcionarios.filter((funcionario) => funcionario.idFuncionario !== id);
-        Swal.fire({
-          title: "Funcionário deletado!",
-          icon: "success",
-          confirmButtonColor: "#ff8000",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ok",
-        });
-        updateList();
-      })
-      .catch((erro) => {
-        Swal.fire({
-          title: "Erro ao deletar funcionário!",
-          icon: "error",
-          confirmButtonColor: "#ff8000",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ok",
-        });
         console.log(erro);
       });
   }
@@ -207,7 +265,7 @@ function Funcionarios() {
     if (contador === 0) {
       contador++
       ondenaAZ();
-    } else { 
+    } else {
       contador = 0;
       ondenaZA();
     }
@@ -231,21 +289,25 @@ function Funcionarios() {
             <div className="div-formulario-adicionar-funcionario">
               <div className="form-adicionar-funcionarios">
                 <label className="label-info-add-func" htmlFor="">
-                  Nome
+                  Nome<span className="error-message">{errorMessages.nomeError}</span>
                 </label>
                 <input
                   type="text"
                   name="nomeFuncionario"
-                  placeholder="Digite o nome"
+                  placeholder="Digite o nome completo"
+                  required
                   value={data.nomeFuncionario || ""}
+                  onKeyUp={() => validateFun()}
                   onChange={(e) =>
                     updateFieldHandler("nomeFuncionario", e.target.value)
+
                   }
                 />
                 <p>Cargo</p>
                 <select
                   className="combobox-cargo-add-func"
                   name="cargoFuncionario"
+                  required
                   value={data.cargoFuncionario || ""}
                   onChange={(e) =>
                     updateFieldHandler("cargoFuncionario", e.target.value)
@@ -257,7 +319,7 @@ function Funcionarios() {
               </div>
               <div className="form-adicionar-funcionarios">
                 <label className="label-info-add-func" htmlFor="">
-                  CPF
+                  CPF<span className="error-message">{errorMessages.cpfError}</span>
                 </label>
                 <InputMask
                   className="input-add-func"
@@ -266,11 +328,12 @@ function Funcionarios() {
                   mask="999.999.999-99"
                   placeholder="Digite o CPF"
                   required
+                  onKeyUp={() => validateFun()}
                   value={data.cpfUsuario || ""}
                   onChange={(e) => updateFieldHandler("cpfUsuario", removeNonNumericChars(e.target.value))}
                 />
                 <label className="label-info-add-func" htmlFor="">
-                  E-mail
+                  E-mail<span className="error-message">{errorMessages.emailError}</span>
                 </label>
                 <input
                   className="input-add-func"
@@ -278,6 +341,8 @@ function Funcionarios() {
                   name="emailFuncionario"
                   placeholder="funcionario@gmail.com"
                   value={data.emailFuncionario || ""}
+                  required
+                  onKeyUp={() => validateFun()}
                   onChange={(e) =>
                     updateFieldHandler("emailFuncionario", e.target.value)
                   }
@@ -285,23 +350,27 @@ function Funcionarios() {
               </div>
               <div className="form-adicionar-funcionarios">
                 <label className="label-info-add-func" htmlFor="">
-                  Senha
+                  Senha<span className="error-message">{errorMessages.senhaError}</span>
                 </label>
                 <input
                   className="input-add-func"
                   type="password"
                   name="senha"
+                  required
+                  onKeyUp={() => validateFun()}
                   placeholder="********"
                   value={data.senha || ""}
                   onChange={(e) => updateFieldHandler("senha", e.target.value)}
                 />
                 <label className="label-info-add-func" htmlFor="">
-                  Confirmar senha
+                  Confirmar senha<span className="error-message">{errorMessages.confirmaSenhaError}</span>
                 </label>
                 <input
                   className="input-add-func"
                   type="password"
                   name="confirmaSenha"
+                  required
+                  onKeyUp={() => validateFun()}
                   placeholder="********"
                   value={data.confirmaSenha || ""}
                   onChange={(e) =>
@@ -317,7 +386,7 @@ function Funcionarios() {
               >
                 Adicionar
               </button>
-{/*               <button
+              {/*               <button
                 className="botao-adicionar-funcionario"
                 onClick={() => defazerUltimoCadastro()}
               >
