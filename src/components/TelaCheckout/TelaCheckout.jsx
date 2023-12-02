@@ -85,7 +85,7 @@ function TelaCheckout({onClose, fetchData}) {
             }
           }
         })
-        
+
         fetchData();
         pegaCheckouts()
       })
@@ -144,9 +144,11 @@ function TelaCheckout({onClose, fetchData}) {
               ))}
             </div>
             <div className="container-botao-checkout">
+            {checkouts.length > 0 && (
               <button className="botao-checkout-tela-checkout" onClick={() => fazCheckout(fetchData)}>
                 Check-out
               </button>
+            )}
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../valores/Valores.css";
 import NavSideBar from "../../components/NavSideBar/index";
-import BotaoCheckout from "../../components/Botoes/BotaoCheckout";
+/* import BotaoCheckout from "../../components/Botoes/BotaoCheckout"; */
 import Botao from "../../components/Botoes/BotaoEnviar/index";
 import api from "../../api.js";
 
@@ -94,7 +94,7 @@ function Valores() {
       <div className="fundoValores">
         <NavSideBar />
         <div className="espaco-icone">
-          <BotaoCheckout />
+          {/* <BotaoCheckout /> */}
         </div>
         <div className="contValores">
           <h1 className="titleValores">Alteração de valores</h1>

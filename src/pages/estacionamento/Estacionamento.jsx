@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Estacionamento.css";
-import BotaoCheckout from "../../components/Botoes/BotaoCheckout/index";
+/* import BotaoCheckout from "../../components/Botoes/BotaoCheckout/index"; */
 import NavSideBar from "../../components/NavSideBar/index";
 import api from "../../api";
 import Swal from "sweetalert2";
@@ -113,7 +113,7 @@ function Estacionamento() {
     <>
       <NavSideBar />
       <div className="espaco-icone">
-        <BotaoCheckout />
+       {/*  <BotaoCheckout /> */}
       </div>
       <div className="div-formulario">
         <div className="titulo-estacionamento">

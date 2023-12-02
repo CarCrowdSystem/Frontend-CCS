@@ -205,9 +205,9 @@ function Dashboard() {
                       </h3>
                     </div>
                     <div className="valor-painel">
-                    {sessionStorage.getItem("IS_ADMIN") === true ? undefined :<p className="valor-monetario-dashboard">R$</p>}
+                    {sessionStorage.getItem("IS_ADMIN") == 0 ? undefined :<p className="valor-monetario-dashboard">R$</p>}
                       <p className="valor-monetario-dashboard">
-                      {sessionStorage.getItem("IS_ADMIN") === true ? "Restrito" : estacionamentoInfo.totalFaturamento || '...'}
+                      {sessionStorage.getItem("IS_ADMIN") == 0 ? "Restrito" : estacionamentoInfo.totalFaturamento || '...'}
                       </p>
                     </div>
                   </div>

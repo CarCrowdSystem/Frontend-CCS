@@ -1,11 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import "./NavSideBar.css";
 import Swal from "sweetalert2";
 
 // import { Container } from './styles';
 
 function NavSideBar() {
+    const location = useLocation();
     const [isExpended, setExpendedState] = useState(false);
+    const [dashboardIcon, setDashboardIcon] = useState("imgs/icons/navIcons/dashBranco.png");
+    const [historicoIcon, setHistoricoIcon] = useState("imgs/icons/navIcons/historicoBranco.png");
+    const [estacionamentoIcon, setEstacionamentoIcon] = useState("imgs/icons/navIcons/estacionamentoBranco.png");
+    const [funcionariosIcon, setFuncionariosIcon] = useState("imgs/icons/navIcons/funcionarioBranco.png");
+    const [valoresIcon, setValoresIcon] = useState("imgs/icons/navIcons/valoresBranco.png");
+
+    useEffect(() => {
+        // Verifica se a localização atual é a rota da dashboard
+        setDashboardIcon(location.pathname === '/dashboard' ? "imgs/icons/navIcons/dashLaranja.png" : "imgs/icons/navIcons/dashBranco.png");
+
+        // Verifica se a localização atual é a rota do histórico
+        setHistoricoIcon(location.pathname === '/historico' ? "imgs/icons/navIcons/historicoLaranja.png" : "imgs/icons/navIcons/historicoBranco.png");
+
+        // Verifica se a localização atual é a rota do estacionamento
+        setEstacionamentoIcon(location.pathname === '/estacionamento' ? "imgs/icons/navIcons/estacionamentoLaranja.png" : "imgs/icons/navIcons/estacionamentoBranco.png");
+
+        // Verifica se a localização atual é a rota dos funcionários
+        setFuncionariosIcon(location.pathname === '/funcionarios' ? "imgs/icons/navIcons/funcionarioLaranja.png" : "imgs/icons/navIcons/funcionarioBranco.png");
+
+        // Verifica se a localização atual é a rota dos valores
+        setValoresIcon(location.pathname === '/valores' ? "imgs/icons/navIcons/valoresLaranja.png" : "imgs/icons/navIcons/valoresBranco.png");
+    }, [location]);
 
     const handleLogout = () => {
         // Limpar o sessionStorage
@@ -34,31 +58,31 @@ function NavSideBar() {
     const menuItems = [
         {
             text: "Dashboard",
-            icon: "imgs/icons/navIcons/dashBranco.png",
+            icon: dashboardIcon,
             href: "/dashboard",
             alt: "img_dash"
         },
         {
             text: "Histórico",
-            icon: "imgs/icons/navIcons/historicoBranco.png",
+            icon: historicoIcon,
             href: "/historico",
             alt: "img_historico"
         },
         {
             text: "Estacionamento",
-            icon: "imgs/icons/navIcons/estacionamentoBranco.png",
+            icon: estacionamentoIcon,
             href: "/estacionamento",
             alt: "img_estacionamento"
         },
         {
             text: "Funcionários",
-            icon: "imgs/icons/navIcons/funcionarioBranco.png",
+            icon: funcionariosIcon,
             href: "/funcionarios",
             alt: "img_funcionarios"
         },
         {
             text: "Valores",
-            icon: "imgs/icons/navIcons/valoresBranco.png",
+            icon: valoresIcon,
             href: "/valores",
             alt: "img_valores"
         },
@@ -66,8 +90,7 @@ function NavSideBar() {
     ]
 
     const filteredMenuItems = menuItems.filter(item => {
-        // Remover os itens se IS_ADMIN for igual a 0
-        return sessionStorage.getItem("IS_ADMIN") !== true || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
+        return sessionStorage.getItem("IS_ADMIN") === 0 || !["Estacionamento", "Funcionários", "Valores"].includes(item.text);
       });
       
     
