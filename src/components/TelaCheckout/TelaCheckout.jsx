@@ -13,7 +13,7 @@ const formTemplate = {
   valor: " "
 };
 
-function TelaCheckout(props) {
+function TelaCheckout({onClose, fetchData}) {
   var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
   const [hideDiv, setHideDiv] = useState(true);
 
@@ -27,7 +27,7 @@ function TelaCheckout(props) {
   const hideDivOnClick = () => {
     setHideDiv(true);
     setTimeout(() => {
-      props.onClose();
+      onClose();
     }, 500);
     console.log("hideDiv");
   };
@@ -48,7 +48,7 @@ function TelaCheckout(props) {
       });
   }
 
-  function fazCheckout() {
+  const fazCheckout = async (fetchData) => {
     Swal.fire({
       title: "Fazendo checkout",
       timerProgressBar: true,
@@ -85,6 +85,8 @@ function TelaCheckout(props) {
             }
           }
         })
+
+        fetchData();
         pegaCheckouts()
       })
       .catch((erro) => {
@@ -143,7 +145,7 @@ function TelaCheckout(props) {
             </div>
             <div className="container-botao-checkout">
             {checkouts.length > 0 && (
-              <button className="botao-checkout-tela-checkout" onClick={() => fazCheckout()}>
+              <button className="botao-checkout-tela-checkout" onClick={() => fazCheckout(fetchData)}>
                 Check-out
               </button>
             )}

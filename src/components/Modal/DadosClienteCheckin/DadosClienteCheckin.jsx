@@ -14,7 +14,7 @@ const formTemplate = {
     placa: "",
 }
 
-function DadosClienteCheckin() {
+function DadosClienteCheckin({fecharModal}) {
 
 const [data, setData] = useState(formTemplate);
 const postteFieldHandler = (key, value) => {
@@ -24,6 +24,21 @@ const postteFieldHandler = (key, value) => {
     };
 
     function realizarCadastroVeiculo(){
+        Swal.fire({
+            title: "Realizando cadastro do cliente",
+            timerProgressBar: true,
+            customClass: {
+              container: 'custom-swal-container',
+            },
+            didOpen: () => {
+              Swal.showLoading();
+              const timer = Swal.getPopup().querySelector("b");
+              const swalContainer = document.querySelector('.custom-swal-container');
+              if (swalContainer) {
+                swalContainer.style.zIndex = '10000';
+              }
+            },
+          });
         const postVeiculo = {
             nomeCliente: data.nomeCliente,
             email: data.email,
@@ -35,6 +50,7 @@ const postteFieldHandler = (key, value) => {
         api
         .post(`/veiculo`, postVeiculo)
         .then((response)=>{
+            Swal.close()
             Swal.fire({
                 title: "Cadastrado com sucesso!",
                 icon: "success",
@@ -42,9 +58,11 @@ const postteFieldHandler = (key, value) => {
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Ok",
               });
+              fecharModal()
         })
         .catch((error)=>{
             console.log(error.response)
+            Swal.close()
             Swal.fire({
                 title: "Erro ao fazer checkin!",
                 text: (error.response.data.message)?error.response.data.message : error.response.data ,

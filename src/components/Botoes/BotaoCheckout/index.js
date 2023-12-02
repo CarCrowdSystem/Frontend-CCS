@@ -8,14 +8,13 @@ const BotaoCheckout = ({temPedidoCheckout, fetchData}) =>  {
   const [showDiv, setShowDiv] = useState(false);
 
   const toggleDiv = () => {
+    console.log(fetchData)
     setShowDiv(!showDiv);
-    fetchData()
-    console.log("toggleDiv")
   };
 
   return (
     <>
-      {showDiv ? <TelaCheckout onClose={toggleDiv} /> : null}
+      {showDiv ? <TelaCheckout onClose={toggleDiv} fetchData={fetchData} /> : null}
       <div className='icon-checkout'>
         <img className={(temPedidoCheckout) ? 'NovoCeckout imgIconCheckout' : 'NovoCeckout'} style={{display: (temPedidoCheckout) ? 'flex' : 'none'}} src={Exclamação} alt='NovoCeckout'/>
         <button onClick={toggleDiv} className='botao-checkout'>

@@ -4,7 +4,7 @@ import Modal from '../../../../components/Modal/Modal';
 import DadosClienteCheckin from '../../../../components/Modal/DadosClienteCheckin/DadosClienteCheckin';
 import ClienteJaCadastrado from '../../../../components/Modal/ClienteJaCadastrado/ClienteJaCadastrado';
 
-const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
+const Vaga = ({numero, status, andar, andarSelecionado, idVaga, fetchData}) => {
   const [mostraModal, setMostraModal] = useState(false);
   const [mostraModalCadastro, setMostraModalCadastro] = useState(false);
 
@@ -35,19 +35,21 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga}) => {
                 <ClienteJaCadastrado 
                   func={handleMostrarModalCadastro} 
                   idVaga={idVaga}
+                  fetchData={fetchData}
+                  fecharModal={fecharModal}
                 />
               </Modal>
             )}
 
             {mostraModalCadastro && (
               <Modal onFecharModal={handleFecharModalCadastro}>
-                <DadosClienteCheckin />
+                <DadosClienteCheckin fetchData={fetchData}/>
               </Modal>
             )}
 
       {mostraModalCadastro && (
         <Modal onFecharModal={handleFecharModalCadastro}>
-          <DadosClienteCheckin />
+          <DadosClienteCheckin fetchData={fetchData}/>
         </Modal>
       )}
       <div className={andar === andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
