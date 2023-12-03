@@ -91,7 +91,7 @@ function DadosClienteCheckin({ fecharModal }) {
           cancelButtonColor: "#d33",
           confirmButtonText: "Ok",
         });
-        setTimeout(()=>{fecharModal()},5000)
+        //setTimeout(()=>{fecharModal()},5000)
         
       })
       .catch((error) => {
