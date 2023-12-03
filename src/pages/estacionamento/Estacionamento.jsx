@@ -75,19 +75,32 @@ function Estacionamento() {
     const putEmpresa = {
       nomeEmpresa: data.nomeEmpresa,
       cepEmpresa: data.cepEmpresa,
-      cnpjEmpresa: "funcionaPoDeus",
+      cnpjEmpresa: "",
       enderecoEmpresa: data.numeroEmpresa,
       telefoneEmpresa: data.telefoneEmpresa,
     };
 
-    api
-      // Teste MockAPI
-      // .post(`/teste`)
+    Swal.fire({
+      title: "Atualizando dados do estacionamento",
+      timerProgressBar: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        const swalContainer = document.querySelector('.custom-swal-container');
+        if (swalContainer) {
+          swalContainer.style.zIndex = '10000';
+        }
+      },
+    });
 
-      // "Funcional" backEnd ccs
+    api
       .put(`/estacionamentos/${sessionIdEstacionamento}`, putEmpresa)
       .then((response) => {
         console.log(response);
+        Swal.close();
         Swal.fire({
           title: "Estacionamento atualizado!",
           icon: "success",
@@ -102,7 +115,14 @@ function Estacionamento() {
         updateList();
       })
       .catch((erro) => {
-        console.log("Error");
+        Swal.close();
+        Swal.fire({
+          icon: "error",
+          title: "Ops...",
+          confirmButtonColor: "#ff8000",
+          text: "Algo deu errado!",
+          timer: 4000,
+        });
         console.log(erro);
       });
 

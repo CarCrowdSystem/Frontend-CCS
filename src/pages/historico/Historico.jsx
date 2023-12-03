@@ -3,6 +3,7 @@ import "./Historico.css";
 /* import BotaoCheckout from "./../../components/Botoes/BotaoCheckout"; */
 import IconeDownloadCsv from "./icon-download-csv.png";
 import InfoHistorico from "./InfoHistorico/InfoHistorico";
+import Swal from "sweetalert2";
 import NavSideBar from "../../components/NavSideBar/index";
 import api from "../../api.js";
 import DownloadLink from "./dowloadCsv/DownloadLink";
@@ -15,12 +16,30 @@ function Historico() {
   const [historicos, setHistoricos] = useState([]);
 
   useEffect(() => {
+    Swal.fire({
+      title: "Pegando histórico",
+      timerProgressBar: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        const swalContainer = document.querySelector('.custom-swal-container');
+        if (swalContainer) {
+          swalContainer.style.zIndex = '10000';
+        }
+      },
+    });
+
     api
       .get(`/historicos/dados?id=${sessionIdEstacionamento}`)
       .then((response) => {
+        Swal.close();
         setHistoricos(response.data)
       })
       .catch((erro) => {
+        Swal.close();
         console.log(erro);
       });
   }, []);
