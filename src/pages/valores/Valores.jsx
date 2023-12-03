@@ -8,10 +8,6 @@ import api from "../../api.js";
 import Swal from "sweetalert2";
 // import { Container } from './styles';
 
-var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
-var sessionDiaria = sessionStorage.getItem("VALOR_DIARIA");
-var sessionPrimeiraHora = sessionStorage.getItem("VALOR_PRIMEIRA_HORA");
-var sessionDemaisHoras = sessionStorage.getItem("VALOR_DEMAIS_HORAS");
 
 const formTemplate = {
   primeiraHora: "",
@@ -19,11 +15,9 @@ const formTemplate = {
   diaria: "",
 };
 
-var sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
-
 function Valores() {
   const [data, setData] = useState(formTemplate);
-  const [valor, setValor] = useState([]);
+  const [valor, setValor] = useState(formTemplate);
 
   const updateFieldHandler = (key, value) => {
     setData((prev) => {
@@ -41,7 +35,6 @@ function Valores() {
       };
 
       await api.post(`/valores?idEstacionamento=${sessionIdEstacionamento}`, postValores);
-
       Swal.fire({
         title: "Valores atualizados!",
         icon: "success",
@@ -49,6 +42,7 @@ function Valores() {
         cancelButtonColor: "#d33",
         confirmButtonText: "Ok",
       }).then(() => {
+        window.location.reload();
         fetchData();
       });
     } catch (error) {
@@ -68,14 +62,11 @@ function Valores() {
     try {
       const sessionIdEstacionamento = sessionStorage.getItem("ID_ESTACIONAMENTO");
 
+      console.log("dasdfassssssss")
       const response = await api.get(`/valores?id=${sessionIdEstacionamento}`);
       const { primeiraHora, horaAdicional, diaria } = response.data;
 
-      sessionStorage.setItem("VALOR_PRIMEIRA_HORA", primeiraHora);
-      sessionStorage.setItem("VALOR_DEMAIS_HORAS", horaAdicional);
-      sessionStorage.setItem("VALOR_DIARIA", diaria);
-
-      setData({
+      setValor({
         primeiraHora: primeiraHora,
         demaisHoras: horaAdicional,
         diaria: diaria,
@@ -104,7 +95,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="primeiraHora"
-              placeholder={"R$ " + sessionPrimeiraHora}
+              placeholder={"R$ " + valor.primeiraHora}
               required
               value={data.primeiraHora || ""}
               onChange={(e) =>
@@ -117,7 +108,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="demaisHoras"
-              placeholder={"R$ " + sessionDemaisHoras}
+              placeholder={"R$ " + valor.demaisHoras}
               required
               value={data.demaisHoras || ""}
               onChange={(e) =>
@@ -129,7 +120,7 @@ function Valores() {
               className="campo-texto"
               type="number"
               name="diaria"
-              placeholder={"R$ " + sessionDiaria}
+              placeholder={"R$ " + valor.diaria}
               required
               value={data.diaria || ""}
               onChange={(e) => updateFieldHandler("diaria", e.target.value)}
