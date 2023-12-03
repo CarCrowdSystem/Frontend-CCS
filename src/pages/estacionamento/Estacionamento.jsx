@@ -43,16 +43,30 @@ function Estacionamento() {
   }, []);
 
   function updateList() {
+    Swal.fire({
+      title: "Pegando dados do estacionamento.",
+      timerProgressBar: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        const swalContainer = document.querySelector('.custom-swal-container');
+        if (swalContainer) {
+          swalContainer.style.zIndex = '10000';
+        }
+      },
+    });
     api
       .get(`/estacionamentos/${sessionIdEstacionamento}`)
       .then((response) => {
         setEstacionamento(response.data);
         dadosEstacionamento = response.data;
-        console.log("Variavel Global", dadosEstacionamento);
         setTimeout(() => pegarEndereco(response.data.cep), 1000);
-        console.log(response.data);
       })
       .catch((erro) => {
+        Swal.close();
         console.log(erro);
       });
   }
@@ -62,9 +76,8 @@ function Estacionamento() {
       .get(`/estacionamentos/buscar/${endereco}`)
       .then((response) => {
         logradouro = response.data;
-        console.log("Variavel global", logradouro);
         setEstacionamento2(response.data);
-        console.log(response.data);
+        Swal.close();
       })
       .catch((erro) => {
         console.log(erro);
@@ -77,11 +90,11 @@ function Estacionamento() {
       cepEmpresa: data.cepEmpresa,
       cnpjEmpresa: "",
       enderecoEmpresa: data.numeroEmpresa,
-      telefoneEmpresa: data.telefoneEmpresa,
+      telefoneEmpresa: data.numeroCelular,
     };
 
     Swal.fire({
-      title: "Atualizando dados do estacionamento",
+      title: "Atualizando dados do estacionamento.",
       timerProgressBar: true,
       customClass: {
         container: 'custom-swal-container',
