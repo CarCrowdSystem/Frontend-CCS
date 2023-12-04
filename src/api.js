@@ -4,8 +4,8 @@ import axios from "axios"; // importando a biblioteca "axios"
 const api = axios.create({
     // URL base para realizar as requisições
     // "Funcional" backENd ccs
-    baseURL: "http://localhost:8080/ccs-dev"
-    //baseURL: "https://ccs-grupo7.ddnsking.com/ccs-dev"
+    // baseURL: "http://localhost:8080/ccs-dev"
+    baseURL: "https://ccs-grupo7.ddnsking.com/ccs-dev"
 
     //Teste MockAPI
     //baseURL: "https://642f51e6c26d69edc87a880d.mockapi.io" 
