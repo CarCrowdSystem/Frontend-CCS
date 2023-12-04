@@ -42,14 +42,16 @@ const Vaga = ({numero, status, andar, andarSelecionado, idVaga, fetchData}) => {
             )}
 
             {mostraModalCadastro && (
-              <Modal onFecharModal={handleFecharModalCadastro}>
-                <DadosClienteCheckin fetchData={fetchData}/>
+              <Modal onFecharModal={handleMostrarModalCadastro}>
+                <DadosClienteCheckin 
+                  fecharModal={handleFecharModalCadastro}
+                />
               </Modal>
             )}
 
       {mostraModalCadastro && (
         <Modal onFecharModal={handleFecharModalCadastro}>
-          <DadosClienteCheckin fetchData={fetchData}/>
+          <DadosClienteCheckin fecharModal={handleFecharModalCadastro}/>
         </Modal>
       )}
       <div className={andar === andarSelecionado ? "div-vagas-selecionadas" : "div-vagas-nao-selecionada"}>
