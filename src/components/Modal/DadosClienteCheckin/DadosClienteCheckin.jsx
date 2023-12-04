@@ -14,7 +14,7 @@ const formTemplate = {
     placa: "",
 }
 
-function DadosClienteCheckin({fecharModal}) {
+function DadosClienteCheckin({fecharModal, bla}) {
 
 const [data, setData] = useState(formTemplate);
 const postteFieldHandler = (key, value) => {
@@ -51,14 +51,14 @@ const postteFieldHandler = (key, value) => {
         .post(`/veiculo`, postVeiculo)
         .then((response)=>{
             Swal.close()
+            fecharModal()
             Swal.fire({
-                title: "Cadastrado com sucesso!",
-                icon: "success",
-                confirmButtonColor: "#ff8000",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ok",
-              });
-              fecharModal()
+              title: "Cadastrado com sucesso!",
+              icon: "success",
+              confirmButtonColor: "#ff8000",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Ok",
+            });
         })
         .catch((error)=>{
             console.log(error.response)
