@@ -135,6 +135,7 @@ function DadosClienteCheckin({ fecharModal }) {
         <div className='div-title-dados-cliente'>
           <h1 className='title-dados-cliente'>Dados do cliente</h1>
         </div>
+        <center><h3 style={{ marginTop: "3vh", color: "red", fontSize: "16px" }}>Informe ao cliente que sua senha é "0000"</h3></center>
         <div className='form-dados-cadastro-checkin'>
           <div className='div-label-checkin'>
             <label className='label-checkin' htmlFor="">Nome:</label>
